@@ -1,19 +1,13 @@
 <?php
 
 	require __DIR__ . '/AltoRouter/AltoRouter.php';
+	require __DIR__ . '/config/content_types.php';
 
 	$router = new AltoRouter();
 
-	require __DIR__ . '/routes.php';
+	require __DIR__ . '/config/routes.php';
 
 	$match = $router->match();
-
-	$content_types = array(
-		'js' => 'application/javascript',
-		'png' => 'image/png',
-		'jpg' => 'image/jpeg',
-		'css' => 'text/css',
-	);
 
 	if ($match && is_callable($match['target'])) {
 		call_user_func_array($match['target'], $match['params']);
