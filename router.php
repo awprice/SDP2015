@@ -2,6 +2,7 @@
 
 	require __DIR__ . '/AltoRouter/AltoRouter.php';
 	require __DIR__ . '/config/content_types.php';
+	require __DIR__ . '/config/config.php';
 
 	$router = new AltoRouter();
 
