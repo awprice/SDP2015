@@ -4,19 +4,21 @@
 
     console.log("Page loaded.");
 
-    // Compile less and reload styles every 3 seconds
-    setInterval(compileLess, 3000);
+    // Compile less and reload styles every 2 seconds
+    setInterval(compileLess, 5000);
 
   });
 
   function compileLess() {
     // Compiling less
+    console.log('Recompiling less');
     xmlhttp = new XMLHttpRequest();
 
-    xmlhttp.open("GET", "/compile/less", true);
+    xmlhttp.open("GET", "/compile/less", false);
     xmlhttp.send();
 
     // Reload css
+    console.log('Reloading css');
     document.styleSheets.reload();
   }
 
