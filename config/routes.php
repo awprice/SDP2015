@@ -8,4 +8,8 @@
 		echo 'This is is a test';
 	});
 
+	$router->map('GET', '/compile/less', function() {
+		require __DIR__ . '/less.compile.php';
+	})
+
 ?>
