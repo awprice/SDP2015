@@ -15,7 +15,7 @@
 	    $css = $parser->getCss();
 	} catch(Exception $e) {
 	    echo $e->getMessage();
-	    quit();
+	    exit();
 	}
 
 	echo "Less compiled successfully.<br>";
@@ -25,7 +25,7 @@
 		$outputfile = fopen($output, "w");
 	} catch(Exception $e) {
 		echo $e->getMessage();
-		quit();
+		exit();
 	}
 
 	fwrite($outputfile, $css);
