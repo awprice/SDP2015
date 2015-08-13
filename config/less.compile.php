@@ -10,7 +10,10 @@
 	echo "Compiling " . $input . "...<br>";
 
 	try {
-	    $parser = new Less_Parser();
+		$options = array(
+			'compress'=>true
+		);
+		$parser = new Less_Parser( $options );
 	    $parser->parseFile($input);
 	    $css = $parser->getCss();
 	} catch(Exception $e) {
@@ -32,6 +35,6 @@
 	fclose($outputfile);
 
 	echo "Wrote the following to " . $output . ":<br><br>";
-	echo "<pre>" . $css . "</pre>";
+	echo '<pre style="white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;">' . $css . "</pre>";
 
 ?>
