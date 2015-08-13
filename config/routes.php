@@ -1,7 +1,7 @@
 <?php
 
 	$router->map('GET', '/', function() {
-		echo 'Hello world!';
+		require __DIR__ . '/../controllers/index.php';
 	});
 
 	$router->map('GET', '/hello/world', function() {

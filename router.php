@@ -3,6 +3,7 @@
 	require __DIR__ . '/AltoRouter/AltoRouter.php';
 	require __DIR__ . '/config/content_types.php';
 	require __DIR__ . '/config/config.php';
+	require __DIR__ . '/h2o-php/h2o.php';
 
 	$router = new AltoRouter();
 
