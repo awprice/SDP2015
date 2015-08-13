@@ -9,6 +9,8 @@
 
 	echo "Compiling " . $input . "...<br>";
 
+	$start = microtime(true);
+
 	try {
 		$options = array(
 			'compress'=>true
@@ -16,6 +18,9 @@
 		$parser = new Less_Parser( $options );
 	    $parser->parseFile($input);
 	    $css = $parser->getCss();
+
+	    $css = "/* Less compiled in " . number_format(microtime(true) - $start, 2) . "s at " . date("r") . " */\r\n\r\n" . $css;
+
 	} catch(Exception $e) {
 	    echo $e->getMessage();
 	    exit();
