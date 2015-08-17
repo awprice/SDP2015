@@ -1,12 +1,15 @@
 <?php
 
-	require __DIR__ . '/AltoRouter/AltoRouter.php';
-	require __DIR__ . '/config/content_types.php';
+	// Import our modules
+	require __DIR__ . '/modules/AltoRouter/AltoRouter.php';
+	require __DIR__ . '/modules/h2o-php/h2o.php';
+	require __DIR__ . '/modules/UTSHelpsAPI/UTSHelpsAPI.php';
+
+	// Import our config files
 	require __DIR__ . '/config/config.php';
-	require __DIR__ . '/h2o-php/h2o.php';
+	require __DIR__ . '/config/content_types.php';
 
 	$router = new AltoRouter();
-
 	require __DIR__ . '/config/routes.php';
 
 	$match = $router->match();
