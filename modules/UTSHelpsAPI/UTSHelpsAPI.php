@@ -11,7 +11,7 @@
      * Requires AppKey: true
 	 */
 	function RegisterStudent($data) {
-		return json_decode(curl_post('/api/student/register', $data, true));
+		return json_decode(curl_post('api/student/register', $data, true));
 	}
 
 ?>
