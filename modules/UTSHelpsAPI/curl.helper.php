@@ -8,7 +8,7 @@
 
 		// Set options
 		curl_setopt($ch, CURLOPT_URL, $url); 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		if ($appkey) {
 			curl_setopt($ch, CURLOPT_HTTPHEADER, ['AppKey: ' . $GLOBALS["helps-appkey"]]);
