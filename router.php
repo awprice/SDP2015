@@ -26,4 +26,6 @@
 		echo '404 Not Found';
 	}
 
+	echo "test";
+
 ?>
