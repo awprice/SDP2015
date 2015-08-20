@@ -5,7 +5,7 @@
     console.log("Page loaded.");
 
     // Compile less and reload styles every 2 seconds
-    setInterval(compileLess, 5000);
+    //setInterval(compileLess, 5000);
 
   });
 
