@@ -1,6 +1,6 @@
 <?php
 
-	require __DIR__ . '/../less.php/Less.php';
+	require __DIR__ . '/../modules/less.php/Less.php';
 
 	echo "Less Compilation.<br>";
 
