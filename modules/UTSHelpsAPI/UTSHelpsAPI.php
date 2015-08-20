@@ -40,7 +40,7 @@
      * Requires AppKey: true
      */
     function CreateWorkshopBooking($data) {
-        return json_decode(curl_post('api/workshop/booking/create', $data, true))
+        return json_decode(curl_post('api/workshop/booking/create', $data, true));
     }
 
     /*
