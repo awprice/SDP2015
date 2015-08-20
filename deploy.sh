@@ -34,9 +34,13 @@ sudo make install
 cd
 cp /etc/init.d/nginx /etc/init.d/nginx-pagespeed
 sed -i 's|/usr/sbin/nginx|/usr/local/sbin/nginx|g' /etc/init.d/nginx-pagespeed
+rm /etc/init.d/nginx
 rm -rf nginx-1.9.4/ nginx-1.9.4.tar.gz ngx_pagespeed-release-1.9.32.6-beta/ release-1.9.32.6-beta.zip
 mkdir /home/nginx-conf
 touch /home/nginx-conf/default
 rm /etc/nginx/sites-available/default
 ln -s /home/nginx-conf/default /etc/nginx/sites-available/default
 
+# Finishing up
+
+mkdir /var/www
