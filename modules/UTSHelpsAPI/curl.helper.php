@@ -1,8 +1,12 @@
 <?php
 
-	function curl_get($path, $appkey) {
+	function curl_get($path, $parameters = null, $appkey) {
 
 		$url = $GLOBALS["helps-url"] . $path;
+
+        if ($parameters != null) {
+            $url .= http_build_query($parameters);
+        }
 
 		$ch = curl_init($url);
 
