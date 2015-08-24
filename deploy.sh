@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Update and upgrade
 
 apt-get update
