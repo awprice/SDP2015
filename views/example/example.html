@@ -1,0 +1,53 @@
+<h3>Strings:</h3>
+<pre>&#123;&#123; page.string1 &#125;&#125; = {{ page.string1 }}</pre>
+<pre>&#123;&#123; page.string2 &#125;&#125; = {{ page.string2 }}</pre>
+
+<h3>Integers:</h3>
+<pre>&#123;&#123; page.integer1 &#125;&#125; = {{ page.integer1 }}</pre>
+<pre>&#123;&#123; page.integer2 &#125;&#125; = {{ page.integer2 }}</pre>
+
+<h3>Floats:</h3>
+<pre>&#123;&#123; page.float1 &#125;&#125; = {{ page.float1 }}</pre>
+
+<h3>Arrays:</h3>
+
+<pre>&#123;&#123; page.array1 &#125;&#125; = </pre>
+
+<ul>
+    <li>{{ page.array1.key1 }}</li>
+    <li>{{ page.array1.key2 }}</li>
+    <li>(key3)
+        <ul>
+            <li>{{ page.array1.key3.subkey1 }}</li>
+            <li>{{ page.array1.key3.subkey2 }}</li>
+        </ul>
+    </li>
+</ul>
+
+<pre>&#123;&#123; page.array2 &#125;&#125; = </pre>
+
+<ul>
+    {% for key in page.array2 %}
+        <li>{{ key }}</li>
+    {% endfor %}
+</ul>
+
+<h3>If</h3>
+
+<p>page.boolean1 is true:</p>
+
+{% if page.boolean1 == true %}
+    <pre>page.boolean1 is true</pre>
+{% endif %}
+
+<p>page.boolean2 is false:</p>
+
+{% if page.boolean2 == false %}
+    <pre>page.boolean2 is false</pre>
+{% endif %}
+
+<h3>Debug</h3>
+
+<pre>&#123;% debug %&#125; = </pre>
+
+{% debug %}

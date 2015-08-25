@@ -22,4 +22,8 @@
 		require __DIR__ . '/less.compile.php';
 	});
 
+    $router->map('GET', '/example', function() {
+        require __DIR__ . '/../controllers/example/example.php';
+    });
+
 ?>
