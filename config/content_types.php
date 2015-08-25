@@ -6,6 +6,7 @@
         'png' => 'image/png',
         'jpg' => 'image/jpeg',
         'css' => 'text/css',
+        'html' => 'text/html',
     );
 
 ?>
