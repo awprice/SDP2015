@@ -5,6 +5,9 @@
     require __DIR__ . '/modules/h2o-php/h2o.php';
     require __DIR__ . '/modules/UTSHelpsAPI/UTSHelpsAPI.php';
 
+    // Import our models
+    require __DIR__ . '/models/autoload.php';
+
     // Import our config files
     require __DIR__ . '/config/config.php';
     require __DIR__ . '/config/content_types.php';

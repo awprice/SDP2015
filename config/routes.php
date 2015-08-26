@@ -10,7 +10,7 @@
         require __DIR__ . '/../controllers/session/logout.php';
     });
 
-    $router->map('GET', '/login', function () {
+    $router->map('GET|POST', '/login', function () {
         require __DIR__ . '/../controllers/session/login.php';
     });
 
