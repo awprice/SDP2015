@@ -2,44 +2,59 @@
 
 	require __DIR__ . '/../modules/less.php/Less.php';
 
-	echo "Less Compilation.<br>";
+	echo "<pre>Less Compilation.<br>";
+    echo "--------------------<br>";
 
-	$input = __DIR__ . "/../less/style.less";
-	$output = __DIR__ . "/../css/style.css";
+    $less_files = [
+        'small' => "/../less/style.small.less",
+        'normal' => "/../less/style.less",
+        'large' => "/../less/style.large.less",
+    ];
 
-	echo "Compiling " . $input . "...<br>";
+    $output_files = [
+        'small' => "/../css/style.small.css",
+        'normal' => "/../css/style.css",
+        'large' => "/../css/style.large.css",
+    ];
 
-	$start = microtime(true);
+    foreach ($less_files as $key => $input) {
 
-	try {
-		$options = array(
-			'compress'=>true
-		);
-		$parser = new Less_Parser( $options );
-	    $parser->parseFile($input);
-	    $css = $parser->getCss();
+        echo "Compiling " . __DIR__ . $input . "...<br>";
 
-	    $css = "/* Less compiled in " . number_format(microtime(true) - $start, 2) . "s at " . date("r") . " */\r\n\r\n" . $css;
+        $start = microtime(true);
 
-	} catch(Exception $e) {
-	    echo $e->getMessage();
-	    exit();
-	}
+        try {
+            $options = array(
+                'compress' => true
+            );
+            $parser = new Less_Parser($options);
+            $parser->parseFile(__DIR__ . $input);
+            $css = $parser->getCss();
 
-	echo "Less compiled successfully.<br>";
-	echo "Saving output CSS to file...<br>";
+            $css = "/* Less compiled in " . number_format(microtime(true) - $start, 2) . "s at " . date("r") . " */\r\n\r\n" . $css;
 
-	try {
-		$outputfile = fopen($output, "w");
-	} catch(Exception $e) {
-		echo $e->getMessage();
-		exit();
-	}
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit();
+        }
 
-	fwrite($outputfile, $css);
-	fclose($outputfile);
+        echo "Less compiled successfully.<br>";
+        echo "Saving output CSS to file...<br>";
 
-	echo "Wrote the following to " . $output . ":<br><br>";
-	echo '<pre style="white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;">' . $css . "</pre>";
+        try {
+            $outputfile = fopen(__DIR__ . $output_files[$key], "w");
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit();
+        }
+
+        fwrite($outputfile, $css);
+        fclose($outputfile);
+
+        echo "--------------------<br>";
+
+    }
+
+    echo "Done!</pre>";
 
 ?>
