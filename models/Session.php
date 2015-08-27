@@ -3,6 +3,31 @@
     class Session {
 
         /**
+         * Sets up the session
+         *
+         * @param $title
+         * @param $flashes
+         * @param $restricted
+         * @return array
+         */
+        static function init($title, $flashes, $restricted) {
+
+            $page = [];
+            $page['title'] = $title;
+
+            if ($restricted && !User::isLoggedIn()) {
+                self::setError('You must be logged in to access this page.');
+                self::redirect('/login');
+            }
+
+            if ($flashes) {
+                $page['flash'] = self::getFlashes();
+            }
+
+            return $page;
+        }
+
+        /**
          * Get all of the flashes and unset them all
          *
          * @return array
@@ -45,6 +70,16 @@
          */
         static function setSuccess($message) {
             $_SESSION['flash']['success'][] = $message;
+        }
+
+        /**
+         * Redirects the user to another page
+         *
+         * @param $location
+         */
+        static function redirect($location) {
+            header('Location: ' . $location);
+            exit();
         }
 
     }

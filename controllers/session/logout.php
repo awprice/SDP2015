@@ -6,8 +6,9 @@
     // Restart the session
     session_start();
 
+    Session::setSuccess('You have been successfully logged out.');
+
     // Redirect to homepage
-    header('Location: /');
-    exit();
+    Session::redirect('/login');
 
 ?>

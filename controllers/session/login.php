@@ -2,7 +2,8 @@
 
     // Redirect to the home page if they are already logged in
     if ($_SESSION['userId'] != '' || $_SESSION['userId'] != null) {
-        header('Location: /');
+        Session::setError('You are already logged in.');
+        Session::redirect('/');
     }
 
     // If the request is post, try and log them in
@@ -15,12 +16,12 @@
                     $_SESSION['expires'] = 'no';
                 }
                 $_SESSION['userId'] = $_POST['inputStudentID'];
-                header('Location: /');
+                Session::redirect('/');
             }
         } else {
             // set error message and redirect
             Session::setError('Unable to log you in, one or more fields was empty');
-            header('Location: /login');
+            Session::redirect('/login');
         }
     }
 

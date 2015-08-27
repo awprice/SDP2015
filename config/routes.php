@@ -1,26 +1,24 @@
 <?php
 
 	$router->map('GET', '/', function() {
-        $page['flash'] = Session::getFlashes();
-        $page['title'] = 'Index';
+        $page = Session::init('Index', true, false);
 		require __DIR__ . '/../controllers/index.php';
 	});
 
     // Misc routes
 
     $router->map('GET', '/logout', function () {
+        $page = Session::init('Logout', false, true);
         require __DIR__ . '/../controllers/session/logout.php';
     });
 
     $router->map('GET|POST', '/login', function () {
-        $page['flash'] = Session::getFlashes();
-        $page['title'] = 'Login';
+        $page = Session::init('Login', true, false);
         require __DIR__ . '/../controllers/session/login.php';
     });
 
     $router->map('GET', '/signup', function () {
-        $page['flash'] = Session::getFlashes();
-        $page['title'] = 'Signup';
+        $page = Session::init('Signup', true, false);
         require __DIR__ . '/../controllers/session/signup.php';
     });
 
