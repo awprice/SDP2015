@@ -2,6 +2,7 @@
 
 	$router->map('GET', '/', function() {
         $page = Session::init('Index', true, false);
+        $page['_SESSION']['font-size'] = 'large';
 		require __DIR__ . '/../controllers/index.php';
 	});
 

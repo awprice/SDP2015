@@ -34,6 +34,8 @@
                 $page['flash'] = self::getFlashes();
             }
 
+            $page['_SESSION']['options']['font-size'] = 'normal';
+
             return $page;
         }
 
