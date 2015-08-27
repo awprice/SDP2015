@@ -96,9 +96,11 @@
          * Sets the expiry time of the session
          */
         static function setExpiry() {
-            if ($_SESSION['expiry'] != 0) {
+
+            if ($_SESSION['expiry'] != 0 || !array_key_exists('expiry', $_SESSION)) {
                 $_SESSION['expiry'] = time() + 3600;
             }
+
         }
 
         /**
