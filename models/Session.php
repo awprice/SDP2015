@@ -14,10 +14,20 @@
 
             $page = [];
             $page['title'] = $title;
+            $page['_SESSION'] = $_SESSION;
 
             if ($restricted && !User::isLoggedIn()) {
                 self::setError('You must be logged in to access this page.');
                 self::redirect('/login');
+            }
+
+            if ($restricted && self::hasExpired()) {
+                self::destroySession();
+                self::setError('Your session has expired, please log back in.');
+                self::redirect('/login');
+            } else {
+                // extend the session
+                self::setExpiry();
             }
 
             if ($flashes) {
@@ -80,6 +90,37 @@
         static function redirect($location) {
             header('Location: ' . $location);
             exit();
+        }
+
+        /**
+         * Sets the expiry time of the session
+         */
+        static function setExpiry() {
+            if ($_SESSION['expiry'] != 0) {
+                $_SESSION['expiry'] = time() + 3600;
+            }
+        }
+
+        /**
+         * Returns whether a session has expired
+         *
+         * @return bool
+         */
+        static function hasExpired() {
+
+            if ($_SESSION['expiry'] != 0 && time() > $_SESSION['expiry']) {
+                return true;
+            }
+
+            return false;
+        }
+
+        /**
+         * Destroys the session
+         */
+        static function destroySession() {
+            session_destroy();
+            session_start();
         }
 
     }

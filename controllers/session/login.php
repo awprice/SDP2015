@@ -12,10 +12,11 @@
         if (!empty($_POST['inputStudentID']) && !empty($_POST['inputPassword'])) {
             // try and log the user in
             if (User::attemptLogin($_POST['inputStudentID'], $_POST['inputPassword'])) {
-                if ($_POST['inputRememberMe'] === 'yes') {
-                    $_SESSION['expires'] = 'no';
+                if ($_POST['inputRememberMe'] != 'yes') {
+                    $_SESSION['expiry'] = 0;
                 }
                 $_SESSION['userId'] = $_POST['inputStudentID'];
+                Session::setSuccess('You have successfully been logged in.');
                 Session::redirect('/');
             }
         } else {

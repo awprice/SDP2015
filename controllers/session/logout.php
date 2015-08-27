@@ -1,10 +1,6 @@
 <?php
 
-    // Destroy the session
-    session_destroy();
-
-    // Restart the session
-    session_start();
+    Session::destroySession();
 
     Session::setSuccess('You have been successfully logged out.');
 
