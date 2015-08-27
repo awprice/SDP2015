@@ -9,8 +9,8 @@
     require __DIR__ . '/models/autoload.php';
 
 	// Import our config files
-	require __DIR__ . '/config/config.php';
     require __DIR__ . '/config/session.php';
+	require __DIR__ . '/config/config.php';
 
 	$router = new AltoRouter();
 	require __DIR__ . '/config/routes.php';

@@ -1,7 +1,5 @@
 <?php
 
-    $page["title"] = "Login";
-
     // Redirect to the home page if they are already logged in
     if ($_SESSION['userId'] != '' || $_SESSION['userId'] != null) {
         header('Location: /');
@@ -13,11 +11,16 @@
         if (!empty($_POST['inputStudentID']) && !empty($_POST['inputPassword'])) {
             // try and log the user in
             if (User::attemptLogin($_POST['inputStudentID'], $_POST['inputPassword'])) {
+                if ($_POST['inputRememberMe'] === 'yes') {
+                    $_SESSION['expires'] = 'no';
+                }
                 $_SESSION['userId'] = $_POST['inputStudentID'];
                 header('Location: /');
             }
         } else {
-            $page['error'] = 'One or more fields was empty';
+            // set error message and redirect
+            Session::setError('Unable to log you in, one or more fields was empty');
+            header('Location: /login');
         }
     }
 

@@ -1,6 +1,8 @@
 <?php
 
 	$router->map('GET', '/', function() {
+        $page['flash'] = Session::getFlashes();
+        $page['title'] = 'Index';
 		require __DIR__ . '/../controllers/index.php';
 	});
 
@@ -11,10 +13,14 @@
     });
 
     $router->map('GET|POST', '/login', function () {
+        $page['flash'] = Session::getFlashes();
+        $page['title'] = 'Login';
         require __DIR__ . '/../controllers/session/login.php';
     });
 
     $router->map('GET', '/signup', function () {
+        $page['flash'] = Session::getFlashes();
+        $page['title'] = 'Signup';
         require __DIR__ . '/../controllers/session/signup.php';
     });
 
