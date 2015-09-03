@@ -5,6 +5,11 @@
 		require __DIR__ . '/../controllers/index.php';
 	});
 
+    $router->map('GET', '/faq', function() {
+        $page = Session::init('FAQ', true, false);
+        require __DIR__ . '/../controllers/faq/faq.php';
+    });
+
     // Misc routes
 
     $router->map('GET', '/logout', function () {
