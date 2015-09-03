@@ -12,10 +12,12 @@
         static function attemptLogin($userId, $password) {
 
             $mysql = new MySQL();
-            $results = $mysql->query('SELECT userid, password FROM user WHERE userid = :userid AND password = :password', [':userid' => $userId, ':password' => $password]);
+            $results = $mysql->query('SELECT password FROM user WHERE userid = :userid', [':userid' => $userId]);
 
             if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
-                return true;
+                if (self::verifyPassword($password, $results['results']['password'])) {
+                    return true;
+                }
             }
 
             return false;
@@ -35,6 +37,27 @@
 
             return false;
 
+        }
+
+        /**
+         * Hashes a password
+         *
+         * @param $password
+         * @return bool|string
+         */
+        static function hashPassword($password) {
+            return password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        /**
+         * Verifies a password and hash
+         *
+         * @param $password
+         * @param $hash
+         * @return bool
+         */
+        static function verifyPassword($password, $hash) {
+            return password_verify($password, $hash);
         }
 
     }
