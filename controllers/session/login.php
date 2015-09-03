@@ -20,6 +20,9 @@
                 }
                 Session::setSuccess('You have successfully been logged in.');
                 Session::redirect('/');
+            } else {
+                Session::setError('Your Student ID or Password was incorrect, please try again.');
+                Session::redirect('/login');
             }
         } else {
             // set error message and redirect

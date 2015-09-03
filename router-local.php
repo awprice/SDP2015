@@ -10,7 +10,7 @@
 
     // Import our config files
     require __DIR__ . '/config/session.php';
-    require __DIR__ . '/config/config.php';
+    require __DIR__ . '/config/config-local.php';
     require __DIR__ . '/config/content_types.php';
 
     $router = new AltoRouter();

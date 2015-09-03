@@ -10,7 +10,16 @@
          * @return bool
          */
         static function attemptLogin($userId, $password) {
-            return true;
+
+            $mysql = new MySQL();
+            $results = $mysql->query('SELECT userid, password FROM user WHERE userid = :userid AND password = :password', [':userid' => $userId, ':password' => $password]);
+
+            if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
+                return true;
+            }
+
+            return false;
+
         }
 
         /**

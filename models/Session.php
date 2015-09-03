@@ -15,12 +15,15 @@
             $page = [];
             $page['title'] = $title;
             $page['_SESSION'] = $_SESSION;
+            $page['websiteTitle'] = $GLOBALS['websiteTitle'];
 
+            // Redirect to login if the user requests a restricted page is not logged in
             if ($restricted && !User::isLoggedIn()) {
                 self::setError('You must be logged in to access this page.');
                 self::redirect('/login');
             }
 
+            // Redirect to login if user's session has expired
             if ($restricted && self::hasExpired()) {
                 self::destroySession();
                 self::setError('Your session has expired, please log back in.');
