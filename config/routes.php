@@ -51,9 +51,6 @@
         // Initialise our h2o object
         $h2o = new h2o(null, array('autoescape' => false));
 
-        var_dump($h2o->getOptions());
-        exit();
-
         $output = "";
 
         // load the templates and render each one
