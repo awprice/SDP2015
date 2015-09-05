@@ -31,7 +31,4 @@
         }
     }
 
-    $h2o = new h2o(__DIR__ . '/../../views/session/login.html');
-    echo $h2o->render(compact('page'));
-
 ?>

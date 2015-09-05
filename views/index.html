@@ -1,6 +1,4 @@
-{% include "../views/global/header.html" %}
-
-	<h1>Page content here</h1>
+    <h1>Page content here</h1>
 	<h2>Page content here</h2>
 	<h3>Page content here</h3>
 	<h4>Page content here</h4>
@@ -9,6 +7,11 @@
 
     <p>Page content here</p>
 
-    {% debug %}
+    <br>
+    <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+        <label class="onoffswitch-label" for="myonoffswitch"></label>
+    </div>
+    <br>
 
-{% include "../views/global/footer.html" %}
+    {% debug %}

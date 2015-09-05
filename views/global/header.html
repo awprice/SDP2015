@@ -1,10 +1,11 @@
+{% block header %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.title }} &#8226; Website Title</title>
+    <title>{{ page.title }} &#8226; {{ page.websiteTitle }}</title>
     <link href="/css/style.{{ page._SESSION.options.font-size }}.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
@@ -23,6 +24,17 @@
                   <a class="navbar-brand" href="/">UTS:HELPS MOBILE</a>
               </div>
               <div id="navbar" class="navbar-collapse collapse">
+                  <div class="nav-profile">
+                      <div class="row">
+                          <div class="col-md-2">
+                              <img class="img-circle nav-profile-image" src="/img/default-user-icon-profile.png">
+                          </div>
+                          <div class="col-md-10">
+                              <h3>11995483</h3>
+                              <h4>Alex Price</h4>
+                          </div>
+                      </div>
+                  </div>
                   <ul class="nav navbar-nav">
                       <li><a href="#">Bookings</a></li>
                   </ul>
@@ -42,3 +54,4 @@
             {% for success in page.flash.success %}
                 <div class="alert alert-success" role="alert">{{ success }}</div>
             {% endfor %}
+{% endblock %}
