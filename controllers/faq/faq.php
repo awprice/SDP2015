@@ -1,7 +1,4 @@
 <?php
 
 
-    $page['bla'] = "bla";
-
-
 ?>
