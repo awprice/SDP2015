@@ -7,7 +7,7 @@ apt-get -y upgrade
 
 # Install some general packages
 
-apt-get -y install zip unzip nano git build-essential zlib1g-dev libpcre3 libpcre3-dev
+apt-get -y install zip unzip nano git build-essential zlib1g-dev libpcre3 libpcre3-dev postfix
 
 # Install HHVM
 

@@ -6,15 +6,11 @@
     echo "--------------------<br>";
 
     $less_files = [
-        'small' => "/../less/style.small.less",
-        'normal' => "/../less/style.normal.less",
-        'large' => "/../less/style.large.less",
+        'normal' => "/../less/style.less",
     ];
 
     $output_files = [
-        'small' => "/../css/style.small.css",
-        'normal' => "/../css/style.normal.css",
-        'large' => "/../css/style.large.css",
+        'normal' => "/../css/style.css",
     ];
 
     foreach ($less_files as $key => $input) {
