@@ -9,11 +9,12 @@
     // If the request is post, try and log them in
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // check whether the posted fields are empty
-        if (!empty($_POST['inputStudentID']) && !empty($_POST['inputPassword'])) {
+
+        if (!empty($_POST['login']['studentId']) && !empty($_POST['login']['password'])) {
             // try and log the user in
-            if (User::attemptLogin($_POST['inputStudentID'], $_POST['inputPassword'])) {
-                $_SESSION['userId'] = $_POST['inputStudentID'];
-                if ($_POST['inputRememberMe'] == 'yes') {
+            if (User::attemptLogin($_POST['login']['studentId'], $_POST['login']['password'])) {
+                $_SESSION['userId'] = $_POST['login']['studentId'];
+                if ($_POST['login']['rememberMe'] == 'yes') {
                     $_SESSION['expiry'] = 0;
                 } else {
                     Session::setExpiry();

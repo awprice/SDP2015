@@ -1,15 +1,15 @@
     <form class="form-login" method="POST">
         <h2 class="form-login-heading">Login</h2>
         <hr>
-        <label for="inputStudentID" class="sr-only">Student ID</label>
+        <label for="login[studentId]" class="sr-only">Student ID</label>
         <h4>Student ID</h4>
-        <input type="text" id="inputStudentID" class="form-control numeric" name="inputStudentID" required autofocus>
+        <input type="text" id="login[studentId]" class="form-control numeric" name="login[studentId]" required autofocus>
         <h4>Password</h4>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" name="inputPassword" required>
+        <label for="login[password]" class="sr-only">Password</label>
+        <input type="password" id="login[password]" class="form-control" name="login[password]" required>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="yes" name="inputRememberMe"> Remember me
+                <input type="checkbox" value="yes" name="login[rememberMe]"> Remember me
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
