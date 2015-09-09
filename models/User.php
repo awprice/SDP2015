@@ -60,6 +60,25 @@
             return password_verify($password, $hash);
         }
 
+        /**
+         * Checks whether a user exists in the user table
+         *
+         * @param $userId
+         * @return bool
+         */
+        static function userExists($userId) {
+
+            $mysql = new MySQL();
+            $results = $mysql->query('SELECT * FROM user WHERE userid = :userid', [':userid' => $userId]);
+
+            if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
+                return true;
+            }
+
+            return false;
+
+        }
+
     }
 
 ?>
