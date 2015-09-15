@@ -1,9 +1,131 @@
 <form class="form-signup" method="POST">
 
     <h2 class="form-signup-heading">Signup</h2>
-    <hr>
+    <br>
+
+    <h3>Your Details</h3>
+    <br>
+
+    <h5>Student ID</h5>
+    <label for="signup[studentId]" class="sr-only">Student ID</label>
+    <input type="text" id="signup[studentId]" class="form-control numeric" name="signup[studentId]" required autofocus>
+
     <h5>Student Name</h5>
-    <label for="inputStudentID" class="sr-only">Student ID</label>
-    <input type="text" id="inputStudentID" class="form-control numeric" name="inputStudentID" required autofocus>
+    <label for="signup[studentName]" class="sr-only">Student Name</label>
+    <input type="text" id="signup[studentName]" class="form-control" name="signup[studentName]" required>
+
+    <h5>Preferred First Name</h5>
+    <label for="signup[preferredFirstName]" class="sr-only">Preferred First Name</label>
+    <input type="text" id="signup[preferredFirstName]" class="form-control" name="signup[preferredFirstName]">
+
+    <h5>Email</h5>
+    <label for="signup[email]" class="sr-only">Email</label>
+    <input type="email" id="signup[email]" class="form-control" name="signup[email]" required>
+
+    <h5>Password</h5>
+    <label for="signup[password]" class="sr-only">Password</label>
+    <input type="password" id="signup[password]" class="form-control" name="signup[password]" required>
+
+    <h5>Confirm Password</h5>
+    <label for="signup[confirmPassword]" class="sr-only">Confirm Password</label>
+    <input type="password" id="signup[confirmPassword]" class="form-control" name="signup[confirmPassword]" required>
+
+    <h5>Home Phone</h5>
+    <label for="signup[homePhone]" class="sr-only">Home Phone</label>
+    <input type="text" id="signup[homePhone]" class="form-control numeric" name="signup[homePhone]" required>
+
+    <h5>Mobile</h5>
+    <label for="signup[mobile]" class="sr-only">Mobile</label>
+    <input type="text" id="signup[mobile]" class="form-control numeric" name="signup[mobile]" required>
+
+    <h5>Best Contact Number</h5>
+    <label for="signup[bestContactNumber]" class="sr-only">Best Contact Number</label>
+    <input type="radio" name="signup[bestContactNumber]" id="signup[bestContactNumber][mobile]" value="mobile" required> Mobile
+    <br>
+    <input type="radio" name="signup[bestContactNumber]" id="signup[bestContactNumber][home]" value="home" required> Home
+
+    <h5>DOB</h5>
+    <label for="signup[dob]" class="sr-only">DOB</label>
+    <input type="date" id="signup[dob]" class="form-control" name="signup[dob]" required>
+
+    <h5>Gender</h5>
+    <label for="signup[gender]" class="sr-only">Gender</label>
+    <input type="radio" name="signup[gender]" id="signup[gender][male]" value="male" required> Male
+    <br>
+    <input type="radio" name="signup[gender]" id="signup[gender][female]" value="female" required> Female
+
+    <h5>First Language</h5>
+    <label for="signup[firstLanguage]" class="sr-only">First Language</label>
+    <select name="signup[firstLanguage]" id="signup[firstLanguage]" required style="width: 100%;">
+        {% include "views/form-elements/languages.html" %}
+    </select>
+
+    <h5>Country of Origin</h5>
+    <label for="signup[countryOfOrigin]" class="sr-only">Country of Origin</label>
+    <select name="signup[countryOfOrigin]" id="signup[countryOfOrigin]" required style="width: 100%;">
+        {% include "views/form-elements/countries.html" %}
+    </select>
+
+    <br>
+    <br>
+    <h3>Your Course Details</h3>
+    <br>
+
+    <h5>Faculty</h5>
+    <label for="signup[faculty]" class="sr-only">Faculty</label>
+    <input type="text" id="signup[faculty]" class="form-control" name="signup[faculty]" required>
+
+    <h5>Course</h5>
+    <label for="signup[course]" class="sr-only">Course</label>
+    <input type="text" id="signup[course]" class="form-control" name="signup[course]" required>
+
+    <h5>Degree</h5>
+    <label for="signup[degree]" class="sr-only">Degree</label>
+    <input type="radio" name="signup[degree]" id="signup[degree][undergraduate]" value="undergraduate" required> Undergraduate
+    <br>
+    <input type="radio" name="signup[degree]" id="signup[degree][postgraduate]" value="postgraduate" required> Postgraduate
+
+    <h5>Year</h5>
+    <label for="signup[year]" class="sr-only">Year</label>
+    <select name="signup[year]" id="signup[year]" required style="width: 100%;">
+        <option value="1" selected>1st Year</option>
+        <option value="2">2nd Year</option>
+        <option value="3">3rd Year</option>
+        <option value="4">4th Year</option>
+        <option value="5">5th Year</option>
+    </select>
+
+    <br>
+    <br>
+    <h3>Other Details</h3>
+    <br>
+
+    <h5>Educational Backgound</h5>
+    <label for="signup[educationalBackground]" class="sr-only">Educational Backgound</label>
+    <input type="checkbox" name="signup[educationalBackground][hsc]" id="signup[educationalBackground][hsc]" value="yes"> HSC
+    <br>
+    <input type="checkbox" name="signup[educationalBackground][ielts]" id="signup[educationalBackground][ielts]" value="yes"> IELTS
+    <br>
+    <input type="checkbox" name="signup[educationalBackground][toefl]" id="signup[educationalBackground][toefl]" value="yes"> TOEFL
+    <br>
+    <input type="checkbox" name="signup[educationalBackground][tafe]" id="signup[educationalBackground][tafe]" value="yes"> TAFE
+    <br>
+    <input type="checkbox" name="signup[educationalBackground][cult]" id="signup[educationalBackground][cult]" value="yes"> CULT
+    <br>
+    <input type="checkbox" name="signup[educationalBackground][insearchDeep]" id="signup[educationalBackground][insearchDeep]" value="yes"> Insearch DEEP
+    <br>
+    <input type="checkbox" name="signup[educationalBackground][insearchDiploma]" id="signup[educationalBackground][insearchDiploma]" value="yes"> Insearch Diploma
+    <br>
+    <input type="checkbox" name="signup[educationalBackground][foundationCourse]" id="signup[educationalBackground][foundationCourse]" value="yes"> Foundation Course
+
+    <h5>Other</h5>
+    <label for="signup[other]" class="sr-only">Other</label>
+    <textarea id="signup[other]" class="form-control" name="signup[other]" rows="3"></textarea>
+
+    <br>
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
+    <br>
+    <br>
 
 </form>
