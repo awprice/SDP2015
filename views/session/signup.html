@@ -1,83 +1,75 @@
 <form class="form-signup" method="POST">
 
     <h2 class="form-signup-heading">Signup</h2>
-    <br>
+    <hr>
 
-    <h3>Your Details</h3>
-    <br>
+    <div class="form-group has-feedback">
+        <label for="signup[studentId]" class="sr-only">Student ID</label>
+        <input type="text" id="signup[studentId]" class="form-control numeric input-lg" name="signup[studentId]" required autofocus placeholder="Student ID">
+        <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
+    </div>
 
-    <h5>Student ID</h5>
-    <label for="signup[studentId]" class="sr-only">Student ID</label>
-    <input type="text" id="signup[studentId]" class="form-control numeric" name="signup[studentId]" required autofocus>
+    <div class="form-group has-feedback">
+        <label for="signup[studentName]" class="sr-only">Student Name</label>
+        <input type="text" id="signup[studentName]" class="form-control input-lg" name="signup[studentName]" required placeholder="Student Name">
+        <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
+    </div>
 
-    <h5>Student Name</h5>
-    <label for="signup[studentName]" class="sr-only">Student Name</label>
-    <input type="text" id="signup[studentName]" class="form-control" name="signup[studentName]" required>
+    <div class="form-group has-feedback">
+        <label for="signup[preferredFirstName]" class="sr-only">Preferred First Name</label>
+        <input type="text" id="signup[preferredFirstName]" class="form-control input-lg" name="signup[preferredFirstName]" placeholder="Preferred First Name">
+        <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
+    </div>
 
-    <h5>Preferred First Name</h5>
-    <label for="signup[preferredFirstName]" class="sr-only">Preferred First Name</label>
-    <input type="text" id="signup[preferredFirstName]" class="form-control" name="signup[preferredFirstName]">
+    <div class="form-group has-feedback">
+        <label for="signup[email]" class="sr-only">Email</label>
+        <input type="email" id="signup[email]" class="form-control input-lg" name="signup[email]" required placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback" aria-hidden="true"></span>
+    </div>
 
-    <h5>Email</h5>
-    <label for="signup[email]" class="sr-only">Email</label>
-    <input type="email" id="signup[email]" class="form-control" name="signup[email]" required>
+    <div class="form-group has-feedback">
+        <label for="signup[homePhone]" class="sr-only">Home Phone</label>
+        <input type="text" id="signup[homePhone]" class="form-control numeric input-lg" name="signup[homePhone]" required placeholder="Home Phone">
+        <span class="glyphicon glyphicon-earphone form-control-feedback" aria-hidden="true"></span>
+    </div>
 
-    <h5>Password</h5>
-    <label for="signup[password]" class="sr-only">Password</label>
-    <input type="password" id="signup[password]" class="form-control" name="signup[password]" required>
+    <div class="form-group has-feedback">
+        <label for="signup[mobile]" class="sr-only">Mobile</label>
+        <input type="text" id="signup[mobile]" class="form-control numeric input-lg" name="signup[mobile]" required placeholder="Mobile">
+        <span class="glyphicon glyphicon-phone form-control-feedback" aria-hidden="true"></span>
+    </div>
 
-    <h5>Confirm Password</h5>
-    <label for="signup[confirmPassword]" class="sr-only">Confirm Password</label>
-    <input type="password" id="signup[confirmPassword]" class="form-control" name="signup[confirmPassword]" required>
-
-    <h5>Home Phone</h5>
-    <label for="signup[homePhone]" class="sr-only">Home Phone</label>
-    <input type="text" id="signup[homePhone]" class="form-control numeric" name="signup[homePhone]" required>
-
-    <h5>Mobile</h5>
-    <label for="signup[mobile]" class="sr-only">Mobile</label>
-    <input type="text" id="signup[mobile]" class="form-control numeric" name="signup[mobile]" required>
-
-    <h5>Best Contact Number</h5>
-    <label for="signup[bestContactNumber]" class="sr-only">Best Contact Number</label>
-    <input type="radio" name="signup[bestContactNumber]" id="signup[bestContactNumber][mobile]" value="mobile" required> Mobile
-    <br>
-    <input type="radio" name="signup[bestContactNumber]" id="signup[bestContactNumber][home]" value="home" required> Home
-
-    <h5>DOB</h5>
-    <label for="signup[dob]" class="sr-only">DOB</label>
-    <input type="date" id="signup[dob]" class="form-control" name="signup[dob]" required>
-
-    <h5>Gender</h5>
-    <label for="signup[gender]" class="sr-only">Gender</label>
-    <input type="radio" name="signup[gender]" id="signup[gender][male]" value="male" required> Male
-    <br>
-    <input type="radio" name="signup[gender]" id="signup[gender][female]" value="female" required> Female
+    <div class="form-group has-feedback">
+        <h5>Birthday</h5>
+        <label for="signup[dob]" class="sr-only">Birthday</label>
+        <input type="date" id="signup[dob]" class="form-control input-lg" name="signup[dob]" required>
+    </div>
 
     <h5>First Language</h5>
     <label for="signup[firstLanguage]" class="sr-only">First Language</label>
-    <select name="signup[firstLanguage]" id="signup[firstLanguage]" required style="width: 100%;">
+    <select name="signup[firstLanguage]" id="signup[firstLanguage]" required style="width: 100%;" class="form-control input-lg">
         {% include "views/form-elements/languages.html" %}
     </select>
 
     <h5>Country of Origin</h5>
     <label for="signup[countryOfOrigin]" class="sr-only">Country of Origin</label>
-    <select name="signup[countryOfOrigin]" id="signup[countryOfOrigin]" required style="width: 100%;">
+    <select name="signup[countryOfOrigin]" id="signup[countryOfOrigin]" required style="width: 100%;" class="form-control input-lg">
         {% include "views/form-elements/countries.html" %}
     </select>
 
-    <br>
-    <br>
-    <h3>Your Course Details</h3>
-    <br>
+    <hr>
 
-    <h5>Faculty</h5>
-    <label for="signup[faculty]" class="sr-only">Faculty</label>
-    <input type="text" id="signup[faculty]" class="form-control" name="signup[faculty]" required>
+    <div class="form-group has-feedback">
+        <label for="signup[faculty]" class="sr-only">Faculty</label>
+        <input type="text" id="signup[faculty]" class="form-control input-lg" name="signup[faculty]" required placeholder="Faculty">
+        <span class="glyphicon glyphicon-education form-control-feedback" aria-hidden="true"></span>
+    </div>
 
-    <h5>Course</h5>
-    <label for="signup[course]" class="sr-only">Course</label>
-    <input type="text" id="signup[course]" class="form-control" name="signup[course]" required>
+    <div class="form-group has-feedback">
+        <label for="signup[course]" class="sr-only">Course</label>
+        <input type="text" id="signup[course]" class="form-control input-lg" name="signup[course]" required placeholder="Course">
+        <span class="glyphicon glyphicon-education form-control-feedback" aria-hidden="true"></span>
+    </div>
 
     <h5>Degree</h5>
     <label for="signup[degree]" class="sr-only">Degree</label>
@@ -87,7 +79,7 @@
 
     <h5>Year</h5>
     <label for="signup[year]" class="sr-only">Year</label>
-    <select name="signup[year]" id="signup[year]" required style="width: 100%;">
+    <select name="signup[year]" id="signup[year]" required style="width: 100%;" class="form-control input-lg">
         <option value="1" selected>1st Year</option>
         <option value="2">2nd Year</option>
         <option value="3">3rd Year</option>
@@ -95,10 +87,7 @@
         <option value="5">5th Year</option>
     </select>
 
-    <br>
-    <br>
-    <h3>Other Details</h3>
-    <br>
+    <hr>
 
     <h5>Educational Backgound</h5>
     <label for="signup[educationalBackground]" class="sr-only">Educational Backgound</label>
