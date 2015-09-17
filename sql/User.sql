@@ -1,3 +1,5 @@
+USE utshelps;
+
 DROP TABLE user;
 
 CREATE TABLE user(

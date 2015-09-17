@@ -54,7 +54,7 @@
         static function getUser() {
 
             $mysql = new MySQL();
-            $results = $mysql->query('SELECT * FROM USER WHERE student_id = :studentId', [':studentId' => self::getId()]);
+            $results = $mysql->query('SELECT * FROM user WHERE student_id = :studentId', [':studentId' => self::getId()]);
 
             if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
                 return $results['results'];
