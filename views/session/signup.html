@@ -3,15 +3,16 @@
     <h2 class="form-signup-heading">Signup</h2>
     <hr>
 
+    <p>Because this is the first time you are using this system, we would just like to confirm some information with you.</p>
+    <br>
+
     <div class="form-group has-feedback">
-        <label for="signup[studentId]" class="sr-only">Student ID</label>
-        <input type="text" id="signup[studentId]" class="form-control numeric input-lg" name="signup[studentId]" required autofocus placeholder="Student ID">
+        <input type="text" class="form-control input-lg" value="{{ page.user.student_id }}" disabled>
         <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
     </div>
 
     <div class="form-group has-feedback">
-        <label for="signup[studentName]" class="sr-only">Student Name</label>
-        <input type="text" id="signup[studentName]" class="form-control input-lg" name="signup[studentName]" required placeholder="Student Name">
+        <input type="text" class="form-control input-lg" value="{{ page.user.name }}" disabled>
         <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"></span>
     </div>
 
@@ -22,27 +23,29 @@
     </div>
 
     <div class="form-group has-feedback">
-        <label for="signup[email]" class="sr-only">Email</label>
-        <input type="email" id="signup[email]" class="form-control input-lg" name="signup[email]" required placeholder="Email">
+        <input type="email" class="form-control input-lg" value="{{ page.user.email }}" disabled>
         <span class="glyphicon glyphicon-envelope form-control-feedback" aria-hidden="true"></span>
     </div>
 
     <div class="form-group has-feedback">
-        <label for="signup[homePhone]" class="sr-only">Home Phone</label>
-        <input type="text" id="signup[homePhone]" class="form-control numeric input-lg" name="signup[homePhone]" required placeholder="Home Phone">
+        <input type="text" class="form-control input-lg" value="{{ page.user.home_phone }}" disabled>
         <span class="glyphicon glyphicon-earphone form-control-feedback" aria-hidden="true"></span>
     </div>
 
     <div class="form-group has-feedback">
-        <label for="signup[mobile]" class="sr-only">Mobile</label>
-        <input type="text" id="signup[mobile]" class="form-control numeric input-lg" name="signup[mobile]" required placeholder="Mobile">
+        <input type="text" class="form-control input-lg" value="{{ page.user.mobile_phone }}" disabled>
+        <span class="glyphicon glyphicon-phone form-control-feedback" aria-hidden="true"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+        <label for="signup[bestContactNumber]" class="sr-only">Best Contact Number</label>
+        <input type="text" id="signup[bestContactNumber]" class="form-control numeric input-lg" name="signup[bestContactNumber]" required placeholder="Best Contact Number">
         <span class="glyphicon glyphicon-phone form-control-feedback" aria-hidden="true"></span>
     </div>
 
     <div class="form-group has-feedback">
         <h5>Birthday</h5>
-        <label for="signup[dob]" class="sr-only">Birthday</label>
-        <input type="date" id="signup[dob]" class="form-control input-lg" name="signup[dob]" required>
+        <input type="date" class="form-control input-lg" value="{{ page.user.dob }}" disabled>
     </div>
 
     <h5>First Language</h5>
@@ -60,22 +63,26 @@
     <hr>
 
     <div class="form-group has-feedback">
-        <label for="signup[faculty]" class="sr-only">Faculty</label>
-        <input type="text" id="signup[faculty]" class="form-control input-lg" name="signup[faculty]" required placeholder="Faculty">
+        <input type="text" class="form-control input-lg" value="{{ page.user.faculty }}" disabled>
         <span class="glyphicon glyphicon-education form-control-feedback" aria-hidden="true"></span>
     </div>
 
     <div class="form-group has-feedback">
-        <label for="signup[course]" class="sr-only">Course</label>
-        <input type="text" id="signup[course]" class="form-control input-lg" name="signup[course]" required placeholder="Course">
+        <input type="text" class="form-control input-lg" value="{{ page.user.course }}" disabled>
         <span class="glyphicon glyphicon-education form-control-feedback" aria-hidden="true"></span>
     </div>
 
     <h5>Degree</h5>
     <label for="signup[degree]" class="sr-only">Degree</label>
-    <input type="radio" name="signup[degree]" id="signup[degree][undergraduate]" value="undergraduate" required> Undergraduate
+    <label><input type="radio" name="signup[degree]" id="signup[degree][undergraduate]" value="undergraduate" required checked> Undergraduate</label>
     <br>
-    <input type="radio" name="signup[degree]" id="signup[degree][postgraduate]" value="postgraduate" required> Postgraduate
+    <label><input type="radio" name="signup[degree]" id="signup[degree][postgraduate]" value="postgraduate" required> Postgraduate</label>
+
+    <h5>Status</h5>
+    <label for="signup[status]" class="sr-only">Status</label>
+    <label><input type="radio" name="signup[status]" id="signup[status][permanent]" value="permanent" required checked> Permanent</label>
+    <br>
+    <label><input type="radio" name="signup[status]" id="signup[status][permanent]" value="international" required> International</label>
 
     <h5>Year</h5>
     <label for="signup[year]" class="sr-only">Year</label>
@@ -91,21 +98,21 @@
 
     <h5>Educational Backgound</h5>
     <label for="signup[educationalBackground]" class="sr-only">Educational Backgound</label>
-    <input type="checkbox" name="signup[educationalBackground][hsc]" id="signup[educationalBackground][hsc]" value="yes"> HSC
+    <label><input class="education-checkbox" data-type="hsc" type="checkbox" name="signup[educationalBackground][hsc]" id="signup[educationalBackground][hsc]" value="1"> HSC</label>
     <br>
-    <input type="checkbox" name="signup[educationalBackground][ielts]" id="signup[educationalBackground][ielts]" value="yes"> IELTS
+    <label><input class="education-checkbox" data-type="ielts" type="checkbox" name="signup[educationalBackground][ielts]" id="signup[educationalBackground][ielts]" value="1"> IELTS</label>
     <br>
-    <input type="checkbox" name="signup[educationalBackground][toefl]" id="signup[educationalBackground][toefl]" value="yes"> TOEFL
+    <label><input class="education-checkbox" data-type="toefl" type="checkbox" name="signup[educationalBackground][toefl]" id="signup[educationalBackground][toefl]" value="1"> TOEFL</label>
     <br>
-    <input type="checkbox" name="signup[educationalBackground][tafe]" id="signup[educationalBackground][tafe]" value="yes"> TAFE
+    <label><input class="education-checkbox" data-type="tafe" type="checkbox" name="signup[educationalBackground][tafe]" id="signup[educationalBackground][tafe]" value="1"> TAFE</label>
     <br>
-    <input type="checkbox" name="signup[educationalBackground][cult]" id="signup[educationalBackground][cult]" value="yes"> CULT
+    <label><input class="education-checkbox" data-type="cult" type="checkbox" name="signup[educationalBackground][cult]" id="signup[educationalBackground][cult]" value="1"> CULT</label>
     <br>
-    <input type="checkbox" name="signup[educationalBackground][insearchDeep]" id="signup[educationalBackground][insearchDeep]" value="yes"> Insearch DEEP
+    <label><input class="education-checkbox" data-type="insearchDeep" type="checkbox" name="signup[educationalBackground][insearchDeep]" id="signup[educationalBackground][insearchDeep]" value="1"> Insearch DEEP</label>
     <br>
-    <input type="checkbox" name="signup[educationalBackground][insearchDiploma]" id="signup[educationalBackground][insearchDiploma]" value="yes"> Insearch Diploma
+    <label><input class="education-checkbox" data-type="insearchDiploma" type="checkbox" name="signup[educationalBackground][insearchDiploma]" id="signup[educationalBackground][insearchDiploma]" value="1"> Insearch Diploma</label>
     <br>
-    <input type="checkbox" name="signup[educationalBackground][foundationCourse]" id="signup[educationalBackground][foundationCourse]" value="yes"> Foundation Course
+    <label><input class="education-checkbox" data-type="foundationCourse" type="checkbox" name="signup[educationalBackground][foundationCourse]" id="signup[educationalBackground][foundationCourse]" value="1"> Foundation Course</label>
 
     <h5>Other</h5>
     <label for="signup[other]" class="sr-only">Other</label>

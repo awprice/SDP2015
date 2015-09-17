@@ -1,7 +1,7 @@
 <?php
 
     // Redirect to the home page if they are already logged in
-    if ($_SESSION['userId'] != '' || $_SESSION['userId'] != null) {
+    if ($_SESSION['studentId'] != '' || $_SESSION['studentId'] != null) {
         Session::setError('You are already logged in.');
         Session::redirect('/');
     }
@@ -13,13 +13,16 @@
         if (!empty($_POST['login']['studentId']) && !empty($_POST['login']['password'])) {
             // try and log the user in
             if (User::attemptLogin($_POST['login']['studentId'], $_POST['login']['password'])) {
-                $_SESSION['userId'] = $_POST['login']['studentId'];
+                $_SESSION['studentId'] = $_POST['login']['studentId'];
                 if ($_POST['login']['rememberMe'] == 'yes') {
                     $_SESSION['expiry'] = 0;
                 } else {
                     Session::setExpiry();
                 }
                 Session::setSuccess('You have successfully been logged in.');
+                if (User::firstUse($_SESSION['studentId'])) {
+                    Session::redirect('/signup');
+                }
                 Session::redirect('/');
             } else {
                 Session::setError('Your Student ID or Password was incorrect or the account does not exist, please try again.');

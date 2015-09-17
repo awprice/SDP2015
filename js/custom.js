@@ -11,6 +11,12 @@
         // Compile less and reload styles every 2 seconds
         //setInterval(compileLess, 5000);
 
+
+        $('.education-checkbox').change(function() {
+            displayMarkField(this);
+        });
+
+
     });
 
     function compileLess() {
@@ -24,6 +30,19 @@
         // Reload css
         console.log('Reloading css');
         document.styleSheets.reload();
+    }
+
+    function displayMarkField(field) {
+
+        var inputId = "signup-educationalBackground-" + $(field).attr('data-type') + "-mark";
+        var inputName = "signup[educationalBackground][" + $(field).attr('data-type') + "][mark]";
+
+        if ($(field).is(':checked')) {
+            $(field).parent().after('<input type="text" class="form-control input-lg" name="' + inputName + '" id="' + inputId + '" placeholder="Mark" required>');
+        } else {
+            $("#" + inputId).remove();
+        }
+
     }
 
 })(jQuery);

@@ -18,8 +18,8 @@
         echo superHandler('session/login.php', 'session/login.html', 'Login', true, false);
     });
 
-    $router->map('GET', '/signup', function () {
-        echo superHandler('session/signup.php', 'session/signup.html', 'Signup', true, false);
+    $router->map('GET|POST', '/signup', function () {
+        echo superHandler('session/signup.php', 'session/signup.html', 'Signup', true, true);
     });
 
 	$router->map('GET', '/compile/less', function() {
