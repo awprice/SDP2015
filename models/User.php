@@ -3,10 +3,11 @@
     class User {
 
         /**
+         * For converting camelcase keys to the keys used in the sql database
+         *
          * @var array
          */
         private static $mysql_keys = [
-
             'preferredFirstName' => 'preferred_first_name',
             'bestContactNumber' => 'best_contact_no',
             'firstLanguage' => 'first_language',
