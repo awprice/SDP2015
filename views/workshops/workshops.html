@@ -1,0 +1,16 @@
+<div style="text-align: center">
+    <h3>Workshops</h3>
+    <h5>Categories:</h5>
+    <br>
+</div>
+
+<ul class="list-group workshops-list">
+    {% for workshop in page.workshops.Results %}
+        <a href="/workshop/{{ workshop.id }}">
+            <li class="list-group-item">
+                <span class="badge"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></span>
+                {{ workshop.name }}
+            </li>
+        </a>
+    {% endfor %}
+</ul>

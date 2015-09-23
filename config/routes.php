@@ -8,6 +8,10 @@
         echo superHandler('faq/faq.php', 'faq/faq.html', 'FAQ', true, false);
     });
 
+    $router->map('GET', '/workshops', function () {
+       echo superHandler('workshops/workshops.php', 'workshops/workshops.html', 'Workshops', true, true);
+    });
+
     // Misc routes
 
     $router->map('GET', '/logout', function () {
