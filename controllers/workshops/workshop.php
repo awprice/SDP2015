@@ -8,7 +8,35 @@ $workshop = UTSHelpsAPI::SearchWorkshops([
 ]);
 
 if ($workshop != null && $workshop->IsSuccess == 1) {
-    $page['workshop'] = $workshop;
+
+    foreach($workshop->Results as $value) {
+        $remaining = $value->maximum - $value->BookingCount;
+        if ($remaining <= 0) {
+            $full = true;
+        } else {
+            $full = false;
+        }
+
+        $startDate = strtotime($value->StartDate);
+        $endDate = strtotime($value->EndDate);
+
+        $startTime = date("g:ia", $startDate);
+        $endTime = date("g:ia", $endDate);
+
+        $date = date("jS M Y", $startDate) . ': ' . $startTime . ' - ' . $endTime;
+
+        $page['workshop'][] = [
+            'id' => $value->WorkshopId,
+            'topic' => $value->topic,
+            'description' => $value->description,
+            'campus' => $value->campus,
+            'current' => $value->BookingCount,
+            'maximum' => $value->maximum,
+            'full' => $full,
+            'date' => $date,
+        ];
+    }
+
 } else {
     $page['workshop'] = null;
 }
