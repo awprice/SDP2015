@@ -1,31 +1,33 @@
 <?php
 
-	require __DIR__ . '/curl.helper.php';
+class UTSHelpsAPI {
 
-	/*
-	 * Name: RegisterStudent
-	 * Description: Create a student entry in HELPS
-	 * Path: api/student/register
-	 * Method: POST
-	 * Returns: JSON Object
-	 * Requires AppKey: true
-	 */
-	function RegisterStudent($data) {
-		return json_decode(curl_post('api/student/register', $data, true));
-	}
+    /*
+     * Name: RegisterStudent
+     * Description: Create a student entry in HELPS
+     * Path: api/student/register
+     * Method: POST
+     * Returns: JSON Object
+     * Requires AppKey: true
+     */
+    static function RegisterStudent($data)
+    {
+        return json_decode(Curl::curl_post('api/student/register', $data, true));
+    }
 
-	/*
-	 * Name: ListWorkshopSets
-	 * Description: List the sets of workshops
-	 * Path: api/workshop/workshopSets/{active}
-	 * Method: GET
-	 * Returns: JSON Object
-	 * Requires AppKey: true
-	 */
-	function ListWorkshopSets($active = true) {
+    /*
+     * Name: ListWorkshopSets
+     * Description: List the sets of workshops
+     * Path: api/workshop/workshopSets/{active}
+     * Method: GET
+     * Returns: JSON Object
+     * Requires AppKey: true
+     */
+    static function ListWorkshopSets($active = true)
+    {
         $active = ($active) ? 'true' : 'false';
-		return json_decode(curl_get('api/workshop/workshopSets/' . $active, null, true));
-	}
+        return json_decode(Curl::curl_get('api/workshop/workshopSets/' . $active, null, true));
+    }
 
     /*
      * Name: CreateWorkshopBooking
@@ -35,8 +37,9 @@
      * Returns: JSON Object
      * Requires AppKey: true
      */
-    function CreateWorkshopBooking($data) {
-        return json_decode(curl_post('api/workshop/booking/create', $data, true));
+    static function CreateWorkshopBooking($data)
+    {
+        return json_decode(Curl::curl_post('api/workshop/booking/create', $data, true));
     }
 
     /*
@@ -47,8 +50,9 @@
      * Returns: JSON Object
      * Requires AppKey: true
      */
-    function CreateWorkshopWaiting($data) {
-        return json_decode(curl_post('api/workshop/wait/create', $data, true));
+    static function CreateWorkshopWaiting($data)
+    {
+        return json_decode(Curl::curl_post('api/workshop/wait/create', $data, true));
     }
 
     /*
@@ -61,8 +65,9 @@
      * Returns: JSON Object
      * Requires AppKey: true
      */
-    function CancelWorkshopBooking($data) {
-        return json_decode(curl_post('api/workshop/booking/cancel', $data, true));
+    static function CancelWorkshopBooking($data)
+    {
+        return json_decode(Curl::curl_post('api/workshop/booking/cancel', $data, true));
     }
 
     /*
@@ -73,8 +78,9 @@
      * Returns: JSON Object
      * Requires AppKey: true
      */
-    function SearchWorkshopBookings($parameters) {
-        return json_decode(curl_get('api/workshop/booking/search', $parameters, true));
+    static function SearchWorkshopBookings($parameters)
+    {
+        return json_decode(Curl::curl_get('api/workshop/booking/search', $parameters, true));
     }
 
     /*
@@ -85,8 +91,9 @@
     * Returns: JSON Object
     * Requires AppKey: true
     */
-    function SearchWorkshops($parameters) {
-        return json_decode(curl_get('api/workshop/search', $parameters, true));
+    static function SearchWorkshops($parameters)
+    {
+        return json_decode(Curl::curl_get('api/workshop/search', $parameters, true));
     }
 
     /*
@@ -97,8 +104,9 @@
     * Returns: JSON Object
     * Requires AppKey: true
     */
-    function UpdateWorkshopBooking($data) {
-        return json_decode(curl_put('api/workshop/booking/update', $data, true));
+    static function UpdateWorkshopBooking($data)
+    {
+        return json_decode(Curl::curl_put('api/workshop/booking/update', $data, true));
     }
 
     /*
@@ -109,9 +117,10 @@
     * Returns: JSON Object
     * Requires AppKey: true
     */
-    function ListSessionTypes($active = true) {
+    static function ListSessionTypes($active = true)
+    {
         $active = ($active) ? 'true' : 'false';
-        return json_decode(curl_get('api/session/sessionTypes/' . $active, null, true));
+        return json_decode(Curl::curl_get('api/session/sessionTypes/' . $active, null, true));
     }
 
     /*
@@ -122,8 +131,9 @@
     * Returns: JSON Object
     * Requires AppKey: true
     */
-    function SearchSessionBookings($parameters) {
-        return json_decode(curl_get('api/session/booking/search', $parameters, true));
+    static function SearchSessionBookings($parameters)
+    {
+        return json_decode(Curl::curl_get('api/session/booking/search', $parameters, true));
     }
 
     /*
@@ -134,8 +144,9 @@
     * Returns: JSON Object
     * Requires AppKey: true
     */
-    function UpdateSessionBooking($data) {
-        return json_decode(curl_put('api/session/booking/update', $data, true));
+    static function UpdateSessionBooking($data)
+    {
+        return json_decode(Curl::curl_put('api/session/booking/update', $data, true));
     }
 
     /*
@@ -146,9 +157,10 @@
     * Returns: JSON Object
     * Requires AppKey: true
     */
-    function ListCampuses($active = true) {
+    static function ListCampuses($active = true)
+    {
         $active = ($active) ? 'true' : 'false';
-        return json_decode(curl_get('api/misc/campus/' . $active, null, true));
+        return json_decode(Curl::curl_get('api/misc/campus/' . $active, null, true));
     }
 
     /*
@@ -159,9 +171,10 @@
     * Returns: JSON Object
     * Requires AppKey: true
     */
-    function ListLecturers($active = true) {
+    static function ListLecturers($active = true)
+    {
         $active = ($active) ? 'true' : 'false';
-        return json_decode(curl_get('api/misc/lecturer/' . $active, null, true));
+        return json_decode(Curl::curl_get('api/misc/lecturer/' . $active, null, true));
     }
 
     /*
@@ -172,9 +185,10 @@
     * Returns: JSON Object
     * Requires AppKey: true
     */
-    function ListAppointments($active = true) {
+    static function ListAppointments($active = true)
+    {
         $active = ($active) ? 'true' : 'false';
-        return json_decode(curl_get('api/misc/appointment/' . $active, null, true));
+        return json_decode(Curl::curl_get('api/misc/appointment/' . $active, null, true));
     }
 
     /*
@@ -185,9 +199,12 @@
     * Returns: JSON Object
     * Requires AppKey: true
     */
-    function ListAssignments($active = true) {
+    static function ListAssignments($active = true)
+    {
         $active = ($active) ? 'true' : 'false';
-        return json_decode(curl_get('api/misc/assignment/' . $active, null, true));
+        return json_decode(Curl::curl_get('api/misc/assignment/' . $active, null, true));
     }
+
+}
 
 ?>
