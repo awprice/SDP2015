@@ -16,6 +16,10 @@
             displayMarkField(this);
         });
 
+        $('.workshop-description .read-more').click(function() {
+           toggleDescription(this);
+        });
+
 
     });
 
@@ -43,6 +47,19 @@
             $("#" + inputId).remove();
         }
 
+    }
+
+    function toggleDescription(field) {
+        var descriptions = $('.workshop-description');
+        descriptions.each(function() {
+            $(this).find('.read-more').css('display', 'block');
+            $(this).css('max-height', '60px');
+        });
+        var parentField = $(field).parent();
+        $(field).css('display', 'none');
+        parentField.animate({'max-height': '300px'}, 500);
+
+        return false;
     }
 
 })(jQuery);

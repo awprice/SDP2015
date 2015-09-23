@@ -9,7 +9,12 @@
     });
 
     $router->map('GET', '/workshops', function () {
-       echo superHandler('workshops/workshops.php', 'workshops/workshops.html', 'Workshops', true, true);
+        echo superHandler('workshops/workshops.php', 'workshops/workshops.html', 'Workshops', true, true);
+    });
+
+    $router->map('GET', '/workshop/[i:workshopSetId]', function ($workshopSetId) {
+        $parameters = ['workshopSetId' => $workshopSetId];
+        echo superHandler('workshops/workshop.php', 'workshops/workshop.html', 'Workshop', true, true, $parameters);
     });
 
     // Misc routes
@@ -38,9 +43,10 @@
      * @param $title
      * @param $flashes
      * @param $restricted
+     * @param $parameters
      * @return string
      */
-    function superHandler($controller, $view, $title, $flashes, $restricted) {
+    function superHandler($controller, $view, $title, $flashes, $restricted, $parameters = null) {
 
         // Set our controller and view directories
         $controllerDirectory = __DIR__ . '/../controllers/';
@@ -48,6 +54,7 @@
 
         // Initialise our page array
         $page = Session::init($title, $flashes, $restricted);
+        $page['parameters'] = $parameters;
 
         // Require our controller
         require $controllerDirectory . $controller;
@@ -71,6 +78,5 @@
         return $output;
 
     }
-
 
 ?>

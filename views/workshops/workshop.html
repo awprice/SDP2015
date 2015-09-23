@@ -1,0 +1,33 @@
+<a class="btn btn-default" href="/workshops" role="button"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Workshops</a>
+<br>
+<br>
+
+{% if page.workshop != null %}
+    <div class="page-title-center">
+        <h3>Workshop</h3>
+        <h4><span class="label label-default">{{ page.workshopset.name }}</span></h4>
+        <br>
+    </div>
+    {% for workshop in page.workshop.Results %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ workshop.topic }}</h3>
+            </div>
+            <div class="panel-body">
+                {% if workshop.description != null %}
+                    <div class="workshop-description">
+                        <p>{{ workshop.description }}</p>
+                        <div class="read-more"></div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+{% if page.workshop == null %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Unable to load workshop.</strong> Please try again or check the url.
+    </div>
+{% endif %}
+
+{% debug %}

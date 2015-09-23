@@ -15,7 +15,7 @@ class Curl {
         $url = $GLOBALS["helps-url"] . $path;
 
         if ($parameters != null) {
-            $url .= http_build_query($parameters);
+            $url .= '?' . http_build_query($parameters);
         }
 
         $ch = curl_init($url);
