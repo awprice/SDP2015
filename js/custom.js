@@ -7,7 +7,6 @@
         // Restrict all inputs with class .numeric to only enter numbers
         $('input.numeric').numeric();
 
-
         // Compile less and reload styles every 2 seconds
         //setInterval(compileLess, 5000);
 
@@ -66,6 +65,7 @@
 
         if ($(field).find('.read-more').css('display') != 'none') {
 
+            // hide the other listings
             var workshopListing = $('.workshop-listing');
             workshopListing.each(function () {
                 $(this).find('.read-more').css('display', 'block');
@@ -73,9 +73,15 @@
                 $(this).css('opacity', '0.5');
             });
 
+            // hide the blur and expand the description
             $(field).css('opacity', '1');
             $(field).find('.read-more').css('display', 'none');
             $(field).find('.workshop-contents').animate({'max-height': '1000px'}, 'slow');
+
+            // scroll the window so the workshop listing is in the middle of the screen
+            var windowHeight = $(window).height();
+            var elementHeight = $(field).height();
+            $(window).scrollTop(($(field).offset().top - (windowHeight / 2) + (elementHeight / 2)));
 
         }
 
