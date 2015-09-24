@@ -80,7 +80,8 @@
 
             // scroll the window so the workshop listing is in the middle of the screen
             var windowHeight = $(window).height();
-            var elementHeight = $(field).height();
+            // roughly double it
+            var elementHeight = $(field).height() * 2;
             $(window).scrollTop(($(field).offset().top - (windowHeight / 2) + (elementHeight / 2)));
 
         }
