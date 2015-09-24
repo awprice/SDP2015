@@ -21,7 +21,7 @@
                 }
                 Session::setSuccess('You have successfully been logged in.');
                 if (User::firstUse($_SESSION['studentId'])) {
-                    Session::redirect('/signup');
+                    Session::redirect('/register');
                 }
                 Session::redirect('/');
             } else {

@@ -8,9 +8,10 @@
          * @param $title
          * @param $flashes
          * @param $restricted
+         * @param $registered
          * @return array
          */
-        static function init($title, $flashes, $restricted) {
+        static function init($title, $flashes, $restricted, $registered) {
 
             $page = [];
             $page['title'] = $title;
@@ -31,6 +32,12 @@
             } else {
                 // extend the session
                 self::setExpiry();
+            }
+
+            // If the page is a registered only page, and the person is not registered, redirect
+            if ($registered && User::firstUse()) {
+                self::setError('You must be Registered to view this page.');
+                self::redirect('/register');
             }
 
             if ($flashes) {

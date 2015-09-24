@@ -1,34 +1,38 @@
 <?php
 
     $router->map('GET', '/', function () {
-       echo superHandler('index.php', 'index.html', 'Index', true, false);
+       echo superHandler('index.php', 'index.html', 'Index', true, false, false);
     });
 
     $router->map('GET', '/faq', function () {
-        echo superHandler('faq/faq.php', 'faq/faq.html', 'FAQ', true, false);
+        echo superHandler('faq/faq.php', 'faq/faq.html', 'FAQ', true, false, false);
     });
 
     $router->map('GET', '/workshops', function () {
-        echo superHandler('workshops/workshops.php', 'workshops/workshops.html', 'Workshops', true, true);
+        echo superHandler('workshops/workshops.php', 'workshops/workshops.html', 'Workshops', true, true, true);
     });
 
     $router->map('GET', '/workshop/[i:workshopSetId]', function ($workshopSetId) {
         $parameters = ['workshopSetId' => $workshopSetId];
-        echo superHandler('workshops/workshop.php', 'workshops/workshop.html', 'Workshop', true, true, $parameters);
+        echo superHandler('workshops/workshop.php', 'workshops/workshop.html', 'Workshop', true, true, true, $parameters);
+    });
+
+    $router->map('POST', '/workshop/book', function () {
+        echo superHandler('workshops/book.php', 'workshop/book.html', 'Book Workshop', true, true, true);
     });
 
     // Misc routes
 
     $router->map('GET', '/logout', function () {
-        echo superHandler('session/logout.php', null, 'Logout', false, true);
+        echo superHandler('session/logout.php', null, 'Logout', false, true, false);
     });
 
     $router->map('GET|POST', '/login', function () {
-        echo superHandler('session/login.php', 'session/login.html', 'Login', true, false);
+        echo superHandler('session/login.php', 'session/login.html', 'Login', true, false, false);
     });
 
-    $router->map('GET|POST', '/signup', function () {
-        echo superHandler('session/signup.php', 'session/signup.html', 'Signup', true, true);
+    $router->map('GET|POST', '/register', function () {
+        echo superHandler('session/register.php', 'session/register.html', 'Register', true, true, false);
     });
 
 	$router->map('GET', '/compile/less', function() {
@@ -43,17 +47,18 @@
      * @param $title
      * @param $flashes
      * @param $restricted
+     * @param $registered
      * @param $parameters
      * @return string
      */
-    function superHandler($controller, $view, $title, $flashes, $restricted, $parameters = null) {
+    function superHandler($controller, $view, $title, $flashes, $restricted, $registered, $parameters = null) {
 
         // Set our controller and view directories
         $controllerDirectory = __DIR__ . '/../controllers/';
         $viewDirectory = __DIR__ . '/../views/';
 
         // Initialise our page array
-        $page = Session::init($title, $flashes, $restricted);
+        $page = Session::init($title, $flashes, $restricted, $registered);
         $page['parameters'] = $parameters;
 
         // Require our controller

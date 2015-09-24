@@ -3,8 +3,14 @@
 $workshopSetId = $page['parameters']['workshopSetId'];
 
 // Get the results for the workshop details
+// make sure we get all of the entries by setting a large
+// page size. Also set the start and end date for the range so we
+// don't get old data.
 $workshop = UTSHelpsAPI::SearchWorkshops([
     'workshopSetId' => $workshopSetId,
+    'pageSize' => 9999,
+    'startingDtBegin' => '2015-01-01T12:00:00',
+    'startingDtEnd' => '2020-01-01T12:00:00'
 ]);
 
 if ($workshop != null && $workshop->IsSuccess == 1) {

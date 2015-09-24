@@ -37,14 +37,14 @@
     }
 
     /**
-     * Displays the "mark" field on the signup form
+     * Displays the "mark" field on the register form
      *
      * @param field
      */
     function displayMarkField(field) {
 
-        var inputId = "signup-educationalBackground-" + $(field).attr('data-type') + "-mark";
-        var inputName = "signup[educationalBackground][" + $(field).attr('data-type') + "][mark]";
+        var inputId = "register-educationalBackground-" + $(field).attr('data-type') + "-mark";
+        var inputName = "register[educationalBackground][" + $(field).attr('data-type') + "][mark]";
 
         if ($(field).is(':checked')) {
             $(field).parent().after('<input type="text" class="form-control input-lg" name="' + inputName + '" id="' + inputId + '" placeholder="Mark" required>');
@@ -84,6 +84,7 @@
             $(window).scrollTop(($(field).offset().top - (windowHeight / 2) + (elementHeight / 2)));
 
         } else {
+            // minimise the workshop listing
             var workshopListing = $('.workshop-listing');
             workshopListing.each(function () {
                 $(this).find('.read-more').css('display', 'block');

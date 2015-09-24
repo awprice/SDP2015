@@ -36,7 +36,16 @@
                                 </div>
                             {% endif %}
                             <br>
-                            <a class="btn btn-block workshop-book" href="#">Book</a>
+                            <form action="/workshop/book" method="POST">
+                                <input type="hidden" name="workshop[id]" value="{{ workshop.id }}">
+                                <input type="hidden" name="workshop[topic]" value="{{ workshop.topic }}">
+                                <input type="hidden" name="workshop[description]" value="{{ workshop.description }}">
+                                <input type="hidden" name="workshop[campus]" value="{{ workshop.campus }}">
+                                <input type="hidden" name="workshop[date]" value="{{ workshop.date }}">
+                                <input type="hidden" name="workshop[setId]" value="{{ page.workshopset.id }}">
+                                <input type="hidden" name="workshop[setName]" value="{{ page.workshopset.name }}">
+                                <button class="btn btn-block workshop-book" type="submit">Book</button>
+                            </form>
                         </div>
                         <div class="read-more"></div>
                     </div>
@@ -72,7 +81,16 @@
                                 </div>
                             {% endif %}
                             <br>
-                            <a class="btn btn-block workshop-waiting-list" href="#">Join Waiting List</a>
+                            <form action="/workshop/waiting-list" method="POST">
+                                <input type="hidden" name="workshop[id]" value="{{ workshop.id }}">
+                                <input type="hidden" name="workshop[topic]" value="{{ workshop.topic }}">
+                                <input type="hidden" name="workshop[description]" value="{{ workshop.description }}">
+                                <input type="hidden" name="workshop[campus]" value="{{ workshop.campus }}">
+                                <input type="hidden" name="workshop[date]" value="{{ workshop.date }}">
+                                <input type="hidden" name="workshop[setId]" value="{{ page.workshopset.id }}">
+                                <input type="hidden" name="workshop[setName]" value="{{ page.workshopset.name }}">
+                                <button class="btn btn-block workshop-waiting-list" type="submit">Join Waiting List</button>
+                            </form>
                         </div>
                         <div class="read-more"></div>
                     </div>
@@ -88,5 +106,3 @@
         <strong>Unable to load workshop.</strong> Please try again or check the url.
     </div>
 {% endif %}
-
-{% debug %}
