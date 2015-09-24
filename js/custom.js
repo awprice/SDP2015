@@ -66,12 +66,14 @@
 
         if ($(field).find('.read-more').css('display') != 'none') {
 
-            var contents = $('.workshop-contents');
-            contents.each(function () {
+            var workshopListing = $('.workshop-listing');
+            workshopListing.each(function () {
                 $(this).find('.read-more').css('display', 'block');
-                $(this).css('max-height', '60px');
+                $(this).find('.workshop-contents').css('max-height', '60px');
+                $(this).css('opacity', '0.5');
             });
 
+            $(field).css('opacity', '1');
             $(field).find('.read-more').css('display', 'none');
             $(field).find('.workshop-contents').animate({'max-height': '1000px'}, 'slow');
 
