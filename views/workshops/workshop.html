@@ -8,29 +8,74 @@
         <h4><span class="label label-default">{{ page.workshopset.name }}</span></h4>
         <br>
     </div>
+
+    <h3 class="workshop-divider available">Available</h3>
     {% for workshop in page.workshop %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ workshop.topic }}</h3>
-                <p class="workshop-labels">
-                    <span class="label label-primary">{{ workshop.campus }}</span>
-                    <span class="label label-success">{{ workshop.date }}</span>
-                </p>
-            </div>
-            <div class="panel-body">
-                {% if workshop.description != null %}
-                    <div class="workshop-description">
-                        <p>{{ workshop.description }}</p>
+        {% if workshop.full == false %}
+            <div class="panel panel-default workshop-listing">
+                <div class="panel-heading">
+                    <span class="workshop-amount available">{{ workshop.remaining }}</span>
+                    <h3 class="panel-title">{{ workshop.topic }}</h3>
+                    <p class="workshop-labels">
+                        <span class="label label-primary">{{ workshop.date }}</span>
+                    </p>
+                </div>
+                <div class="panel-body">
+                    <div class="workshop-contents">
+                        <div class="contents">
+                            {{ workshop.campus }}
+                            {% if workshop.description != null %}
+                                <p>
+                                    {{ workshop.description }}
+                                </p>
+                            {% else %}
+                                <div class="text-center">
+                                    <p class="workshop-no-description">No description</p>
+                                </div>
+                            {% endif %}
+                            <a class="btn btn-block workshop-book" href="#">Book</a>
+                        </div>
                         <div class="read-more"></div>
                     </div>
-                {% else %}
-                    <div class="text-center">
-                        <p class="workshop-no-description">No description</p>
-                    </div>
-                {% endif %}
+                </div>
             </div>
-        </div>
+        {% endif %}
     {% endfor %}
+
+    <h3 class="workshop-divider full">Full</h3>
+    {% for workshop in page.workshop %}
+        {% if workshop.full == true %}
+            <div class="panel panel-default workshop-listing">
+                <div class="panel-heading">
+                    <span class="workshop-amount full">{{ workshop.remaining }}</span>
+                    <h3 class="panel-title">{{ workshop.topic }}</h3>
+                    <p class="workshop-labels">
+                        <span class="label label-primary">{{ workshop.date }}</span>
+                    </p>
+                </div>
+                <div class="panel-body">
+                    <div class="workshop-contents">
+                        <div class="contents">
+                            {{ workshop.campus }}
+                            {% if workshop.description != null %}
+                            <p>
+                                {{ workshop.description }}
+                            </p>
+                            {% else %}
+                            <div class="text-center">
+                                <p class="workshop-no-description">No description</p>
+                            </div>
+                            {% endif %}
+                            <a class="btn btn-block workshop-waiting-list" href="#">Join Waiting List</a>
+                        </div>
+                        <div class="read-more"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+
 {% endif %}
 {% if page.workshop == null %}
     <div class="alert alert-danger" role="alert">

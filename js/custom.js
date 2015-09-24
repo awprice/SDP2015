@@ -15,7 +15,7 @@
             displayMarkField(this);
         });
 
-        $('.workshop-description .read-more').click(function() {
+        $('.workshop-listing').click(function() {
            toggleDescription(this);
         });
 
@@ -64,15 +64,18 @@
      */
     function toggleDescription(field) {
 
-        var descriptions = $('.workshop-description');
-        descriptions.each(function() {
-            $(this).find('.read-more').css('display', 'block');
-            $(this).css('max-height', '60px');
-        });
+        if ($(field).find('.read-more').css('display') != 'none') {
 
-        var parentField = $(field).parent();
-        $(field).css('display', 'none');
-        parentField.animate({'max-height': '300px'}, 500);
+            var contents = $('.workshop-contents');
+            contents.each(function () {
+                $(this).find('.read-more').css('display', 'block');
+                $(this).css('max-height', '60px');
+            });
+
+            $(field).find('.read-more').css('display', 'none');
+            $(field).find('.workshop-contents').animate({'max-height': '1000px'}, 'slow');
+
+        }
 
         return false;
 

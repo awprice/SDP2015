@@ -34,6 +34,7 @@ if ($workshop != null && $workshop->IsSuccess == 1) {
             'maximum' => $value->maximum,
             'full' => $full,
             'date' => $date,
+            'remaining' => $remaining,
         ];
     }
 
