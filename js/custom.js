@@ -18,7 +18,6 @@
            toggleDescription(this);
         });
 
-
     });
 
     /**
@@ -76,7 +75,7 @@
             // hide the blur and expand the description
             $(field).css('opacity', '1');
             $(field).find('.read-more').css('display', 'none');
-            $(field).find('.workshop-contents').animate({'max-height': '1000px'}, 'slow');
+            $(field).find('.workshop-contents').animate({'max-height': '350px'}, 'slow');
 
             // scroll the window so the workshop listing is in the middle of the screen
             var windowHeight = $(window).height();
@@ -84,6 +83,13 @@
             var elementHeight = $(field).height() * 2;
             $(window).scrollTop(($(field).offset().top - (windowHeight / 2) + (elementHeight / 2)));
 
+        } else {
+            var workshopListing = $('.workshop-listing');
+            workshopListing.each(function () {
+                $(this).find('.read-more').css('display', 'block');
+                $(this).find('.workshop-contents').css('max-height', '60px');
+                $(this).css('opacity', '1');
+            });
         }
 
         return false;

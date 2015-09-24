@@ -23,7 +23,9 @@
                 <div class="panel-body">
                     <div class="workshop-contents">
                         <div class="contents">
-                            {{ workshop.campus }}
+                            <span class="label label-default">{{ workshop.campus }}</span>
+                            <br>
+                            <br>
                             {% if workshop.description != null %}
                                 <p>
                                     {{ workshop.description }}
@@ -33,6 +35,7 @@
                                     <p class="workshop-no-description">No description</p>
                                 </div>
                             {% endif %}
+                            <br>
                             <a class="btn btn-block workshop-book" href="#">Book</a>
                         </div>
                         <div class="read-more"></div>
@@ -56,16 +59,19 @@
                 <div class="panel-body">
                     <div class="workshop-contents">
                         <div class="contents">
-                            {{ workshop.campus }}
+                            <span class="label label-default">{{ workshop.campus }}</span>
+                            <br>
+                            <br>
                             {% if workshop.description != null %}
-                            <p>
-                                {{ workshop.description }}
-                            </p>
+                                <p>
+                                    {{ workshop.description }}
+                                </p>
                             {% else %}
-                            <div class="text-center">
-                                <p class="workshop-no-description">No description</p>
-                            </div>
+                                <div class="text-center">
+                                    <p class="workshop-no-description">No description</p>
+                                </div>
                             {% endif %}
+                            <br>
                             <a class="btn btn-block workshop-waiting-list" href="#">Join Waiting List</a>
                         </div>
                         <div class="read-more"></div>
