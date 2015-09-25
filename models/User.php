@@ -35,6 +35,13 @@
         ];
 
         /**
+         * Length of ids as stored in uts helps api
+         *
+         * @var int
+         */
+        private static $idLength = 10;
+
+        /**
          * Get the current logged in user's id
          *
          * @return mixed
@@ -233,6 +240,22 @@
                 [':lastlogin' => time(), ':student_id' => self::getId()]);
 
             return $results['success'];
+
+        }
+
+        /**
+         * Pads a user id to the amount that is used by the uts helps api
+         *
+         * @return mixed|string
+         */
+        static function getPaddedId() {
+
+            $length = strlen(self::getId());
+            if ($length < self::$idLength) {
+                $padAmount = self::$idLength - $length;
+                return self::getId() . str_repeat(' ', $padAmount);
+            }
+            return self::getId();
 
         }
 
