@@ -1,4 +1,4 @@
-<a class="btn btn-default" href="/bookings" role="button"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Bookings</a>
+<a class="btn btn-default" href="/bookings" role="button"><i class="fa fa-chevron-left"></i> Back to Bookings</a>
 <br>
 <br>
 
@@ -13,7 +13,7 @@
         {% for workshop in page.workshops.Results %}
             <a href="/workshop/{{ workshop.id }}">
                 <li class="list-group-item">
-                    <span class="badge"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></span>
+                    <span class="badge"><i class="fa fa-angle-right"></i></span>
                     {{ workshop.name }}
                 </li>
             </a>
