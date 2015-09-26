@@ -155,7 +155,7 @@
         $(panel).find('.workshop-are-you-sure').fadeOut('fast', function() {
             $(panel).find('.workshop-loader').fadeIn('fast');
             // do ajax stuff
-            var result = "error";
+            var result = "success";
             if (result == "success") {
                 $(panel).find('.workshop-loader').fadeOut('fast', function() {
                     $(panel).find('.workshop-success').fadeIn('fast');
