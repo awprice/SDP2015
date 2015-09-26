@@ -79,10 +79,12 @@
             // hide the other listings
             $('.workshop-listing').each(function () {
                 $(this).find('.workshop-description').css('display', 'block');
+                $(this).find('.workshop-no-description').css('display', 'block');
                 $(this).find('.workshop-are-you-sure').css('display', 'none');
                 $(this).find('.workshop-confirm-buttons').css('display', 'none');
                 $(this).find('.workshop-loader').css('display', 'none');
                 $(this).find('.workshop-success').css('display', 'none');
+                $(this).find('.workshop-failure').css('display', 'none');
                 $(this).find('.workshop-book-button').css('display', 'block');
                 $(this).find('.read-more').css('display', 'block');
                 $(this).find('.workshop-contents').css('max-height', '60px');
@@ -104,10 +106,12 @@
             // minimise the workshop listing
             $('.workshop-listing').each(function () {
                 $(this).find('.workshop-description').css('display', 'block');
+                $(this).find('.workshop-no-description').css('display', 'block');
                 $(this).find('.workshop-are-you-sure').css('display', 'none');
                 $(this).find('.workshop-confirm-buttons').css('display', 'none');
                 $(this).find('.workshop-loader').css('display', 'none');
                 $(this).find('.workshop-success').css('display', 'none');
+                $(this).find('.workshop-failure').css('display', 'none');
                 $(this).find('.workshop-book-button').css('display', 'block');
                 $(this).find('.read-more').css('display', 'block');
                 $(this).find('.workshop-contents').css('max-height', '60px');
@@ -129,9 +133,11 @@
 
         var panel = $(button).closest('.workshop-listing');
 
-        $(panel).find('.workshop-description').fadeOut('fast', function() {
+        $(panel).find('.workshop-description, .workshop-no-description').fadeOut('fast', function() {
             $(panel).find('.workshop-are-you-sure').fadeIn('fast');
         });
+
+
 
         $(panel).find('.workshop-book-button').fadeOut('fast', function() {
            $(panel).find('.workshop-confirm-buttons').fadeIn('fast');
@@ -149,10 +155,14 @@
         $(panel).find('.workshop-are-you-sure').fadeOut('fast', function() {
             $(panel).find('.workshop-loader').fadeIn('fast');
             // do ajax stuff
-            var result = "success";
+            var result = "error";
             if (result == "success") {
                 $(panel).find('.workshop-loader').fadeOut('fast', function() {
                     $(panel).find('.workshop-success').fadeIn('fast');
+                });
+            } else {
+                $(panel).find('.workshop-loader').fadeOut('fast', function() {
+                    $(panel).find('.workshop-failure').fadeIn('fast');
                 });
             }
         });

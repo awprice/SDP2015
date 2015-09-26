@@ -54,9 +54,18 @@
                                 </h1>
                                 <h4>Booking successfully created!</h4>
                             </div>
+                            <div class="workshop-failure">
+                                <h1>
+                                    <span class="fa-stack">
+                                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                        <i class="fa fa-close fa-stack-1x"></i>
+                                    </span>
+                                </h1>
+                                <h4>Unable to create booking. You have already booked this workshop.</h4>
+                            </div>
                             <button class="btn btn-block workshop-book-button" type="submit">Book</button>
                             <div class="workshop-confirm-buttons">
-                                <button class="btn btn-block btn-danger workshop-no-button">No</button>
+                                <button class="btn btn-block workshop-no-button">Cancel</button>
                                 <button class="btn btn-block btn-success workshop-yes-button">Yes</button>
                             </div>
                         </div>
@@ -85,13 +94,13 @@
                             <br>
                             <br>
                             {% if workshop.description != null %}
-                            <p class="workshop-description">
-                                {{ workshop.description }}
-                            </p>
+                                <p class="workshop-description">
+                                    {{ workshop.description }}
+                                </p>
                             {% else %}
-                            <div class="text-center">
-                                <p class="workshop-no-description">No description</p>
-                            </div>
+                                <div class="text-center workshop-no-description">
+                                    <p>No description</p>
+                                </div>
                             {% endif %}
                             <br>
                             <div class="workshop-are-you-sure">
@@ -110,11 +119,20 @@
                                         <i class="fa fa-check fa-stack-1x"></i>
                                     </span>
                                 </h1>
-                                <h4>Booking successfully created!</h4>
+                                <h4>Successfully joined waiting list!</h4>
+                            </div>
+                            <div class="workshop-failure">
+                                <h1>
+                                    <span class="fa-stack">
+                                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                        <i class="fa fa-close fa-stack-1x"></i>
+                                    </span>
+                                </h1>
+                                <h4>Unable to join waiting list. You have already joined this waiting list.</h4>
                             </div>
                             <button class="btn btn-block workshop-book-button" type="submit">Join Waiting List</button>
                             <div class="workshop-confirm-buttons">
-                                <button class="btn btn-block btn-danger workshop-no-button">No</button>
+                                <button class="btn btn-block workshop-no-button">Cancel</button>
                                 <button class="btn btn-block btn-success workshop-yes-button">Yes</button>
                             </div>
                         </div>

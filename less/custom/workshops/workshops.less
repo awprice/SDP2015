@@ -25,8 +25,11 @@
 }
 
 .workshop-no-description {
-  color: #777;
-  margin-bottom: 5px;
+  p {
+    color: #777;
+    margin-bottom: 5px;
+  }
+
 }
 
 .workshop-divider {
@@ -159,5 +162,15 @@
   margin: 20px 0px 50px 0px;
   h1, h4 {
     color: #0275d8;
+  }
+}
+
+.workshop-failure {
+  text-align: center;
+  display: none;
+  margin: 20px 0px 50px 0px;
+  padding: 0px 50px;
+  h1, h4 {
+    color: @uts-helps-mobile-primary;
   }
 }
