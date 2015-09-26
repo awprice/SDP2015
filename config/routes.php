@@ -17,8 +17,12 @@
         echo superHandler('workshops/workshop.php', 'workshops/workshop.html', 'Workshop', true, true, true, $parameters);
     });
 
-    $router->map('POST', '/workshop/book', function () {
-        echo superHandler('workshops/book.php', 'workshop/book.html', 'Book Workshop', true, true, true);
+    $router->map('POST', '/workshop/confirm-booking', function () {
+        echo superHandler('workshops/confirm-booking.php', 'workshops/confirm-booking.html', 'Confirm Booking', true, true, true);
+    });
+
+    $router->map('POST', '/workshop/confirm-waiting-list', function () {
+       echo superHandler('workshops/confirm-waiting-list.php', 'workshops/confirm-waiting-list.html', 'Confirm Waiting List', true, true, true);
     });
 
     // Misc routes

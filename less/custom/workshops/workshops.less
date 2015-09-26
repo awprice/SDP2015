@@ -65,7 +65,7 @@
   }
 }
 
-.workshop-book {
+.workshop-book-button {
   color: #FFF;
   background-color: #0275d8;
   &:hover, &:focus {
@@ -73,10 +73,91 @@
   }
 }
 
-.workshop-waiting-list {
+.workshop-waiting-list-button {
   color: #FFF;
   background-color: @uts-helps-mobile-primary;
   &:hover, &:focus {
     color: #FFF;
+  }
+}
+
+.workshop-confirm-buttons {
+  text-align: center;
+  display: none;
+  button {
+    margin: 0px !important;
+    display: inline-block;
+    width: 49%;
+  }
+}
+
+.workshop-are-you-sure {
+  display: none;
+  text-align: center;
+  margin: 20px 0px 50px 0px;
+}
+
+.workshop-loader {
+  margin: 20px 0px 50px 0px;
+  text-align: center;
+  display: none;
+  @-moz-keyframes three-quarters-loader {
+    0% {
+      -moz-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -moz-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes three-quarters-loader {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes three-quarters-loader {
+    0% {
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -moz-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  /* :not(:required) hides this rule from IE9 and below */
+  .three-quarters-loader:not(:required) {
+    -moz-animation: three-quarters-loader 1250ms infinite linear;
+    -webkit-animation: three-quarters-loader 1250ms infinite linear;
+    animation: three-quarters-loader 1250ms infinite linear;
+    border: 3px solid #0275d8;
+    border-right-color: transparent;
+    border-radius: 16px;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.workshop-success {
+  text-align: center;
+  display: none;
+  margin: 20px 0px 50px 0px;
+  h1, h4 {
+    color: #0275d8;
   }
 }
