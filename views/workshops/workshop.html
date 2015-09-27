@@ -12,7 +12,7 @@
     <h3 class="workshop-divider available">Available</h3>
     {% for workshop in page.workshop %}
         {% if workshop.full == false %}
-            <div class="panel panel-default workshop-listing">
+            <div class="panel panel-default workshop-listing" data-url="/ajax/workshop/book" data-id="{{ workshop.id }}">
                 <div class="panel-heading">
                     <span class="workshop-amount available">{{ workshop.remaining }}</span>
                     <h3 class="panel-title">{{ workshop.topic }}</h3>
@@ -78,7 +78,7 @@
     <h3 class="workshop-divider full">Full</h3>
     {% for workshop in page.workshop %}
         {% if workshop.full == true %}
-            <div class="panel panel-default workshop-listing">
+            <div class="panel panel-default workshop-listing" data-url="/ajax/workshop/join-waiting-list" data-id="{{ workshop.id }}">
                 <div class="panel-heading">
                     <span class="workshop-amount full">{{ workshop.remaining }}</span>
                     <h3 class="panel-title">{{ workshop.topic }}</h3>

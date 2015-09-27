@@ -103,6 +103,20 @@
         echo superHandler($parameters);
     });
 
+    $router->map('POST', '/ajax/workshop/book', function () {
+        $parameters = [
+            'controller' => 'ajax/workshop/book.php',
+            'view' => null,
+            'title' => null,
+            'flashes' => false,
+            'restricted' => true,
+            'registered' => true,
+            'header' => false,
+            'footer' => false,
+        ];
+        echo superHandler($parameters);
+    });
+
 	$router->map('GET', '/compile/less', function() {
 		require __DIR__ . '/less.compile.php';
 	});

@@ -33,6 +33,25 @@
     });
 
     /**
+     * Does an ajax query, sends data to the specified callback
+     *
+     * @param url
+     * @param method
+     * @param data
+     * @param callback
+     */
+    function ajax(url, method, data, callback) {
+        $.ajax({
+            url: url,
+            method: method,
+            data: data,
+            success: function (data) {
+                callback(data);
+            }
+        });
+    }
+
+    /**
      * Requests the less compile endpoint and then reloads the stylesheets
      */
     function compileLess() {
@@ -147,24 +166,36 @@
 
     }
 
+    /**
+     * Sends an ajax request and confirms a booking/joins a waiting list.
+     *
+     * @param button
+     */
     function confirmBooking(button) {
 
         var panel = $(button).closest('.workshop-listing');
 
+        var id = $(panel).attr('data-id'),
+            url = $(panel).attr('data-url');
+
         $(panel).find('.workshop-confirm-buttons').fadeOut('fast');
         $(panel).find('.workshop-are-you-sure').fadeOut('fast', function() {
             $(panel).find('.workshop-loader').fadeIn('fast');
-            // do ajax stuff
-            var result = "success";
-            if (result == "success") {
-                $(panel).find('.workshop-loader').fadeOut('fast', function() {
-                    $(panel).find('.workshop-success').fadeIn('fast');
-                });
-            } else {
-                $(panel).find('.workshop-loader').fadeOut('fast', function() {
-                    $(panel).find('.workshop-failure').fadeIn('fast');
-                });
-            }
+
+            ajax(url, 'POST', {'id': id}, function (data) {
+                if (data.success) {
+                    $(panel).find('.workshop-success h4').text(data.message);
+                    $(panel).find('.workshop-loader').fadeOut('fast', function() {
+                        $(panel).find('.workshop-success').fadeIn('fast');
+                    });
+                } else {
+                    $(panel).find('.workshop-failure h4').text(data.message);
+                    $(panel).find('.workshop-loader').fadeOut('fast', function() {
+                        $(panel).find('.workshop-failure').fadeIn('fast');
+                    });
+                }
+            });
+
         });
 
     }
