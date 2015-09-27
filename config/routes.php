@@ -1,42 +1,106 @@
 <?php
 
     $router->map('GET', '/', function () {
-       echo superHandler('index.php', 'index.html', 'Index', true, false, false);
+        $parameters = [
+            'controller' => 'index.php',
+            'view' => 'index.html',
+            'title' => 'Index',
+            'flashes' => true,
+            'restricted' => false,
+            'registered' => false,
+            'header' => true,
+            'footer' => true,
+        ];
+       echo superHandler($parameters);
     });
 
     $router->map('GET', '/faq', function () {
-        echo superHandler('faq/faq.php', 'faq/faq.html', 'FAQ', true, false, false);
+        $parameters = [
+            'controller' => 'faq/faq.php',
+            'view' => 'faq/faq.html',
+            'title' => 'FAQ',
+            'flashes' => true,
+            'restricted' => false,
+            'registered' => false,
+            'header' => true,
+            'footer' => true,
+        ];
+        echo superHandler($parameters);
     });
 
     $router->map('GET', '/workshops', function () {
-        echo superHandler('workshops/workshops.php', 'workshops/workshops.html', 'Workshops', true, true, true);
+        $parameters = [
+            'controller' => 'workshops/workshops.php',
+            'view' => 'workshops/workshops.html',
+            'title' => 'Workshops',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'header' => true,
+            'footer' => true,
+        ];
+        echo superHandler($parameters);
     });
 
     $router->map('GET', '/workshop/[i:workshopSetId]', function ($workshopSetId) {
-        $parameters = ['workshopSetId' => $workshopSetId];
-        echo superHandler('workshops/workshop.php', 'workshops/workshop.html', 'Workshop', true, true, true, $parameters);
-    });
-
-    $router->map('POST', '/workshop/confirm-booking', function () {
-        echo superHandler('workshops/confirm-booking.php', 'workshops/confirm-booking.html', 'Confirm Booking', true, true, true);
-    });
-
-    $router->map('POST', '/workshop/confirm-waiting-list', function () {
-       echo superHandler('workshops/confirm-waiting-list.php', 'workshops/confirm-waiting-list.html', 'Confirm Waiting List', true, true, true);
+        $parameters = [
+            'controller' => 'workshops/workshop.php',
+            'view' => 'workshops/workshop.html',
+            'title' => 'Workshop',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'parameters' => [
+                'workshopSetId' => $workshopSetId,
+            ],
+            'header' => true,
+            'footer' => true,
+        ];
+        echo superHandler($parameters);
     });
 
     // Misc routes
 
     $router->map('GET', '/logout', function () {
-        echo superHandler('session/logout.php', null, 'Logout', false, true, false);
+        $parameters = [
+            'controller' => 'session/logout.php',
+            'view' => null,
+            'title' => null,
+            'flashes' => false,
+            'restricted' => true,
+            'registered' => false,
+            'header' => false,
+            'footer' => false,
+        ];
+        echo superHandler($parameters);
     });
 
     $router->map('GET|POST', '/login', function () {
-        echo superHandler('session/login.php', 'session/login.html', 'Login', true, false, false);
+        $parameters = [
+            'controller' => 'session/login.php',
+            'view' => 'session/login.html',
+            'title' => 'Login',
+            'flashes' => true,
+            'restricted' => false,
+            'registered' => false,
+            'header' => true,
+            'footer' => true,
+        ];
+        echo superHandler($parameters);
     });
 
     $router->map('GET|POST', '/register', function () {
-        echo superHandler('session/register.php', 'session/register.html', 'Register', true, true, false);
+        $parameters = [
+            'controller' => 'session/register.php',
+            'view' => 'session/register.html',
+            'title' => 'Register',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => false,
+            'header' => true,
+            'footer' => true,
+        ];
+        echo superHandler($parameters);
     });
 
 	$router->map('GET', '/compile/less', function() {
@@ -46,42 +110,45 @@
     /**
      * Handles rendering the header, footer, content and initialising the page
      *
-     * @param $controller
-     * @param $view
-     * @param $title
-     * @param $flashes
-     * @param $restricted
-     * @param $registered
      * @param $parameters
      * @return string
      */
-    function superHandler($controller, $view, $title, $flashes, $restricted, $registered, $parameters = null) {
+    function superHandler($parameters) {
 
         // Set our controller and view directories
         $controllerDirectory = __DIR__ . '/../controllers/';
         $viewDirectory = __DIR__ . '/../views/';
 
         // Initialise our page array
-        $page = Session::init($title, $flashes, $restricted, $registered);
-        $page['parameters'] = $parameters;
+        $page = Session::init($parameters['title'], $parameters['flashes'], $parameters['restricted'], $parameters['registered']);
+
+        // if parameters are passed, then add them
+        if (array_key_exists('parameters', $parameters)) {
+            $page['parameters'] = $parameters['parameters'];
+        }
 
         // Require our controller
-        require $controllerDirectory . $controller;
+        require $controllerDirectory . $parameters['controller'];
 
         // Initialise our h2o object
         $h2o = new h2o(null, array('autoescape' => false));
 
         $output = "";
 
-        // load the templates and render each one
-        $h2o->loadTemplate($viewDirectory . 'global/header.html');
-        $output .= $h2o->render(compact('page'));
+        if (array_key_exists('header', $parameters) && $parameters['header'] == true) {
+            $h2o->loadTemplate($viewDirectory . 'global/header.html');
+            $output .= $h2o->render(compact('page'));
+        }
 
-        $h2o->loadTemplate($viewDirectory . $view);
-        $output .= $h2o->render(compact('page'));
+        if ($parameters['view'] != null) {
+            $h2o->loadTemplate($viewDirectory . $parameters['view']);
+            $output .= $h2o->render(compact('page'));
+        }
 
-        $h2o->loadTemplate($viewDirectory . 'global/footer.html');
-        $output .= $h2o->render(compact('page'));
+        if (array_key_exists('footer', $parameters) && $parameters['footer'] == true) {
+            $h2o->loadTemplate($viewDirectory . 'global/footer.html');
+            $output .= $h2o->render(compact('page'));
+        }
 
         // return output
         return $output;
