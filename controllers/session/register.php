@@ -22,6 +22,38 @@
             }
         }
 
+        $user = User::getUser();
+
+        $registration = UTSHelpsAPI::RegisterStudent([
+            'StudentId' => $user['student_id'],
+            'DateOfBirth' => $user['dob'],
+            'Gender' => $user['gender'],
+            'Degree' => $user['degree'],
+            'Status' => $user['status'],
+            'FirstLanguage' => $user['first_language'],
+            'CountryOrigin' => $user['country_of_origin'],
+            'DegreeDetails' => $user['year'],
+            'AltContact' => $user['best_contact_no'],
+            'PreferredName' => $user['preferred_first_name'],
+            'HSC' => (bool) $user['hsc'],
+            'HSCMark' => $user['hsc_mark'],
+            'IELTS' => (bool) $user['ielts'],
+            'IELTSMark' => $user['ielts_mark'],
+            'TOEFL' => (bool) $user['toefl'],
+            'TOEFLMark' => $user['toefl_mark'],
+            'TAFE' => (bool) $user['tafe'],
+            'TAFEMark' => $user['tafe_mark'],
+            'CULT' => (bool) $user['cult'],
+            'CULTMark' => $user['cult_mark'],
+            'InsearchDEEP' => (bool) $user['insearch_deep'],
+            'InsearchDEEPMark' => $user['insearch_deep_mark'],
+            'InsearchDiploma' => (bool) $user['insearch_diploma'],
+            'InsearchDiplomaMark' => $user['insearch_diploma_mark'],
+            'FoundationCourse' => (bool) $user['foundation_course'],
+            'FoundationCourseMark' => $user['foundation_course_mark'],
+            'CreatorId' => 123456
+        ]);
+
         User::setFirstUse();
         User::setLastLogin();
         Session::setSuccess('Register complete!');

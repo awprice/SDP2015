@@ -48,6 +48,8 @@ if ($workshop != null && $workshop->IsSuccess == 1) {
     $page['workshop'] = null;
 }
 
+$page['bla'] = $workshop;
+
 // Get the results for the workshop set
 $workshopsets = UTSHelpsAPI::ListWorkshopSets(true);
 $workshopset = null;

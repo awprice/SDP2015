@@ -39,7 +39,11 @@ class UTSHelpsAPI {
      */
     static function CreateWorkshopBooking($data)
     {
-        return json_decode(Curl::curl_post('api/workshop/booking/create', $data, true));
+        $parameters = '';
+        if ($data != null) {
+            $parameters .= '?' . http_build_query($data);
+        }
+        return json_decode(Curl::curl_post('api/workshop/booking/create' . $parameters, null, true));
     }
 
     /*

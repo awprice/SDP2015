@@ -41,9 +41,24 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
     exit();
 }
 
+// This user hasn't booked the workshop before, we can safely book it now.
+$booking = UTSHelpsAPI::CreateWorkshopBooking([
+    'workshopId' => $id,
+    'studentId' => User::getPaddedId(),
+    'userId' => 123,
+]);
+
+if ($booking != null && $booking->IsSuccess == 1) {
+    echo json_encode([
+        'success' => true,
+        'message' => 'Successfully booked workshop!',
+    ]);
+    exit();
+}
+
 echo json_encode([
-    'success' => true,
-    'message' => 'Successfully booked workshop!',
+    'success' => false,
+    'message' => 'Unable to create booking, please try again.',
 ]);
 exit();
 
