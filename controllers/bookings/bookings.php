@@ -56,6 +56,4 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
     $page['bookings'] = null;
 }
 
-$page['bla'] = $bookings->Results;
-
 ?>
