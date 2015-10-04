@@ -13,14 +13,27 @@ $workshop = UTSHelpsAPI::SearchWorkshops([
     'startingDtEnd' => '2020-01-01T12:00:00'
 ]);
 
+$page['available'] = 0;
+$page['unavailable'] = 0;
+
 if ($workshop != null && $workshop->IsSuccess == 1) {
 
     foreach($workshop->Results as $value) {
+
+        // initially set the status to available
+        $status = 'available';
+
         $remaining = $value->maximum - $value->BookingCount;
         if ($remaining <= 0) {
-            $full = true;
+            $status = 'full';
+        } elseif ($value->cutoff != null && $value->cutoff <= $value->BookingCount) {
+            $status = 'cutoff';
+        }
+
+        if ($status == 'available') {
+            $page['available']++;
         } else {
-            $full = false;
+            $page['unavailable']++;
         }
 
         $startDate = strtotime($value->StartDate);
@@ -38,7 +51,8 @@ if ($workshop != null && $workshop->IsSuccess == 1) {
             'campus' => $value->campus,
             'current' => $value->BookingCount,
             'maximum' => $value->maximum,
-            'full' => $full,
+            'cutoff' => $value->cutoff,
+            'status' => $status,
             'date' => $date,
             'remaining' => $remaining,
         ];

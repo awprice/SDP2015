@@ -42,6 +42,10 @@
             displayBookingCancelConfirm(this);
         });
 
+        $('.workshop-divider').click(function() {
+            toggleDivider(this);
+        })
+
     });
 
     /**
@@ -292,6 +296,24 @@
         });
 
         return false;
+
+    }
+
+    /**
+     * Toggles the workshop sections with the dividers
+     *
+     * @param divider
+     */
+    function toggleDivider(divider) {
+
+        var type = $(divider).attr('data-divider');
+        var workshops = $('.workshop-' + type);
+
+        if ($(workshops).css('display') != 'none') {
+            $(workshops).fadeOut('fast');
+        } else {
+            $(workshops).fadeIn('fast');
+        }
 
     }
 

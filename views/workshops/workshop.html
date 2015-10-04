@@ -9,137 +9,163 @@
         <br>
     </div>
 
-    <h3 class="workshop-divider available">Available</h3>
-    {% for workshop in page.workshop %}
-        {% if workshop.full == false %}
-            <div class="panel panel-default workshop-listing" data-url="/ajax/workshop/book" data-id="{{ workshop.id }}">
-                <div class="panel-heading">
-                    <span class="workshop-amount available">{{ workshop.remaining }}</span>
-                    <h3 class="panel-title">{{ workshop.topic }}</h3>
-                    <p class="workshop-labels">
-                        <span class="label label-primary">{{ workshop.date }}</span>
-                    </p>
-                </div>
-                <div class="panel-body">
-                    <div class="workshop-contents">
-                        <div class="contents">
-                            <span class="label label-default">{{ workshop.campus }}</span>
-                            <br>
-                            <br>
-                            {% if workshop.description != null %}
-                                <p class="workshop-description">
-                                    {{ workshop.description }}
-                                </p>
-                            {% else %}
-                                <div class="text-center">
-                                    <p class="workshop-no-description">No description</p>
+    <h3 class="workshop-divider available" data-divider="available">Available</h3>
+    <div class="workshop-available">
+        {% for workshop in page.workshop %}
+            {% if workshop.status == "available" %}
+                <div class="panel panel-default workshop-listing" data-url="/ajax/workshop/book" data-id="{{ workshop.id }}">
+                    <div class="panel-heading">
+                        <span class="workshop-amount available">{{ workshop.remaining }}</span>
+                        <h3 class="panel-title">{{ workshop.topic }}</h3>
+                        <p class="workshop-labels">
+                            <span class="label label-success">Available</span>
+                            <span class="label label-primary">{{ workshop.date }}</span>
+                        </p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="workshop-contents">
+                            <div class="contents">
+                                <span class="label label-default">{{ workshop.campus }}</span>
+                                <br>
+                                <br>
+                                {% if workshop.description != null %}
+                                    <p class="workshop-description">
+                                        {{ workshop.description }}
+                                    </p>
+                                {% else %}
+                                    <div class="text-center">
+                                        <p class="workshop-no-description">No description</p>
+                                    </div>
+                                {% endif %}
+                                <br>
+                                <div class="workshop-are-you-sure">
+                                    <h4>Are you sure?</h4>
                                 </div>
-                            {% endif %}
-                            <br>
-                            <div class="workshop-are-you-sure">
-                                <h4>Are you sure?</h4>
-                            </div>
-                            <div class="workshop-loader">
-                                <div class="three-quarters-loader">
-                                    Loading...
+                                <div class="workshop-loader">
+                                    <div class="three-quarters-loader">
+                                        Loading...
+                                    </div>
+                                </div>
+                                <div class="workshop-success">
+                                    <h1>
+                                        <span class="fa-stack">
+                                            <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                            <i class="fa fa-check fa-stack-1x"></i>
+                                        </span>
+                                    </h1>
+                                    <h4>Booking successfully created!</h4>
+                                </div>
+                                <div class="workshop-failure">
+                                    <h1>
+                                        <span class="fa-stack">
+                                            <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                            <i class="fa fa-close fa-stack-1x"></i>
+                                        </span>
+                                    </h1>
+                                    <h4>Unable to create booking. You have already booked this workshop.</h4>
+                                </div>
+                                <button class="btn btn-block workshop-book-button" type="submit">Book</button>
+                                <div class="workshop-confirm-buttons">
+                                    <button class="btn btn-block workshop-no-button">Cancel</button>
+                                    <button class="btn btn-block btn-success workshop-yes-button">Yes</button>
                                 </div>
                             </div>
-                            <div class="workshop-success">
-                                <h1>
-                                    <span class="fa-stack">
-                                        <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                        <i class="fa fa-check fa-stack-1x"></i>
-                                    </span>
-                                </h1>
-                                <h4>Booking successfully created!</h4>
-                            </div>
-                            <div class="workshop-failure">
-                                <h1>
-                                    <span class="fa-stack">
-                                        <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                        <i class="fa fa-close fa-stack-1x"></i>
-                                    </span>
-                                </h1>
-                                <h4>Unable to create booking. You have already booked this workshop.</h4>
-                            </div>
-                            <button class="btn btn-block workshop-book-button" type="submit">Book</button>
-                            <div class="workshop-confirm-buttons">
-                                <button class="btn btn-block workshop-no-button">Cancel</button>
-                                <button class="btn btn-block btn-success workshop-yes-button">Yes</button>
-                            </div>
+                            <div class="read-more"></div>
                         </div>
-                        <div class="read-more"></div>
                     </div>
                 </div>
+            {% endif %}
+        {% endfor %}
+        {% if page.available == 0 %}
+            <div class="workshop-no-workshops">
+                <h5>There are no workshops in this section</h5>
             </div>
         {% endif %}
-    {% endfor %}
+    </div>
 
-    <h3 class="workshop-divider full">Full</h3>
-    {% for workshop in page.workshop %}
-        {% if workshop.full == true %}
-            <div class="panel panel-default workshop-listing" data-url="/ajax/workshop/join-waiting-list" data-id="{{ workshop.id }}">
-                <div class="panel-heading">
-                    <span class="workshop-amount full">{{ workshop.remaining }}</span>
-                    <h3 class="panel-title">{{ workshop.topic }}</h3>
-                    <p class="workshop-labels">
-                        <span class="label label-primary">{{ workshop.date }}</span>
-                    </p>
-                </div>
-                <div class="panel-body">
-                    <div class="workshop-contents">
-                        <div class="contents">
-                            <span class="label label-default">{{ workshop.campus }}</span>
-                            <br>
-                            <br>
-                            {% if workshop.description != null %}
-                                <p class="workshop-description">
-                                    {{ workshop.description }}
-                                </p>
-                            {% else %}
-                                <div class="text-center workshop-no-description">
-                                    <p>No description</p>
-                                </div>
+    <h3 class="workshop-divider full" data-divider="unavailable">Unavailable</h3>
+    <div class="workshop-unavailable">
+        {% for workshop in page.workshop %}
+            {% if workshop.status != "available" %}
+                <div class="panel panel-default workshop-listing" data-url="/ajax/workshop/join-waiting-list" data-id="{{ workshop.id }}">
+                    <div class="panel-heading">
+                        {% if workshop.status == "full" %}
+                            <span class="workshop-amount full">{{ workshop.remaining }}</span>
+                        {% endif %}
+                        {% if workshop.status == "cutoff" %}
+                            <span class="workshop-amount cutoff">{{ workshop.remaining }}</span>
+                        {% endif %}
+                        <h3 class="panel-title">{{ workshop.topic }}</h3>
+                        <p class="workshop-labels">
+                            {% if workshop.status == "full" %}
+                                <span class="label label-danger">Full</span>
                             {% endif %}
-                            <br>
-                            <div class="workshop-are-you-sure">
-                                <h4>Are you sure?</h4>
-                            </div>
-                            <div class="workshop-loader">
-                                <div class="three-quarters-loader">
-                                    Loading...
+                            {% if workshop.status == "cutoff" %}
+                                <span class="label label-warning">Cutoff Reached</span>
+                            {% endif %}
+                            <span class="label label-primary">{{ workshop.date }}</span>
+                        </p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="workshop-contents">
+                            <div class="contents">
+                                <span class="label label-default">{{ workshop.campus }}</span>
+                                <br>
+                                <br>
+                                {% if workshop.description != null %}
+                                    <p class="workshop-description">
+                                        {{ workshop.description }}
+                                    </p>
+                                {% else %}
+                                    <div class="text-center workshop-no-description">
+                                        <p>No description</p>
+                                    </div>
+                                {% endif %}
+                                <br>
+                                <div class="workshop-are-you-sure">
+                                    <h4>Are you sure?</h4>
+                                </div>
+                                <div class="workshop-loader">
+                                    <div class="three-quarters-loader">
+                                        Loading...
+                                    </div>
+                                </div>
+                                <div class="workshop-success">
+                                    <h1>
+                                        <span class="fa-stack">
+                                            <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                            <i class="fa fa-check fa-stack-1x"></i>
+                                        </span>
+                                    </h1>
+                                    <h4>Successfully joined waiting list!</h4>
+                                </div>
+                                <div class="workshop-failure">
+                                    <h1>
+                                        <span class="fa-stack">
+                                            <i class="fa fa-circle-thin fa-stack-2x"></i>
+                                            <i class="fa fa-close fa-stack-1x"></i>
+                                        </span>
+                                    </h1>
+                                    <h4>Unable to join waiting list. You have already joined this waiting list.</h4>
+                                </div>
+                                <button class="btn btn-block workshop-book-button" type="submit">Join Waiting List</button>
+                                <div class="workshop-confirm-buttons">
+                                    <button class="btn btn-block workshop-no-button">Cancel</button>
+                                    <button class="btn btn-block btn-success workshop-yes-button">Yes</button>
                                 </div>
                             </div>
-                            <div class="workshop-success">
-                                <h1>
-                                    <span class="fa-stack">
-                                        <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                        <i class="fa fa-check fa-stack-1x"></i>
-                                    </span>
-                                </h1>
-                                <h4>Successfully joined waiting list!</h4>
-                            </div>
-                            <div class="workshop-failure">
-                                <h1>
-                                    <span class="fa-stack">
-                                        <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                        <i class="fa fa-close fa-stack-1x"></i>
-                                    </span>
-                                </h1>
-                                <h4>Unable to join waiting list. You have already joined this waiting list.</h4>
-                            </div>
-                            <button class="btn btn-block workshop-book-button" type="submit">Join Waiting List</button>
-                            <div class="workshop-confirm-buttons">
-                                <button class="btn btn-block workshop-no-button">Cancel</button>
-                                <button class="btn btn-block btn-success workshop-yes-button">Yes</button>
-                            </div>
+                            <div class="read-more"></div>
                         </div>
-                        <div class="read-more"></div>
                     </div>
                 </div>
+            {% endif %}
+        {% endfor %}
+        {% if page.unavailable == 0 %}
+            <div class="workshop-no-workshops">
+                <h5>There are no workshops in this section</h5>
             </div>
         {% endif %}
-    {% endfor %}
+    </div>
 
 
 {% endif %}
@@ -148,5 +174,3 @@
         <strong>Unable to load workshop.</strong> Please try again or check the url.
     </div>
 {% endif %}
-
-{% debug %}
