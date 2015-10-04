@@ -25,7 +25,7 @@ $bookings = UTSHelpsAPI::SearchWorkshopBookings([
 if ($bookings != null && $bookings->IsSuccess == 1) {
     // Make sure the user hasn't already booked this workshop before.
     foreach ($bookings->Results as $booking) {
-        if ($booking->workshopID == (int) $id) {
+        if ($booking->workshopID == (int) $id && $booking->BookingArchived == null) {
             echo json_encode([
                 'success' => false,
                 'message' => 'You have already booked this workshop, unable to book workshop.',

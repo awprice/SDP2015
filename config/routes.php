@@ -59,6 +59,20 @@
         echo superHandler($parameters);
     });
 
+    $router->map('GET', '/bookings', function () {
+        $parameters = [
+            'controller' => 'bookings/bookings.php',
+            'view' => 'bookings/bookings.html',
+            'title' => 'Bookings',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'header' => true,
+            'footer' => true,
+        ];
+        echo superHandler($parameters);
+    });
+
     // Misc routes
 
     $router->map('GET', '/logout', function () {
@@ -106,6 +120,20 @@
     $router->map('POST', '/ajax/workshop/book', function () {
         $parameters = [
             'controller' => 'ajax/workshop/book.php',
+            'view' => null,
+            'title' => null,
+            'flashes' => false,
+            'restricted' => true,
+            'registered' => true,
+            'header' => false,
+            'footer' => false,
+        ];
+        echo superHandler($parameters);
+    });
+
+    $router->map('POST', '/ajax/booking/cancel', function () {
+        $parameters = [
+            'controller' => 'ajax/booking/cancel.php',
             'view' => null,
             'title' => null,
             'flashes' => false,

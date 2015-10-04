@@ -18,6 +18,10 @@
            toggleDescription($(this).parent());
         });
 
+        $('.booking-listing .panel-heading').click(function () {
+           toggleBookingDescription($(this).parent());
+        });
+
         $('.workshop-listing .workshop-confirm-buttons .workshop-no-button').click(function () {
             toggleDescription($(this).closest('.workshop-listing'));
         });
@@ -28,6 +32,14 @@
 
         $('.workshop-listing .workshop-confirm-buttons .workshop-yes-button').click(function() {
            confirmBooking(this);
+        });
+
+        $('.booking-listing .booking-confirm-buttons .booking-yes-button').click(function() {
+           cancelBooking(this);
+        });
+
+        $('.booking-listing .booking-buttons .booking-cancel-button').click(function() {
+            displayBookingCancelConfirm(this);
         });
 
     });
@@ -156,8 +168,6 @@
             $(panel).find('.workshop-are-you-sure').fadeIn('fast');
         });
 
-
-
         $(panel).find('.workshop-book-button').fadeOut('fast', function() {
            $(panel).find('.workshop-confirm-buttons').fadeIn('fast');
         });
@@ -197,6 +207,91 @@
             });
 
         });
+
+    }
+
+    /**
+     * Toggles a bookings description
+     *
+     * @param booking
+     * @returns {boolean}
+     */
+    function toggleBookingDescription(booking) {
+
+        if ($(booking).find('.panel-body').css('display') == 'none') {
+            // minimise all of the booking listings
+            $('.booking-listing').each(function () {
+                $(this).find('.panel-body').slideUp('fast');
+            });
+            $(booking).find('.panel-body').slideDown('fast');
+        } else {
+            // minimise all of the booking listings
+            $('.booking-listing').each(function () {
+                $(this).find('.panel-body').slideUp('fast');
+            });
+        }
+
+        return false
+
+    }
+
+    /**
+     * Cancels a booking
+     *
+     * @param button
+     */
+    function cancelBooking(button) {
+
+        var booking = $(button).closest('.booking-listing');
+        var bookingId = $(booking).attr('data-booking-id'),
+            workshopId = $(booking).attr('data-workshop-id');
+
+        $(booking).find('.booking-confirm-buttons').fadeOut('fast');
+        $(booking).find('.booking-are-you-sure').fadeOut('fast', function() {
+           $(booking).find('.booking-loader').fadeIn('fast');
+
+            ajax('/ajax/booking/cancel', 'POST', {bookingId: bookingId, workshopId: workshopId}, function (data) {
+               if (data.success) {
+                   $(booking).find('.booking-success h4').text(data.message);
+                   $(booking).find('.booking-loader').fadeOut('fast', function() {
+                      $(booking).find('.booking-success').fadeIn('fast', function() {
+                          setTimeout(function() {
+                              $(booking).fadeOut('fast', function() {
+                                  $(booking).remove();
+                              });
+                          }, 1500);
+                      });
+                   });
+               } else {
+                   $(booking).find('.booking-failure h4').text(data.message);
+                   $(booking).find('.booking-loader').fadeOut('fast', function() {
+                       $(booking).find('.booking-failure').fadeIn('fast');
+                   });
+               }
+            });
+        });
+
+    }
+
+    /**
+     * Displays the confirm yes no buttons for canceling a booking
+     *
+     * @param button
+     * @returns {boolean}
+     */
+    function displayBookingCancelConfirm(button)  {
+
+        var booking = $(button).closest('.booking-listing');
+
+        $(booking).find('.booking-description, .booking-no-description').fadeOut('fast', function() {
+            $(booking).find('.booking-are-you-sure').fadeIn('fast');
+        });
+
+        $(booking).find('.booking-buttons').fadeOut('fast', function() {
+            $(booking).find('.booking-confirm-buttons').fadeIn('fast');
+        });
+
+        return false;
 
     }
 
