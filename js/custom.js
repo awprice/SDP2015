@@ -4,13 +4,11 @@
 
         console.log("Page loaded.");
 
+        // set the min height of the container so that the footer is at the bottom
         setMinHeight();
 
         // Restrict all inputs with class .numeric to only enter numbers
         $('input.numeric').numeric();
-
-        // Compile less and reload styles every 2 seconds
-        //setInterval(compileLess, 5000);
 
         $('.education-checkbox').change(function() {
             displayMarkField(this);
