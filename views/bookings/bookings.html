@@ -1,12 +1,14 @@
+<a href="/" class="header-button"><div><i class="fa fa-chevron-left"></i> Back to Dashboard</div></a>
+<br>
+<br>
+
+<div class="page-title-center">
+    <h3>My Bookings</h3>
+    <br>
+</div>
+
 {% if page.bookings != null %}
-
-    <div class="page-title-center">
-        <h3>Bookings</h3>
-        <br>
-    </div>
-
     {% for booking in page.bookings %}
-
         <div class="panel panel-default booking-listing" data-booking-id="{{ booking.bookingId }}" data-workshop-id="{{ booking.workshopId }}">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ booking.topic }}</h3>
@@ -65,9 +67,11 @@
                 </div>
             </div>
         </div>
-
     {% endfor %}
+{% endif %}
 
-
-
+{% if page.bookings == null %}
+    <div class="alert alert-info" role="alert">
+        <strong>No bookings!</strong> You don't have any bookings, view the workshops to make one
+    </div>
 {% endif %}
