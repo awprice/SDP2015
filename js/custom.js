@@ -4,6 +4,8 @@
 
         console.log("Page loaded.");
 
+        setMinHeight();
+
         // Restrict all inputs with class .numeric to only enter numbers
         $('input.numeric').numeric();
 
@@ -13,40 +15,41 @@
         $('.education-checkbox').change(function() {
             displayMarkField(this);
         });
-
         $('.workshop-listing .panel-heading').click(function() {
            toggleDescription($(this).parent());
         });
-
         $('.booking-listing .panel-heading').click(function () {
            toggleBookingDescription($(this).parent());
         });
-
         $('.workshop-listing .workshop-confirm-buttons .workshop-no-button').click(function () {
             toggleDescription($(this).closest('.workshop-listing'));
         });
-
         $('.workshop-listing .workshop-book-button').click(function() {
            displayConfirm(this);
         });
-
         $('.workshop-listing .workshop-confirm-buttons .workshop-yes-button').click(function() {
            confirmBooking(this);
         });
-
         $('.booking-listing .booking-confirm-buttons .booking-yes-button').click(function() {
            cancelBooking(this);
         });
-
         $('.booking-listing .booking-buttons .booking-cancel-button').click(function() {
             displayBookingCancelConfirm(this);
         });
-
         $('.workshop-divider').click(function() {
             toggleDivider(this);
         })
 
     });
+
+    function setMinHeight() {
+
+        var navHeight = $('.navbar').height(),
+            windowHeight = $(window).height();
+
+        $('body > .container').css('min-height', (windowHeight - navHeight - 195) + 'px');
+
+    }
 
     /**
      * Does an ajax query, sends data to the specified callback
