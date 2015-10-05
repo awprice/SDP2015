@@ -310,8 +310,12 @@
         var workshops = $('.workshop-' + type);
 
         if ($(workshops).css('display') != 'none') {
+            $(divider).find('.workshop-divider-chevron').removeClass('fa-chevron-down');
+            $(divider).find('.workshop-divider-chevron').addClass('fa-chevron-up');
             $(workshops).fadeOut('fast');
         } else {
+            $(divider).find('.workshop-divider-chevron').removeClass('fa-chevron-up');
+            $(divider).find('.workshop-divider-chevron').addClass('fa-chevron-down');
             $(workshops).fadeIn('fast');
         }
 
