@@ -110,27 +110,23 @@
      */
     function toggleDescription(panel) {
 
-        if ($(panel).find('.read-more').css('display') != 'none') {
+        if ($(panel).find('.panel-body').css('display') == 'none') {
 
             // hide the other listings
             $('.workshop-listing').each(function () {
-                $(this).find('.workshop-description').css('display', 'block');
-                $(this).find('.workshop-no-description').css('display', 'block');
-                $(this).find('.workshop-are-you-sure').css('display', 'none');
-                $(this).find('.workshop-confirm-buttons').css('display', 'none');
-                $(this).find('.workshop-loader').css('display', 'none');
-                $(this).find('.workshop-success').css('display', 'none');
-                $(this).find('.workshop-failure').css('display', 'none');
-                $(this).find('.workshop-book-button').css('display', 'block');
-                $(this).find('.read-more').css('display', 'block');
-                $(this).find('.workshop-contents').css('max-height', '60px');
-                $(this).css('opacity', '0.5');
+                $(this).find('.workshop-description').show();
+                $(this).find('.workshop-no-description').show();
+                $(this).find('.workshop-are-you-sure').hide();
+                $(this).find('.workshop-confirm-buttons').hide();
+                $(this).find('.workshop-loader').hide();
+                $(this).find('.workshop-success').hide();
+                $(this).find('.workshop-failure').hide();
+                $(this).find('.workshop-book-button').show();
+                $(this).find('.panel-body').slideUp('fast');
             });
 
             // hide the blur and expand the description
-            $(panel).css('opacity', '1');
-            $(panel).find('.read-more').css('display', 'none');
-            $(panel).find('.workshop-contents').animate({'max-height': '350px'}, 'fast');
+            $(panel).find('.panel-body').slideDown('fast');
 
             // scroll the window so the workshop listing is in the middle of the screen
             var windowHeight = $(window).height();
@@ -141,17 +137,15 @@
         } else {
             // minimise the workshop listing
             $('.workshop-listing').each(function () {
-                $(this).find('.workshop-description').css('display', 'block');
-                $(this).find('.workshop-no-description').css('display', 'block');
-                $(this).find('.workshop-are-you-sure').css('display', 'none');
-                $(this).find('.workshop-confirm-buttons').css('display', 'none');
-                $(this).find('.workshop-loader').css('display', 'none');
-                $(this).find('.workshop-success').css('display', 'none');
-                $(this).find('.workshop-failure').css('display', 'none');
-                $(this).find('.workshop-book-button').css('display', 'block');
-                $(this).find('.read-more').css('display', 'block');
-                $(this).find('.workshop-contents').css('max-height', '60px');
-                $(this).css('opacity', '1');
+                $(this).find('.workshop-description').show();
+                $(this).find('.workshop-no-description').show();
+                $(this).find('.workshop-are-you-sure').hide();
+                $(this).find('.workshop-confirm-buttons').hide();
+                $(this).find('.workshop-loader').hide();
+                $(this).find('.workshop-success').hide();
+                $(this).find('.workshop-failure').hide();
+                $(this).find('.workshop-book-button').show();
+                $(this).find('.panel-body').slideUp('fast');
             });
         }
 
@@ -312,10 +306,10 @@
 
         if ($(workshops).css('display') != 'none') {
             $(divider).find('.workshop-divider-chevron').removeClass('fa-chevron-down');
-            $(divider).find('.workshop-divider-chevron').addClass('fa-chevron-up');
+            $(divider).find('.workshop-divider-chevron').addClass('fa-chevron-right');
             $(workshops).fadeOut('fast');
         } else {
-            $(divider).find('.workshop-divider-chevron').removeClass('fa-chevron-up');
+            $(divider).find('.workshop-divider-chevron').removeClass('fa-chevron-right');
             $(divider).find('.workshop-divider-chevron').addClass('fa-chevron-down');
             $(workshops).fadeIn('fast');
         }
