@@ -1,8 +1,8 @@
 USE utshelps;
 
-DROP TABLE user;
+DROP TABLE users;
 
-CREATE TABLE user(
+CREATE TABLE users(
   student_id INT PRIMARY KEY NOT NULL,
   name TEXT NOT NULL,
   password TEXT NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE user(
 );
 
 -- Password: password
-INSERT INTO user(
+INSERT INTO users(
   student_id,
   name,
   password,
