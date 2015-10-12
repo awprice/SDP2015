@@ -62,7 +62,7 @@
         static function getUser() {
 
             $mysql = new MySQL();
-            $results = $mysql->query('SELECT * FROM user WHERE student_id = :studentId', [':studentId' => self::getId()]);
+            $results = $mysql->query('SELECT * FROM users WHERE student_id = :studentId', [':studentId' => self::getId()]);
 
             if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
                 return $results['results'];
@@ -82,7 +82,7 @@
         static function attemptLogin($studentId, $password) {
 
             $mysql = new MySQL();
-            $results = $mysql->query('SELECT password FROM user WHERE student_id = :studentId', [':studentId' => $studentId]);
+            $results = $mysql->query('SELECT password FROM users WHERE student_id = :studentId', [':studentId' => $studentId]);
 
             if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
                 if (self::verifyPassword($password, $results['results']['password'])) {
@@ -139,7 +139,7 @@
         static function userExists($studentId) {
 
             $mysql = new MySQL();
-            $results = $mysql->query('SELECT * FROM user WHERE student_id = :studentId', [':studentId' => $studentId]);
+            $results = $mysql->query('SELECT * FROM users WHERE student_id = :studentId', [':studentId' => $studentId]);
 
             if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
                 return true;
@@ -157,7 +157,7 @@
         static function firstUse() {
 
             $mysql = new MySQL();
-            $results = $mysql->query('SELECT firstuse FROM user WHERE student_id = :studentId', [':studentId' => self::getId()]);
+            $results = $mysql->query('SELECT firstuse FROM users WHERE student_id = :studentId', [':studentId' => self::getId()]);
 
             if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
                 if ($results['results']['firstuse'] === '1') {
@@ -180,7 +180,7 @@
             if (array_key_exists($key, self::$mysql_keys)) {
 
                 $mysql = new MySQL();
-                $results = $mysql->query('UPDATE user SET ' . self::$mysql_keys[$key] . ' = :attribute_value WHERE student_id = :student_id',
+                $results = $mysql->query('UPDATE users SET ' . self::$mysql_keys[$key] . ' = :attribute_value WHERE student_id = :student_id',
                     [':attribute_value' => $value, ':student_id' => self::getId()]);
 
                 if ($results['success'] == true) {
@@ -221,7 +221,7 @@
         static function setFirstUse() {
 
             $mysql = new MySQL();
-            $results = $mysql->query('UPDATE user SET firstuse = 0 WHERE student_id = :student_id',
+            $results = $mysql->query('UPDATE users SET firstuse = 0 WHERE student_id = :student_id',
                 [':student_id' => self::getId()]);
 
             return $results['success'];
@@ -236,7 +236,7 @@
         static function setLastLogin() {
 
             $mysql = new MySQL();
-            $results = $mysql->query('UPDATE user SET lastlogin = :lastlogin WHERE student_id = :student_id',
+            $results = $mysql->query('UPDATE users SET lastlogin = :lastlogin WHERE student_id = :student_id',
                 [':lastlogin' => time(), ':student_id' => self::getId()]);
 
             return $results['success'];
