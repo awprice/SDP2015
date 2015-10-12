@@ -1,5 +1,7 @@
 <?php
 
+// TODO: Add headings to bookings page, similar to workshops page. Workshops, Programs, Sessions.
+
 $bookings = UTSHelpsAPI::SearchWorkshopBookings([
     'studentId' => User::getPaddedId(),
     'pageSize' => 9999,
