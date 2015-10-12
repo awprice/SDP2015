@@ -119,7 +119,7 @@ INSERT INTO users(
 );
 
 -- Password: password
-INSERT INTO user(
+INSERT INTO users(
   student_id,
   name,
   password,
@@ -196,7 +196,7 @@ INSERT INTO user(
 );
 
 -- Password: password
-INSERT INTO user(
+INSERT INTO users(
   student_id,
   name,
   password,
@@ -273,7 +273,7 @@ INSERT INTO user(
 );
 
 -- Password: password
-INSERT INTO user(
+INSERT INTO users(
   student_id,
   name,
   password,
