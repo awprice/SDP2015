@@ -145,6 +145,20 @@
         echo superHandler($parameters);
     });
 
+    $router->map('POST', '/ajax/workshop/join-waiting-list', function () {
+        $parameters = [
+            'controller' => 'ajax/workshop/join-waiting-list.php',
+            'view' => null,
+            'title' => null,
+            'flashes' => false,
+            'restricted' => true,
+            'registered' => true,
+            'header' => false,
+            'footer' => false,
+        ];
+        echo superHandler($parameters);
+    });
+
 	$router->map('GET', '/compile/less', function() {
 		require __DIR__ . '/less.compile.php';
 	});

@@ -56,7 +56,11 @@ class UTSHelpsAPI {
      */
     static function CreateWorkshopWaiting($data)
     {
-        return json_decode(Curl::curl_post('api/workshop/wait/create', $data, true));
+        $parameters = '';
+        if ($data != null) {
+            $parameters .= '?' . http_build_query($data);
+        }
+        return json_decode(Curl::curl_post('api/workshop/wait/create' . $parameters, null, true));
     }
 
     /*

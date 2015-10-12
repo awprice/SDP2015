@@ -10,4 +10,24 @@ if (User::isLoggedIn()) {
     $page['loggedin'] = true;
 }
 
+$bookings = UTSHelpsAPI::SearchWorkshopBookings([
+    'studentId' => User::getPaddedId(),
+    'pageSize' => 9999,
+    'active' => true,
+]);
+
+$count = 0;
+
+if ($bookings != null && $bookings->IsSuccess == 1) {
+    foreach ($bookings->Results as $booking) {
+        // if booking archived field does not have a date
+        if ($booking->BookingArchived == null) {
+            $count++;
+        }
+    }
+}
+
+$page['bookingCount'] = $count;
+
+
 ?>
