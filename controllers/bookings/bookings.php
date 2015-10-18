@@ -50,6 +50,9 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
                 'campus' => $location,
             ];
         } else {
+
+            $attendance = Attendance::getAttendance($value->BookingId);
+
             $page['pastbookings'][] = [
                 'bookingId' => $value->BookingId,
                 'workshopId' => $value->workshopID,
@@ -58,6 +61,7 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
                 'description' => $value->description,
                 'date' => $date,
                 'campus' => $location,
+                'attendance' => $attendance,
             ];
         }
 

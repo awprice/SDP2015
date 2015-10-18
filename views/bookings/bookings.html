@@ -102,10 +102,17 @@
                             <p class="booking-no-description">No description</p>
                         </div>
                         {% endif %}
-                        <div class="past-booking-buttons">
-                            <a href="/booking/attendance/{{ booking.bookingId }}" class="btn btn-block btn-success past-booking-attended-button">Upload Notes <br>(I attended)</a>
-                            <a href="/booking/non-attendance/{{ booking.bookingId }}" class="btn btn-block btn-danger past-booking-no-attended-button">I did not attend <br> this workshop</a>
-                        </div>
+                        {% if booking.attendance == null %}
+                            <div class="past-booking-buttons">
+                                <a href="/booking/attendance/{{ booking.bookingId }}" class="btn btn-block btn-success past-booking-attended-button">Upload Notes <br>(I attended)</a>
+                                <a href="/booking/non-attendance/{{ booking.bookingId }}" class="btn btn-block btn-danger past-booking-no-attended-button">I did not attend <br> this workshop</a>
+                            </div>
+                        {% endif %}
+                        {% if booking.attendance != null %}
+                            <div class="text-center">
+                                <h4><span class="label label-success">Attendance already recorded for this booking</span></h4>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
