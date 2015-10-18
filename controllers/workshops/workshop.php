@@ -9,8 +9,8 @@ $workshopSetId = $page['parameters']['workshopSetId'];
 $workshop = UTSHelpsAPI::SearchWorkshops([
     'workshopSetId' => $workshopSetId,
     'pageSize' => 9999,
-    'startingDtBegin' => '2015-01-01T12:00:00',
-    'startingDtEnd' => '2020-01-01T12:00:00'
+    'startingDtBegin' => Session::getCurrentDateTime(),
+    'startingDtEnd' => Session::getFutureDateTime()
 ]);
 
 $page['available'] = 0;

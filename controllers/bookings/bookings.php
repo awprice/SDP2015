@@ -1,6 +1,6 @@
 <?php
 
-// TODO: Add headings to bookings page, similar to workshops page. Workshops, Programs, Sessions.
+$currentTime = strtotime(Session::getCurrentDateTime());
 
 $bookings = UTSHelpsAPI::SearchWorkshopBookings([
     'studentId' => User::getPaddedId(),
@@ -39,7 +39,7 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
         }
 
         // if booking archived field does not have a date
-        if ($value->BookingArchived == null) {
+        if ($value->BookingArchived == null && $startDate > $currentTime) {
             $page['bookings'][] = [
                 'bookingId' => $value->BookingId,
                 'workshopId' => $value->workshopID,
@@ -50,8 +50,6 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
                 'campus' => $location,
             ];
         } elseif ($value->canceled == null) {
-
-            var_dump($value->canceled);
 
             $attendance = Attendance::getAttendance($value->BookingId);
 

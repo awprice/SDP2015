@@ -15,7 +15,7 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
     foreach($bookings->Results as $value) {
 
         if ($value->BookingId == $bookingId) {
-            if ($value->BookingArchived != null) {
+            if ($value->BookingArchived == null && $value->attended == null && strtotime(Session::getCurrentDateTime()) > strtotime($value->starting)) {
                 $page['booking'] = $value;
             } else {
                 Session::setError('Booking has not been completed, please try again.');
@@ -53,7 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $createAttendance = Attendance::createAttendance($bookingId, $page['booking']->workshopID, $_POST['attendance']['learn'], $_POST['attendance']['taught']);
 
-        if ($createAttendance) {
+        $updateBooking = UTSHelpsAPI::UpdateWorkshopBooking([
+            'workshopId' => $page['booking']->workshopID,
+            'studentId' => User::getPaddedId(),
+            'Attended' => 1,
+            'userId' => 123
+        ]);
+
+        if ($createAttendance && $updateBooking != null && $updateBooking->IsSuccess == 1) {
             Session::setSuccess('Successfully recorded attendance for this booking.');
             Session::redirect('/bookings');
         }

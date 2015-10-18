@@ -161,6 +161,42 @@
             return $page;
         }
 
+        /**
+         * Get the current date time setting from the database
+         *
+         * @return null|string
+         */
+        static function getCurrentDateTime() {
+
+            $mysql = new MySQL();
+            $results = $mysql->query('SELECT currentdatetime FROM misc', null);
+
+            if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
+                return $results['results']['currentdatetime'];
+            }
+
+            return null;
+
+        }
+
+        /**
+         * Get the future date time setting from the database
+         *
+         * @return null|string
+         */
+        static function getFutureDateTime() {
+
+            $mysql = new MySQL();
+            $results = $mysql->query('SELECT futuredatetime FROM misc', null);
+
+            if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
+                return $results['results']['futuredatetime'];
+            }
+
+            return null;
+
+        }
+
     }
 
 ?>
