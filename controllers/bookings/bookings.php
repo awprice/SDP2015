@@ -49,7 +49,9 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
                 'date' => $date,
                 'campus' => $location,
             ];
-        } else {
+        } elseif ($value->canceled == null) {
+
+            var_dump($value->canceled);
 
             $attendance = Attendance::getAttendance($value->BookingId);
 

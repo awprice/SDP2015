@@ -46,19 +46,30 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
     exit();
 }
 
-// The booking exists, we can safely cancel it.
-$canceledBooking = UTSHelpsAPI::CancelWorkshopBooking([
+$updatedBookings = UTSHelpsAPI::UpdateWorkshopBooking([
     'workshopId' => $workshopId,
     'studentId' => User::getPaddedId(),
-    'userId' => 123,
+    'Canceled' => 1,
+    'userId' => 123
 ]);
 
-if ($canceledBooking != null && $canceledBooking->IsSuccess == 1) {
-    echo json_encode([
-        'success' => true,
-        'message' => 'Successfully cancelled booking!',
+if ($updatedBookings != null && $updatedBookings->IsSuccess == 1){
+
+    // The booking exists, we can safely cancel it.
+    $canceledBooking = UTSHelpsAPI::CancelWorkshopBooking([
+        'workshopId' => $workshopId,
+        'studentId' => User::getPaddedId(),
+        'userId' => 123,
     ]);
-    exit();
+
+    if ($canceledBooking != null && $canceledBooking->IsSuccess == 1) {
+        echo json_encode([
+            'success' => true,
+            'message' => 'Successfully cancelled booking!',
+        ]);
+        exit();
+    }
+
 }
 
 echo json_encode([
