@@ -20,27 +20,27 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
 
     foreach($bookings->Results as $value) {
 
-        // if booking archived field does not have a date
-        if ($value->BookingArchived == null) {
 
-            $startDate = strtotime($value->starting);
-            $endDate = strtotime($value->ending);
+        $startDate = strtotime($value->starting);
+        $endDate = strtotime($value->ending);
 
-            $startTime = date("g:ia", $startDate);
-            $endTime = date("g:ia", $endDate);
+        $startTime = date("g:ia", $startDate);
+        $endTime = date("g:ia", $endDate);
 
-            $date = date("jS M Y", $startDate) . ': ' . $startTime . ' - ' . $endTime;
+        $date = date("jS M Y", $startDate) . ': ' . $startTime . ' - ' . $endTime;
 
-            $location = null;
+        $location = null;
 
-            if ($page['campuses'] != null) {
-                foreach ($page['campuses'] as $campus) {
-                    if ($value->campusID == $campus->id) {
-                        $location = $campus->campus;
-                    }
+        if ($page['campuses'] != null) {
+            foreach ($page['campuses'] as $campus) {
+                if ($value->campusID == $campus->id) {
+                    $location = $campus->campus;
                 }
             }
+        }
 
+        // if booking archived field does not have a date
+        if ($value->BookingArchived == null) {
             $page['bookings'][] = [
                 'bookingId' => $value->BookingId,
                 'workshopId' => $value->workshopID,
@@ -50,12 +50,23 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
                 'date' => $date,
                 'campus' => $location,
             ];
-
+        } else {
+            $page['pastbookings'][] = [
+                'bookingId' => $value->BookingId,
+                'workshopId' => $value->workshopID,
+                'workshopSetId' => $value->WorkShopSetID,
+                'topic' => $value->topic,
+                'description' => $value->description,
+                'date' => $date,
+                'campus' => $location,
+            ];
         }
+
     }
 
 } else {
     $page['bookings'] = null;
+    $page['pastbookings'] = null;
 }
 
 ?>

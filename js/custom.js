@@ -35,8 +35,11 @@
             displayBookingCancelConfirm(this);
         });
         $('.workshop-divider').click(function() {
-            toggleDivider(this);
+            toggleWorkshopDivider(this);
         })
+        $('.booking-divider').click(function() {
+           toggleBookingDivider(this);
+        });
 
     });
 
@@ -299,7 +302,7 @@
      *
      * @param divider
      */
-    function toggleDivider(divider) {
+    function toggleWorkshopDivider(divider) {
 
         var type = $(divider).attr('data-divider');
         var workshops = $('.workshop-' + type);
@@ -312,6 +315,28 @@
             $(divider).find('.workshop-divider-chevron').removeClass('fa-chevron-right');
             $(divider).find('.workshop-divider-chevron').addClass('fa-chevron-down');
             $(workshops).fadeIn('fast');
+        }
+
+    }
+
+    /**
+     * Toggles the booking sections with the dividers
+     *
+     * @param divider
+     */
+    function toggleBookingDivider(divider) {
+
+        var type = $(divider).attr('data-divider');
+        var bookings = $('.booking-' + type);
+
+        if ($(bookings).css('display') != 'none') {
+            $(divider).find('.booking-divider-chevron').removeClass('fa-chevron-down');
+            $(divider).find('.booking-divider-chevron').addClass('fa-chevron-right');
+            $(bookings).fadeOut('fast');
+        } else {
+            $(divider).find('.booking-divider-chevron').removeClass('fa-chevron-right');
+            $(divider).find('.booking-divider-chevron').addClass('fa-chevron-down');
+            $(bookings).fadeIn('fast');
         }
 
     }
