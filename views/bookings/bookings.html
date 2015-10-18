@@ -102,39 +102,9 @@
                             <p class="booking-no-description">No description</p>
                         </div>
                         {% endif %}
-                        <div class="booking-are-you-sure">
-                            <h4>Are you sure?</h4>
-                        </div>
-                        <div class="booking-loader">
-                            <div class="three-quarters-loader">
-                                Loading...
-                            </div>
-                        </div>
-                        <div class="booking-success">
-                            <h1>
-                                            <span class="fa-stack">
-                                                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                                <i class="fa fa-check fa-stack-1x"></i>
-                                            </span>
-                            </h1>
-                            <h4>Successfully cancelled booking!</h4>
-                        </div>
-                        <div class="booking-failure">
-                            <h1>
-                                            <span class="fa-stack">
-                                                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                                                <i class="fa fa-close fa-stack-1x"></i>
-                                            </span>
-                            </h1>
-                            <h4>Unable to cancel booking.</h4>
-                        </div>
-                        <div class="booking-buttons">
-                            <button class="btn btn-block booking-reminder-button">Set Reminder</button>
-                            <button class="btn btn-block btn-danger booking-cancel-button">Cancel</button>
-                        </div>
-                        <div class="booking-confirm-buttons">
-                            <button class="btn btn-block booking-no-button">Cancel</button>
-                            <button class="btn btn-block btn-danger booking-yes-button">Yes</button>
+                        <div class="past-booking-buttons">
+                            <a href="/booking/attendance/{{ booking.bookingId }}" class="btn btn-block btn-success past-booking-attended-button">Upload Notes <br>(I attended)</a>
+                            <a href="/booking/non-attendance/{{ booking.bookingId }}" class="btn btn-block btn-danger past-booking-no-attended-button">I did not attend <br> this workshop</a>
                         </div>
                     </div>
                 </div>
