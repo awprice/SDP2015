@@ -20,7 +20,6 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
 
     foreach($bookings->Results as $value) {
 
-
         $startDate = strtotime($value->starting);
         $endDate = strtotime($value->ending);
 

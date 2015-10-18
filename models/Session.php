@@ -137,6 +137,30 @@
             session_start();
         }
 
+        /**
+         * Sets an immediate error so it can be viewed on the current page load
+         *
+         * @param $page
+         * @param $message
+         * @return mixed
+         */
+        static function setImmediateError($page, $message) {
+            $page['flash']['error'][] = $message;
+            return $page;
+        }
+
+        /**
+         * Sets an immediate success so it can be viewed on the current page load
+         *
+         * @param $page
+         * @param $message
+         * @return mixed
+         */
+        static function setImmediateSuccess($page, $message) {
+            $page['flash']['success'][] = $message;
+            return $page;
+        }
+
     }
 
 ?>

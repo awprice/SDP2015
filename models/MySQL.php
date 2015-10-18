@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Class MySQL
+ */
 class MySQL {
 
+    /**
+     * @var PDO
+     */
     private $pdo;
 
     /**

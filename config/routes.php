@@ -73,6 +73,40 @@
         echo superHandler($parameters);
     });
 
+    $router->map('GET|POST', '/booking/attendance/[i:bookingId]', function ($bookingId) {
+        $parameters = [
+            'controller' => 'bookings/attendance.php',
+            'view' => 'bookings/attendance.html',
+            'title' => 'Record Attendance',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'parameters' => [
+                'bookingId' => $bookingId,
+            ],
+            'header' => true,
+            'footer' => true,
+        ];
+        echo superHandler($parameters);
+    });
+
+    $router->map('GET', '/booking/no-attendance/[i:bookingId]', function ($bookingId) {
+        $parameters = [
+            'controller' => 'bookings/no-attendance.php',
+            'view' => 'bookings/no-attendance.html',
+            'title' => 'Record No Attendance',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'parameters' => [
+                'bookingId' => $bookingId,
+            ],
+            'header' => true,
+            'footer' => true,
+        ];
+        echo superHandler($parameters);
+    });
+
     // Misc routes
 
     $router->map('GET', '/logout', function () {
