@@ -17,9 +17,24 @@
 
     $router->map('GET', '/faq', function () {
         $parameters = [
-            'controller' => 'faq/faq.php',
-            'view' => 'faq/faq.html',
+            'controller' => 'faq.php',
+            'view' => 'faq.html',
             'title' => 'FAQ',
+            'flashes' => true,
+            'restricted' => false,
+            'registered' => false,
+            'header' => true,
+            'footer' => true,
+            'navbar' => false,
+        ];
+        echo superHandler($parameters);
+    });
+
+    $router->map('GET', '/contact', function () {
+        $parameters = [
+            'controller' => 'contact.php',
+            'view' => 'contact.html',
+            'title' => 'Contact Us',
             'flashes' => true,
             'restricted' => false,
             'registered' => false,

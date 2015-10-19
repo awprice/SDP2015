@@ -19,7 +19,7 @@
                 } else {
                     Session::setExpiry();
                 }
-                Session::setSuccess('You have successfully been logged in.');
+                //Session::setSuccess('You have successfully been logged in.');
                 if (User::firstUse($_SESSION['studentId'])) {
                     Session::redirect('/register');
                 }
