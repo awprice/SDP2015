@@ -25,23 +25,31 @@
                   <a class="navbar-brand" href="/">UTS:HELPS</a>
               </div>
               <div id="navbar" class="navbar-collapse collapse">
-                  <div class="nav-profile">
-                      <div class="row">
-                          <div class="col-md-2">
-                              <img class="img-circle nav-profile-image" src="/img/default-user-icon-profile.png">
+                  {% if page.loggedin == true %}
+                      <a href="/profile" class="nav-profile-link">
+                          <div class="nav-profile">
+                              <div class="row">
+                                  <div class="col-md-2">
+                                      <img class="img-circle nav-profile-image" src="/img/default-user-icon-profile.png">
+                                  </div>
+                                  <div class="col-md-10">
+                                      <h3>{{ page.user.student_id }}</h3>
+                                      <h4>{{ page.user.name }}</h4>
+                                  </div>
+                              </div>
                           </div>
-                          <div class="col-md-10">
-                              <h3>11995483</h3>
-                              <h4>Alex Price</h4>
-                          </div>
-                      </div>
-                  </div>
-                  <ul class="nav navbar-nav">
-                      <li><a href="#">Bookings</a></li>
-                  </ul>
+                      </a>
+                  {% endif %}
                   <ul class="nav navbar-nav navbar-right">
-                      <li><a href="/login">Login</a></li>
-                      <li><a href="/logout">Logout</a></li>
+                      {% if page.loggedin == true %}
+                          <li><a href="/bookings">My Bookings</a></li>
+                          <li><a href="/workshops">Workshops</a></li>
+                          <li><a href="/sessions">Sessions</a></li>
+                          <li><a href="/logout">Logout</a></li>
+                      {% endif %}
+                      {% if page.loggedin == false %}
+                          <li><a href="/login">Login</a></li>
+                      {% endif %}
                   </ul>
               </div>
           </div>

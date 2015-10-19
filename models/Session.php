@@ -17,6 +17,11 @@
             $page['title'] = $title;
             $page['_SESSION'] = $_SESSION;
             $page['websiteTitle'] = $GLOBALS['websiteTitle'];
+            $page['loggedin'] = User::isLoggedIn();
+
+            if ($page['loggedin']) {
+                $page['user'] = User::getUser();
+            }
 
             // Redirect to login if the user requests a restricted page is not logged in
             if ($restricted && !User::isLoggedIn()) {

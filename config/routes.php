@@ -5,7 +5,7 @@
             'controller' => 'index.php',
             'view' => 'index.html',
             'title' => 'Index',
-            'flashes' => true,
+            'flashes' => false,
             'restricted' => false,
             'registered' => false,
             'header' => true,
