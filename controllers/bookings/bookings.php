@@ -8,8 +8,6 @@ $bookings = UTSHelpsAPI::SearchWorkshopBookings([
     'active' => true,
 ]);
 
-$page['bla'] = $bookings;
-
 $campuses = UTSHelpsAPI::ListCampuses(true);
 
 if ($campuses != null && $campuses->IsSuccess == 1) {
@@ -51,7 +49,7 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
                 'date' => $date,
                 'campus' => $location,
             ];
-        } elseif ($value->canceled == null) {
+        } elseif ($value->BookingArchived == null && $value->canceled == null) {
 
             $attendance = Attendance::getAttendance($value->BookingId);
 
