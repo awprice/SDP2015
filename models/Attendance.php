@@ -67,7 +67,7 @@ class Attendance {
      */
     static public function createNonAttendance($bookingId, $workshopId) {
 
-        if (self::getAttendance($bookingId) == null) {
+        if (self::getAttendance($bookingId) != null) {
             return false;
         }
 

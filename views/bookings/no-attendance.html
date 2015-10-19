@@ -1,0 +1,27 @@
+<a href="/bookings" class="header-button"><div><i class="fa fa-chevron-left"></i> Back to Bookings</div></a>
+<br>
+<br>
+
+<div class="page-title-center">
+    <h3>Record Non-Attendance</h3>
+    <h4><span class="label label-info">Booking #{{ page.booking.BookingId }}</span></h4>
+    <br>
+</div>
+
+<br>
+<br>
+
+<div class="text-center">
+    <h4>Are you sure you did not attend this booking?</h4>
+</div>
+
+<br>
+<br>
+
+<form method="POST">
+    <div class="text-center booking-attendance-buttons">
+        <a href="/bookings" class="btn btn-default btn-block">Cancel</a>
+        <button class="btn btn-danger btn-block" type="submit">Yes</button>
+    </div>
+    <h6>Not attending bookings can occur strikes. Multiple strikes may prevent you from booking any more workshops or sessions.</h6>
+</form>

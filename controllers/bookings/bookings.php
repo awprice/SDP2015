@@ -8,6 +8,8 @@ $bookings = UTSHelpsAPI::SearchWorkshopBookings([
     'active' => true,
 ]);
 
+$page['bla'] = $bookings;
+
 $campuses = UTSHelpsAPI::ListCampuses(true);
 
 if ($campuses != null && $campuses->IsSuccess == 1) {

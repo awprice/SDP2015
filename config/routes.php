@@ -90,7 +90,7 @@
         echo superHandler($parameters);
     });
 
-    $router->map('GET', '/booking/no-attendance/[i:bookingId]', function ($bookingId) {
+    $router->map('GET|POST', '/booking/non-attendance/[i:bookingId]', function ($bookingId) {
         $parameters = [
             'controller' => 'bookings/no-attendance.php',
             'view' => 'bookings/no-attendance.html',
