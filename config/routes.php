@@ -10,6 +10,7 @@
             'registered' => false,
             'header' => true,
             'footer' => true,
+            'navbar' => false,
         ];
        echo superHandler($parameters);
     });
@@ -24,6 +25,7 @@
             'registered' => false,
             'header' => true,
             'footer' => true,
+            'navbar' => false,
         ];
         echo superHandler($parameters);
     });
@@ -38,6 +40,12 @@
             'registered' => true,
             'header' => true,
             'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Bookings',
+                'link' => '/bookings'
+            ],
         ];
         echo superHandler($parameters);
     });
@@ -55,6 +63,12 @@
             ],
             'header' => true,
             'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Workshops',
+                'link' => '/workshops'
+            ],
         ];
         echo superHandler($parameters);
     });
@@ -69,6 +83,12 @@
             'registered' => true,
             'header' => true,
             'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Dashboard',
+                'link' => '/'
+            ],
         ];
         echo superHandler($parameters);
     });
@@ -86,6 +106,12 @@
             ],
             'header' => true,
             'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Bookings',
+                'link' => '/bookings'
+            ],
         ];
         echo superHandler($parameters);
     });
@@ -103,6 +129,12 @@
             ],
             'header' => true,
             'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Bookings',
+                'link' => '/bookings'
+            ],
         ];
         echo superHandler($parameters);
     });
@@ -119,6 +151,7 @@
             'registered' => false,
             'header' => false,
             'footer' => false,
+            'navbar' => false,
         ];
         echo superHandler($parameters);
     });
@@ -133,6 +166,7 @@
             'registered' => false,
             'header' => true,
             'footer' => true,
+            'navbar' => false,
         ];
         echo superHandler($parameters);
     });
@@ -147,6 +181,7 @@
             'registered' => false,
             'header' => true,
             'footer' => true,
+            'navbar' => false,
         ];
         echo superHandler($parameters);
     });
@@ -161,6 +196,7 @@
             'registered' => true,
             'header' => false,
             'footer' => false,
+            'navbar' => false,
         ];
         echo superHandler($parameters);
     });
@@ -175,6 +211,7 @@
             'registered' => true,
             'header' => false,
             'footer' => false,
+            'navbar' => false,
         ];
         echo superHandler($parameters);
     });
@@ -189,6 +226,7 @@
             'registered' => true,
             'header' => false,
             'footer' => false,
+            'navbar' => false,
         ];
         echo superHandler($parameters);
     });
@@ -219,6 +257,11 @@
         // if parameters are passed, then add them
         if (array_key_exists('parameters', $parameters)) {
             $page['parameters'] = $parameters['parameters'];
+        }
+
+        $page['navbar'] = $parameters['navbar'];
+        if (array_key_exists('navbar-params', $parameters)) {
+            $page['navbar-params'] = $parameters['navbar-params'];
         }
 
         // Require our controller

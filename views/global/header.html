@@ -49,6 +49,11 @@
 
         <div class="container">
 
+            {% if page.navbar == true %}
+                <a href="{{ page.navbar-params.link }}" class="header-button"><div><i class="fa fa-chevron-left"></i> {{ page.navbar-params.label }}</div></a>
+                <br>
+            {% endif %}
+
             {% for error in page.flash.error %}
                 <div class="alert alert-danger" role="alert">{{ error }}</div>
             {% endfor %}
