@@ -50,6 +50,7 @@ $updatedBookings = UTSHelpsAPI::UpdateWorkshopBooking([
     'workshopId' => $workshopId,
     'studentId' => User::getPaddedId(),
     'Canceled' => 1,
+    'Attended' => 0,
     'userId' => 123
 ]);
 

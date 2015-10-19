@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'workshopId' => $page['booking']->workshopID,
             'studentId' => User::getPaddedId(),
             'Attended' => 1,
+            'Canceled' => 0,
             'userId' => 123
         ]);
 

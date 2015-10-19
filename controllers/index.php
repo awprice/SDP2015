@@ -2,9 +2,11 @@
 
 $page['loggedin'] = false;
 
+$currentTime = strtotime(Session::getCurrentDateTime());
+
 if (User::isLoggedIn()) {
     if (User::firstUse()) {
-        Session::setError('You have to register before using this application.');
+        Session::setError('You have to register first before using this service.');
         Session::redirect('/register');
     }
     $page['loggedin'] = true;
@@ -21,7 +23,8 @@ $count = 0;
 if ($bookings != null && $bookings->IsSuccess == 1) {
     foreach ($bookings->Results as $booking) {
         // if booking archived field does not have a date
-        if ($booking->BookingArchived == null) {
+        $startDate = strtotime($booking->starting);
+        if ($booking->BookingArchived == null && $startDate > $currentTime) {
             $count++;
         }
     }
