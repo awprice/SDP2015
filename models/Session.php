@@ -197,6 +197,26 @@
 
         }
 
+        /**
+         * Set the currentdatetime
+         *
+         * @param $currentDateTime
+         * @return bool
+         */
+        static function setCurrentDateTime($currentDateTime) {
+
+            $mysql = new MySQL();
+            $results = $mysql->query('UPDATE misc SET currentdatetime = :currentdatetime', [
+               ':currentdatetime' => $currentDateTime
+            ]);
+
+            if ($results['success'] == true) {
+                return true;
+            }
+
+            return false;
+
+        }
     }
 
 ?>

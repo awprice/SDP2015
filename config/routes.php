@@ -197,6 +197,10 @@
 		require __DIR__ . '/less.compile.php';
 	});
 
+    $router->map('GET|POST', '/setcurrentdate', function () {
+       require __DIR__ . '/setcurrentdate.php';
+    });
+
     /**
      * Handles rendering the header, footer, content and initialising the page
      *
