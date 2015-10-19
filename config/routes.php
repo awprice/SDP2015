@@ -30,7 +30,7 @@
         echo superHandler($parameters);
     });
 
-    $router->map('GET', '/contact', function () {
+    $router->map('GET|POST', '/contact', function () {
         $parameters = [
             'controller' => 'contact.php',
             'view' => 'contact.html',
