@@ -1,12 +1,14 @@
 {% if page.loggedin == true %}
     <div class="header-button"><div><h4>Dashboard</h4></div></div>
     <div class="home-statdisplay">
-        <div class="home-statdisplay-left">
-            <div class="home-bookingcount">
-                <h5>BOOKINGS</h5>
-                <h1>{{ page.bookingCount }}</h1>
+        <a href="/bookings">
+            <div class="home-statdisplay-left">
+                <div class="home-bookingcount">
+                    <h5>BOOKINGS</h5>
+                    <h1>{{ page.bookingCount }}</h1>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <br>
