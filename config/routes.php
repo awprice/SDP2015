@@ -58,8 +58,8 @@
             'navbar' => true,
             'navbar-params' => [
                 'direction' => 'back',
-                'label' => 'Back to Bookings',
-                'link' => '/bookings'
+                'label' => 'Back to Dashboard',
+                'link' => '/'
             ],
         ];
         echo superHandler($parameters);

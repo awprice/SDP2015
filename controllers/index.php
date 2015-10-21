@@ -34,6 +34,14 @@ if (User::isLoggedIn()) {
 
     $page['bookingCount'] = $count;
 
+    $workshops = UTSHelpsAPI::ListWorkshopSets(true);
+
+    if ($workshops != null && $workshops->IsSuccess == 1) {
+        $page['workshops'] = count($workshops->Results);
+    } else {
+        $page['workshops'] = 0;
+    }
+
 }
 
 ?>
