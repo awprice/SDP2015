@@ -36,9 +36,13 @@
         });
         $('.workshop-divider').click(function() {
             toggleWorkshopDivider(this);
-        })
+        });
         $('.booking-divider').click(function() {
            toggleBookingDivider(this);
+        });
+
+        $('.profile-divider').click(function() {
+           toggleProfileDivider(this);
         });
 
     });
@@ -337,6 +341,23 @@
             $(divider).find('.booking-divider-chevron').removeClass('fa-chevron-right');
             $(divider).find('.booking-divider-chevron').addClass('fa-chevron-down');
             $(bookings).fadeIn('fast');
+        }
+
+    }
+
+    function toggleProfileDivider(divider) {
+
+        var type = $(divider).attr('data-divider'),
+            settings = $('.profile-' + type);
+
+        if (settings.css('display') != 'none') {
+            $(divider).find('.profile-divider-chevron').removeClass('fa-chevron-down');
+            $(divider).find('.profile-divider-chevron').addClass('fa-chevron-right');
+            settings.fadeOut('fast');
+        } else {
+            $(divider).find('.profile-divider-chevron').removeClass('fa-chevron-right');
+            $(divider).find('.profile-divider-chevron').addClass('fa-chevron-down');
+            settings.fadeIn('fast');
         }
 
     }

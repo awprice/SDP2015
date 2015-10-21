@@ -38,7 +38,8 @@ CREATE TABLE users(
   foundation_course_mark INT,
   other TEXT,
   firstuse INT NOT NULL,
-  lastlogin INT NOT NULL
+  lastlogin INT NOT NULL,
+  strikes INT NOT NULL
 );
 
 -- Password: password
@@ -78,84 +79,8 @@ INSERT INTO users(
   foundation_course_mark,
   other,
   firstuse,
-  lastlogin
-) VALUES (
-  11995483,
-  'Alexander Price',
-  '$2y$10$HWcdIEcLNgsUN7kSFKjsq.SZn1G4AiesnlehHOLSzJChre3o999dm',
-  NULL,
-  'alexander.price@student.uts.edu.au',
-  '0212345678',
-  '0412345678',
-  0,
-  '1995-01-01',
-  'm',
-  'Engineering and Information Technology',
-  'C10152',
-  0,
-  '',
-  '',
-  '',
-  '',
-  0,
-  NULL,
-  0,
-  NULL,
-  0,
-  NULL,
-  0,
-  NULL,
-  0,
-  NULL,
-  0,
-  NULL,
-  0,
-  NULL,
-  0,
-  NULL,
-  NULL,
-  1,
-  0
-);
-
--- Password: password
-INSERT INTO users(
-  student_id,
-  name,
-  password,
-  preferred_first_name,
-  email,
-  home_phone,
-  mobile_phone,
-  best_contact_no,
-  dob,
-  gender,
-  faculty,
-  course,
-  year,
-  status,
-  degree,
-  first_language,
-  country_of_origin,
-  hsc,
-  hsc_mark,
-  ielts,
-  ielts_mark,
-  toefl,
-  toefl_mark,
-  tafe,
-  tafe_mark,
-  cult,
-  cult_mark,
-  insearch_deep,
-  insearch_deep_mark,
-  insearch_diploma,
-  insearch_diploma_mark,
-  foundation_course,
-  foundation_course_mark,
-  other,
-  firstuse,
-  lastlogin
+  lastlogin,
+  strikes
 ) VALUES (
   11111111,
   'Test User 1',
@@ -192,6 +117,7 @@ INSERT INTO users(
   NULL,
   NULL,
   1,
+  0,
   0
 );
 
@@ -232,7 +158,8 @@ INSERT INTO users(
   foundation_course_mark,
   other,
   firstuse,
-  lastlogin
+  lastlogin,
+  strikes
 ) VALUES (
   22222222,
   'Test User 2',
@@ -269,6 +196,7 @@ INSERT INTO users(
   NULL,
   NULL,
   1,
+  0,
   0
 );
 
@@ -309,7 +237,8 @@ INSERT INTO users(
   foundation_course_mark,
   other,
   firstuse,
-  lastlogin
+  lastlogin,
+  strikes
 ) VALUES (
   33333333,
   'Test User 3',
@@ -346,5 +275,6 @@ INSERT INTO users(
   NULL,
   NULL,
   1,
+  0,
   0
 );

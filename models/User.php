@@ -45,6 +45,13 @@
         private static $idLength = 10;
 
         /**
+         * The maximum amount of strikes a user can get
+         *
+         * @var int
+         */
+        private static $maxStrikes = 3;
+
+        /**
          * Get the current logged in user's id
          *
          * @return mixed
@@ -186,9 +193,7 @@
                 $results = $mysql->query('UPDATE users SET ' . self::$mysql_keys[$key] . ' = :attribute_value WHERE student_id = :student_id',
                     [':attribute_value' => $value, ':student_id' => self::getId()]);
 
-                if ($results['success'] == true) {
-                    return true;
-                }
+                return $results['success'];
 
             }
 
@@ -259,6 +264,54 @@
                 return self::getId() . str_repeat(' ', $padAmount);
             }
             return self::getId();
+
+        }
+
+        /**
+         * Return the maximum amount of strikes a user is allowed to get
+         *
+         * @return int
+         */
+        static function getMaxStrikes() {
+            return self::$maxStrikes;
+        }
+
+        /**
+         * Get a user's strikes
+         *
+         * @return null
+         */
+        static function getStrikes() {
+
+            $mysql = new MySQL();
+            $results = $mysql->query('SELECT strikes FROM users WHERE student_id = :student_id', [
+               ':student_id' => self::getId(),
+            ]);
+
+            if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
+                return $results['results']['strikes'];
+            }
+
+            return null;
+
+        }
+
+        /**
+         * Add a strike to a user
+         *
+         * @return mixed
+         */
+        static function addStrike() {
+
+            $newStrikes = self::getStrikes() + 1;
+
+            $mysql = new MySQL();
+            $results = $mysql->query('UPDATE users SET strikes = :strikes WHERE student_id = :student_id',[
+                ':strikes' => $newStrikes,
+                ':student_id' => self::getId()
+            ]);
+
+            return $results['success'];
 
         }
 
