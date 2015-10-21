@@ -52,13 +52,13 @@
                   {% endif %}
                   <ul class="nav navbar-nav navbar-right">
                       {% if page.loggedin == true %}
-                          <li><a href="/bookings">My Bookings</a></li>
-                          <li><a href="/workshops">Workshops</a></li>
-                          <li><a href="/sessions">Sessions</a></li>
-                          <li><a href="/logout">Logout</a></li>
+                          <li><a href="/bookings"><i class="fa fa-bookmark"></i> My Bookings</a></li>
+                          <li><a href="/workshops"><i class="fa fa-file"></i> Workshops</a></li>
+                          <li><a href="/sessions"><i class="fa fa-briefcase"></i> Sessions</a></li>
+                          <li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                       {% endif %}
                       {% if page.loggedin == false %}
-                          <li><a href="/login">Login</a></li>
+                          <li><a href="/login"><i class="fa fa-sign-in"></i> Login</a></li>
                       {% endif %}
                   </ul>
               </div>
