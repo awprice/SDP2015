@@ -64,4 +64,39 @@
     // Get the user
     $page['user'] = User::getUser();
 
+    $page['educational-backgrounds'] = [
+        'hsc' => [
+            'label' => 'HSC',
+            'key' => 'hsc',
+        ],
+        'ielts' => [
+            'label' => 'IELTS',
+            'key' => 'ielts',
+        ],
+        'toefl' => [
+            'label' => 'TOEFL',
+            'key' => 'toefl',
+        ],
+        'tafe' => [
+            'label' => 'TAFE',
+            'key' => 'tafe',
+        ],
+        'cult' => [
+            'label' => 'CULT',
+            'key' => 'cult',
+        ],
+        'insearchDeep' => [
+            'label' => 'Insearch DEEP',
+            'key' => 'insearchDeep',
+        ],
+        'insearchDiploma' => [
+            'label' => 'Insearch Diploma',
+            'key' => 'insearchDiploma',
+        ],
+        'foundationCourse' => [
+            'label' => 'Foundation Course',
+            'key' => 'foundationCourse',
+        ],
+    ];
+
 ?>

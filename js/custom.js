@@ -97,12 +97,13 @@
      * @param field
      */
     function displayMarkField(field) {
-
         var inputId = "register-educationalBackground-" + $(field).attr('data-type') + "-mark";
         var inputName = "register[educationalBackground][" + $(field).attr('data-type') + "][mark]";
 
         if ($(field).is(':checked')) {
-            $(field).parent().after('<input type="text" class="form-control input-lg" name="' + inputName + '" id="' + inputId + '" placeholder="Mark" required>');
+            var label = $(field).parents('label').find('h4').text();
+            $(field).parents('label').after('<input type="text" class="form-control input-lg numeric" name="' + inputName + '" id="' + inputId + '" placeholder="' + label + ' Mark" required>');
+            $('input.numeric').numeric();
         } else {
             $("#" + inputId).remove();
         }
@@ -345,6 +346,11 @@
 
     }
 
+    /**
+     * Toggles the profile sections with the dividers
+     *
+     * @param divider
+     */
     function toggleProfileDivider(divider) {
 
         var type = $(divider).attr('data-divider'),

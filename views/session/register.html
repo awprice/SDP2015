@@ -98,21 +98,18 @@
 
     <h5>Educational Backgound</h5>
     <label for="register[educationalBackground]" class="sr-only">Educational Backgound</label>
-    <label><input class="education-checkbox" data-type="hsc" type="checkbox" name="register[educationalBackground][hsc]" id="register[educationalBackground][hsc]" value="1"> HSC</label>
-    <br>
-    <label><input class="education-checkbox" data-type="ielts" type="checkbox" name="register[educationalBackground][ielts]" id="register[educationalBackground][ielts]" value="1"> IELTS</label>
-    <br>
-    <label><input class="education-checkbox" data-type="toefl" type="checkbox" name="register[educationalBackground][toefl]" id="register[educationalBackground][toefl]" value="1"> TOEFL</label>
-    <br>
-    <label><input class="education-checkbox" data-type="tafe" type="checkbox" name="register[educationalBackground][tafe]" id="register[educationalBackground][tafe]" value="1"> TAFE</label>
-    <br>
-    <label><input class="education-checkbox" data-type="cult" type="checkbox" name="register[educationalBackground][cult]" id="register[educationalBackground][cult]" value="1"> CULT</label>
-    <br>
-    <label><input class="education-checkbox" data-type="insearchDeep" type="checkbox" name="register[educationalBackground][insearchDeep]" id="register[educationalBackground][insearchDeep]" value="1"> Insearch DEEP</label>
-    <br>
-    <label><input class="education-checkbox" data-type="insearchDiploma" type="checkbox" name="register[educationalBackground][insearchDiploma]" id="register[educationalBackground][insearchDiploma]" value="1"> Insearch Diploma</label>
-    <br>
-    <label><input class="education-checkbox" data-type="foundationCourse" type="checkbox" name="register[educationalBackground][foundationCourse]" id="register[educationalBackground][foundationCourse]" value="1"> Foundation Course</label>
+
+    {% for background in page.educational-backgrounds %}
+        <div class="checkbox">
+            <label>
+                <div class="onoffswitch">
+                    <input type="checkbox" name="register[educationalBackground][{{ background.key }}]" class="onoffswitch-checkbox education-checkbox" id="register[educationalBackground][{{ background.key }}]" value="1" data-type="{{ background.key }}">
+                    <label class="onoffswitch-label" for="register[educationalBackground][{{ background.key }}]"></label>
+                </div>
+                <h4>{{ background.label }}</h4>
+            </label>
+        </div>
+    {% endfor %}
 
     <h5>Other</h5>
     <label for="register[other]" class="sr-only">Other</label>
