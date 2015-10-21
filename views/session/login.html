@@ -16,7 +16,11 @@
 
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="yes" name="login[rememberMe]"> Remember me
+                <div class="onoffswitch">
+                    <input type="checkbox" name="login[rememberMe]" class="onoffswitch-checkbox" id="rememberMeSwitch" value="yes">
+                    <label class="onoffswitch-label" for="rememberMeSwitch"></label>
+                </div>
+                <h4>Remember Me</h4>
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
