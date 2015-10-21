@@ -36,5 +36,4 @@ if (User::isLoggedIn()) {
 
 }
 
-
 ?>
