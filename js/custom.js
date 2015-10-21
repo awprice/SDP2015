@@ -1,8 +1,8 @@
 (function($) {
 
-    $(document).ready(function() {
+    var doc = $(document);
 
-        console.log("Page loaded.");
+    doc.on('ready', function() {
 
         // set the min height of the container so that the footer is at the bottom
         setMinHeight();
@@ -10,43 +10,45 @@
         // Restrict all inputs with class .numeric to only enter numbers
         $('input.numeric').numeric();
 
-        $('.education-checkbox').change(function() {
-            displayMarkField(this);
-        });
-        $('.workshop-listing .panel-heading').click(function() {
-           toggleDescription($(this).parent());
-        });
-        $('.booking-listing .panel-heading').click(function () {
-           toggleBookingDescription($(this).parent());
-        });
-        $('.workshop-listing .workshop-confirm-buttons .workshop-no-button').click(function () {
-            toggleDescription($(this).closest('.workshop-listing'));
-        });
-        $('.workshop-listing .workshop-book-button').click(function() {
-           displayConfirm(this);
-        });
-        $('.workshop-listing .workshop-confirm-buttons .workshop-yes-button').click(function() {
-           confirmBooking(this);
-        });
-        $('.booking-listing .booking-confirm-buttons .booking-yes-button').click(function() {
-           cancelBooking(this);
-        });
-        $('.booking-listing .booking-buttons .booking-cancel-button').click(function() {
-            displayBookingCancelConfirm(this);
-        });
-        $('.workshop-divider').click(function() {
-            toggleWorkshopDivider(this);
-        });
-        $('.booking-divider').click(function() {
-           toggleBookingDivider(this);
-        });
-
-        $('.profile-divider').click(function() {
-           toggleProfileDivider(this);
-        });
-
+    });
+    
+    doc.on('change', '.education-checkbox', function () {
+        displayMarkField(this);
+    });
+    doc.on('click', '.workshop-listing .panel-heading', function () {
+        toggleDescription($(this).parent());
+    });
+    doc.on('click', '.booking-listing .panel-heading', function () {
+        toggleBookingDescription($(this).parent());
+    });
+    doc.on('click', '.workshop-listing .workshop-confirm-buttons .workshop-no-button', function () {
+        toggleDescription($(this).closest('.workshop-listing'));
+    });
+    doc.on('click', '.workshop-listing .workshop-book-button', function () {
+        displayConfirm(this);
+    });
+    doc.on('click', '.workshop-listing .workshop-confirm-buttons .workshop-yes-button', function () {
+        confirmBooking(this);
+    });
+    doc.on('click', '.booking-listing .booking-confirm-buttons .booking-yes-button', function () {
+        cancelBooking(this);
+    });
+    doc.on('click', '.booking-listing .booking-buttons .booking-cancel-button', function () {
+        displayBookingCancelConfirm(this);
+    });
+    doc.on('click', '.workshop-divider', function () {
+        toggleWorkshopDivider(this);
+    });
+    doc.on('click', '.booking-divider', function () {
+        toggleBookingDivider(this);
+    });
+    doc.on('click', '.profile-divider', function () {
+        toggleProfileDivider(this);
     });
 
+    /**
+     * Set the min height of the container so that the footer is at the bottom
+     */
     function setMinHeight() {
 
         var navHeight = $('.navbar').height(),
@@ -76,22 +78,6 @@
     }
 
     /**
-     * Requests the less compile endpoint and then reloads the stylesheets
-     */
-    function compileLess() {
-        // Compiling less
-        console.log('Recompiling less');
-        xmlhttp = new XMLHttpRequest();
-
-        xmlhttp.open("GET", "/compile/less", false);
-        xmlhttp.send();
-
-        // Reload css
-        console.log('Reloading css');
-        document.styleSheets.reload();
-    }
-
-    /**
      * Displays the "mark" field on the register form
      *
      * @param field
@@ -113,7 +99,7 @@
     /**
      * Toggles the display of workshop descriptions
      *
-     * @param field
+     * @param panel
      * @returns {boolean}
      */
     function toggleDescription(panel) {
