@@ -11,7 +11,7 @@
         $('input.numeric').numeric();
 
     });
-    
+
     doc.on('change', '.education-checkbox', function () {
         displayMarkField(this);
     });
