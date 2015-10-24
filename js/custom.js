@@ -10,10 +10,18 @@
         // Restrict all inputs with class .numeric to only enter numbers
         $('input.numeric').numeric();
 
+        // For the selects, change the selected to the default value
+        $('.change-default-value').each(function () {
+           changeDefaultValue(this);
+        });
+
     });
 
     doc.on('change', '.education-checkbox', function () {
         displayMarkField(this);
+    });
+    doc.on('change', '.education-checkbox-profile', function () {
+       displayMarkFieldProfile(this);
     });
     doc.on('click', '.workshop-listing .panel-heading', function () {
         toggleDescription($(this).parent());
@@ -89,6 +97,25 @@
         if ($(field).is(':checked')) {
             var label = $(field).parents('label').find('h4').text();
             $(field).parents('label').after('<input type="text" class="form-control input-lg numeric" name="' + inputName + '" id="' + inputId + '" placeholder="' + label + ' Mark" required>');
+            $('input.numeric').numeric();
+        } else {
+            $("#" + inputId).remove();
+        }
+
+    }
+
+    /**
+     * Displays the "mark" field on the profile form
+     *
+     * @param field
+     */
+    function displayMarkFieldProfile(field) {
+        var inputId = "userinformation-educationalBackground-" + $(field).attr('data-type') + "-mark";
+        var inputName = "userinformation[educationalBackground][" + $(field).attr('data-type') + "][mark]";
+
+        if ($(field).is(':checked')) {
+            var label = $(field).parents('label').find('h4').text();
+            $(field).parents('label').after('<input type="text" class="form-control input-lg numeric" name="' + inputName + '" id="' + inputId + '" placeholder="' + label + ' Mark" required value="' + $(field).attr('data-value') + '">');
             $('input.numeric').numeric();
         } else {
             $("#" + inputId).remove();
@@ -352,6 +379,15 @@
             settings.fadeIn('fast');
         }
 
+    }
+
+    /**
+     * Sets the value of a field to that of it's "data-value"
+     *
+     * @param input
+     */
+    function changeDefaultValue(input) {
+        $(input).val($(input).attr('data-value'));
     }
 
 })(jQuery);

@@ -210,9 +210,14 @@
         static function setEducation($values) {
 
             foreach ($values as $key => $value) {
-
-                if (!self::setAttribute($key, 1) || !self::setAttribute($key . '_mark', $value['mark'])) {
-                    return false;
+                if ($value['mark'] != "NONE") {
+                    if (!self::setAttribute($key, 1) || !self::setAttribute($key . '_mark', $value['mark'])) {
+                        return false;
+                    }
+                } else {
+                    if (!self::setAttribute($key, 0) || !self::setAttribute($key . '_mark', null)) {
+                        return false;
+                    }
                 }
 
             }

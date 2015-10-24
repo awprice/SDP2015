@@ -12,12 +12,92 @@
     </div>
 </div>
 
-<h3 class="profile-divider user-settings" data-divider="user-settings">User Settings <span class="fa fa-chevron-right profile-divider-chevron"></span></h3>
-<div class="profile-user-settings" style="display: none">
+<h3 class="profile-divider user-information" data-divider="user-information">User Information<span class="fa fa-chevron-right profile-divider-chevron"></span></h3>
+<div class="profile-user-information">
+
+    <form class="form-user-information" method="POST">
+
+        <div class="form-group has-feedback">
+            <label for="userinformation[preferredFirstName]" class="sr-only">Preferred First Name</label>
+            <input type="text" id="userinformation[preferredFirstName]" class="form-control input-lg" name="userinformation[preferredFirstName]" placeholder="Preferred First Name" value="{{ page.user.preferred_first_name }}">
+            <i class="fa fa-user form-control-feedback"></i>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="userinformation[bestContactNumber]" class="sr-only">Best Contact Number</label>
+            <input type="text" id="userinformation[bestContactNumber]" class="form-control numeric input-lg" name="userinformation[bestContactNumber]" required placeholder="Best Contact Number" value="{{ page.user.best_contact_no }}">
+            <i class="fa fa-mobile form-control-feedback"></i>
+        </div>
+
+        <h5>First Language</h5>
+        <label for="userinformation[firstLanguage]" class="sr-only">First Language</label>
+        <select name="userinformation[firstLanguage]" id="userinformation[firstLanguage]" required style="width: 100%;" class="form-control input-lg change-default-value" data-value="{{ page.user.first_language }}">
+            {% include "views/form-elements/languages.html" %}
+        </select>
+
+        <h5>Country of Origin</h5>
+        <label for="userinformation[countryOfOrigin]" class="sr-only">Country of Origin</label>
+        <select name="userinformation[countryOfOrigin]" id="userinformation[countryOfOrigin]" required style="width: 100%;" class="form-control input-lg change-default-value" data-value="{{ page.user.country_of_origin }}">
+            {% include "views/form-elements/countries.html" %}
+        </select>
+
+        <h5>Degree</h5>
+        <label for="userinformation[degree]" class="sr-only">Degree</label>
+        <label><input type="radio" name="userinformation[degree]" id="userinformation[degree][undergraduate]" value="undergraduate" required {% if page.user.degree == "undergraduate" %}checked{% endif %}> Undergraduate</label>
+        <br>
+        <label><input type="radio" name="userinformation[degree]" id="userinformation[degree][postgraduate]" value="postgraduate" required {% if page.user.degree == "postgraduate" %}checked{% endif %}> Postgraduate</label>
+
+        <h5>Status</h5>
+        <label for="userinformation[status]" class="sr-only">Status</label>
+        <label><input type="radio" name="userinformation[status]" id="userinformation[status][permanent]" value="permanent" required {% if page.user.status == "permanent" %}checked{% endif %}> Permanent</label>
+        <br>
+        <label><input type="radio" name="userinformation[status]" id="userinformation[status][permanent]" value="international" required {% if page.user.status == "international" %}checked{% endif %}> International</label>
+
+        <h5>Year</h5>
+        <label for="userinformation[year]" class="sr-only">Year</label>
+        <select name="userinformation[year]" id="userinformation[year]" required style="width: 100%;" class="form-control input-lg change-default-value" data-value="{{ page.user.year}}">
+            <option value="1" selected>1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+            <option value="5">5th Year</option>
+        </select>
+
+        <h5>Educational Backgound</h5>
+        <label for="userinformation[educationalBackground]" class="sr-only">Educational Backgound</label>
+
+        {% for background in page.educational-backgrounds %}
+        <div class="checkbox">
+            <label>
+                <div class="onoffswitch">
+                    <input type="hidden" value="0" name="userinformation[educationalBackground][{{ background.key }}]">
+                    <input type="checkbox" name="userinformation[educationalBackground][{{ background.key }}]" class="onoffswitch-checkbox education-checkbox-profile" id="userinformation[educationalBackground][{{ background.key }}]" value="1" data-type="{{ background.key }}" data-value="{{ background.value }}" {% if background.checked == "1" %}checked{% endif %}>
+                    <label class="onoffswitch-label" for="userinformation[educationalBackground][{{ background.key }}]"></label>
+                </div>
+                <h4>{{ background.label }}</h4>
+            </label>
+            <input type="hidden" value="NONE" name="userinformation[educationalBackground][{{ background.key }}][mark]">
+            {% if background.checked == "1" %}
+                <input type="text" class="form-control input-lg numeric" name="userinformation[educationalBackground][{{ background.key }}][mark]" id="userinformation-educationalBackground-{{ background.key }}-mark" placeholder="{{ background.label }} Mark" required value="{{ background.value }}">
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <h5>Other</h5>
+        <label for="userinformation[other]" class="sr-only">Other</label>
+        <textarea id="userinformation[other]" class="form-control" name="userinformation[other]" rows="3">{{ page.user.other }}</textarea>
+
+        <br>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Update Information</button>
+        <br>
+        <br>
+
+    </form>
 
 </div>
 
-<h3 class="profile-divider notification" data-divider="notification">Notification Settings <span class="fa fa-chevron-right profile-divider-chevron"></span></h3>
+<h3 class="profile-divider notification" data-divider="notification">Notification Settings<span class="fa fa-chevron-right profile-divider-chevron"></span></h3>
 <div class="profile-notification" style="display: none">
 
 </div>
