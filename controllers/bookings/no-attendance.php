@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'userId' => 123
     ]);
 
-    if ($createNonAttendance && $updateBooking != null && $updateBooking->IsSuccess == 1) {
+    if ($createNonAttendance && $updateBooking != null && $updateBooking->IsSuccess == 1 && User::addStrike()) {
         Session::setSuccess('Successfully recorded non-attendance for this booking.');
         Session::redirect('/bookings');
     }
