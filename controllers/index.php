@@ -25,17 +25,16 @@ if (User::isLoggedIn()) {
     // Get all the upcoming bookings
     if ($bookings != null && $bookings->IsSuccess == 1) {
         foreach ($bookings->Results as $booking) {
-            // if booking archived field does not have a date
-            if ($booking->BookingArchived == null && strtotime($booking->starting) > $currentTime) {
+            // if booking archived field does not have a date, it hasn't been canceled or attended
+            if ($booking->BookingArchived == null && strtotime($booking->starting) > $currentTime && $booking->canceled === null && $booking->attended === null) {
                 $count++;
             }
         }
     }
-
     $page['bookingCount'] = $count;
 
+    // Get all of the workshops for the workshop listings
     $workshops = UTSHelpsAPI::ListWorkshopSets(true);
-
     if ($workshops != null && $workshops->IsSuccess == 1) {
         $page['workshops'] = count($workshops->Results);
     } else {
