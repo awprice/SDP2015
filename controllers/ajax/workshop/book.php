@@ -1,14 +1,11 @@
 <?php
 
-header('Content-Type: application/json');
-
 // Make sure the id is specified
 if (!array_key_exists('id', $_POST) && $_POST['id'] == null) {
-    echo json_encode([
+    Session::returnJsonMessage([
         'success' => false,
         'message' => 'No workshop ID provided, unable to book workshop.'
     ]);
-    exit();
 }
 
 $id = $_POST['id'];
@@ -26,19 +23,25 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
     // Make sure the user hasn't already booked this workshop before.
     foreach ($bookings->Results as $booking) {
         if ($booking->workshopID == (int) $id && $booking->BookingArchived == null) {
-            echo json_encode([
+            Session::returnJsonMessage([
                 'success' => false,
                 'message' => 'You have already booked this workshop, unable to book workshop.',
             ]);
-            exit();
         }
     }
 } else {
-    echo json_encode([
+    Session::returnJsonMessage([
         'success' => false,
         'message' => 'Unable to book workshop, an unknown error occured.',
     ]);
-    exit();
+}
+
+// If the user has too many strikes, don't allow them to book.
+if (User::getStrikes() >= User::getMaxStrikes()) {
+    Session::returnJsonMessage([
+        'success' => false,
+        'message' => 'Unable to create booking, you have too many strikes.',
+    ]);
 }
 
 // This user hasn't booked the workshop before, we can safely book it now.
@@ -49,17 +52,15 @@ $booking = UTSHelpsAPI::CreateWorkshopBooking([
 ]);
 
 if ($booking != null && $booking->IsSuccess == 1) {
-    echo json_encode([
+    Session::returnJsonMessage([
         'success' => true,
         'message' => 'Successfully booked workshop!',
     ]);
-    exit();
 }
 
-echo json_encode([
+Session::returnJsonMessage([
     'success' => false,
     'message' => 'Unable to create booking, please try again.',
 ]);
-exit();
 
 ?>

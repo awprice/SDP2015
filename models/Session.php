@@ -222,6 +222,21 @@
             return false;
 
         }
+
+        /**
+         * Sets json as header and encodes and echos a json payload
+         *
+         * @param $data
+         */
+        static function returnJsonMessage($data) {
+            // Set json header
+            header('Content-Type: application/json');
+
+            // Json encode our message and print it
+            echo json_encode($data);
+            exit();
+        }
+
     }
 
 ?>

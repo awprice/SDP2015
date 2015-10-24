@@ -4,11 +4,10 @@ header('Content-Type: application/json');
 
 // Make sure the id is specified
 if (!array_key_exists('bookingId', $_POST) && !array_key_exists('workshopId', $_POST) && $_POST['bookingId'] == null && $_POST['workshopId'] == null) {
-    echo json_encode([
+    Session::returnJsonMessage([
         'success' => false,
         'message' => 'No booking ID or workshop ID provided, unable to cancel booking.'
     ]);
-    exit();
 }
 
 $bookingId = $_POST['bookingId'];
@@ -32,18 +31,16 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
     }
 
     if ($found == false) {
-        echo json_encode([
+        Session::returnJsonMessage([
             'success' => false,
             'message' => 'This booking does not exist, unable to cancel booking.',
         ]);
-        exit();
     }
 } else {
-    echo json_encode([
+    Session::returnJsonMessage([
         'success' => false,
         'message' => 'Unable to cancel booking, an unknown error occured.',
     ]);
-    exit();
 }
 
 $updatedBookings = UTSHelpsAPI::UpdateWorkshopBooking([
@@ -64,19 +61,17 @@ if ($updatedBookings != null && $updatedBookings->IsSuccess == 1){
     ]);
 
     if ($canceledBooking != null && $canceledBooking->IsSuccess == 1) {
-        echo json_encode([
+        Session::returnJsonMessage([
             'success' => true,
             'message' => 'Successfully cancelled booking!',
         ]);
-        exit();
     }
 
 }
 
-echo json_encode([
+Session::returnJsonMessage([
     'success' => false,
     'message' => 'Unable to cancel booking, please try again.',
 ]);
-exit();
 
 ?>
