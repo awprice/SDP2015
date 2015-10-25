@@ -29,6 +29,9 @@
     doc.on('click', '.booking-listing .panel-heading', function () {
         toggleBookingDescription($(this).parent());
     });
+    doc.on('click', '.program-listing .panel-heading', function () {
+        toggleProgramDescription($(this).parent());
+    });
     doc.on('click', '.workshop-listing .workshop-confirm-buttons .workshop-no-button', function () {
         toggleDescription($(this).closest('.workshop-listing'));
     });
@@ -52,6 +55,9 @@
     });
     doc.on('click', '.profile-divider', function () {
         toggleProfileDivider(this);
+    });
+    doc.on('click', '.program-divider', function () {
+        toggleProgramDivider(this);
     });
 
     /**
@@ -256,6 +262,31 @@
     }
 
     /**
+     * Toggles a programs description
+     *
+     * @param program
+     * @returns {boolean}
+     */
+    function toggleProgramDescription(program) {
+
+        if ($(program).find('.panel-body').css('display') == 'none') {
+            // minimise all of the program listings
+            $('.program-listing').each(function () {
+                $(this).find('.panel-body').slideUp('fast');
+            });
+            $(program).find('.panel-body').slideDown('fast');
+        } else {
+            // minimise all of the program listings
+            $('.program-listing').each(function () {
+                $(this).find('.panel-body').slideUp('fast');
+            });
+        }
+
+        return false
+
+    }
+
+    /**
      * Cancels a booking
      *
      * @param button
@@ -378,6 +409,29 @@
             $(divider).find('.profile-divider-chevron').addClass('fa-chevron-down');
             settings.fadeIn('fast');
         }
+
+    }
+
+    /**
+     * Toggles the program sections with the dividers
+     *
+     * @param divider
+     */
+    function toggleProgramDivider(divider) {
+
+        var type = $(divider).attr('data-divider'),
+            programs = $('.program-' + type);
+
+        if (programs.css('display') != 'none') {
+            $(divider).find('.program-divider-chevron').removeClass('fa-chevron-down');
+            $(divider).find('.program-divider-chevron').addClass('fa-chevron-right');
+            programs.fadeOut('fast');
+        } else {
+            $(divider).find('.program-divider-chevron').removeClass('fa-chevron-right');
+            $(divider).find('.program-divider-chevron').addClass('fa-chevron-down');
+            programs.fadeIn('fast');
+        }
+
 
     }
 

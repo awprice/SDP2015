@@ -218,6 +218,46 @@
         echo superHandler($parameters);
     });
 
+    $router->map('GET', '/programs', function () {
+        $parameters = [
+            'controller' => 'programs/programs.php',
+            'view' => 'programs/programs.html',
+            'title' => 'Programs',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'header' => true,
+            'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Dashboard',
+                'link' => '/'
+            ],
+        ];
+        echo superHandler($parameters);
+    });
+
+    $router->map('GET', '/program/1', function () {
+        $parameters = [
+            'controller' => 'programs/program.php',
+            'view' => 'programs/program.html',
+            'title' => 'Program',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'header' => true,
+            'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Programs',
+                'link' => '/programs'
+            ],
+        ];
+        echo superHandler($parameters);
+    });
+
     // Misc routes
 
     $router->map('GET', '/logout', function () {
