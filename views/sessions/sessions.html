@@ -1,0 +1,31 @@
+<div class="page-title-center">
+    <h3>Sessions</h3>
+    <h5>Types</h5>
+    <br>
+</div>
+
+<div class="alert alert-info">Due to the nature of Sessions, they cannot be booked by a student. Please contact UTS Helps administration to book a one-to-one consultation for individual assistance.</div>
+
+{% if page.sessionsActive != null %}
+    {% for session in page.sessionsActive.Results %}
+        <div class="panel panel-default session-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title"><strong>{{ session.fullName }}</strong></h3>
+                <h5 class="panel-title">{{ session.abbName }}</h5>
+            </div>
+        </div>
+    {% endfor %}
+    {% for session in page.sessionsNonActive.Results %}
+        <div class="panel panel-default session-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title"><strong>{{ session.fullName }}</strong></h3>
+                <h5 class="panel-title">{{ session.abbName }}</h5>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+{% if page.sessionsActive == null %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Unable to load Sessions list.</strong> Please try again or check the url.
+    </div>
+{% endif %}

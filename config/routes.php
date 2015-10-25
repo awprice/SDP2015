@@ -198,6 +198,26 @@
         echo superHandler($parameters);
     });
 
+    $router->map('GET', '/sessions', function () {
+        $parameters = [
+            'controller' => 'sessions/sessions.php',
+            'view' => 'sessions/sessions.html',
+            'title' => 'Sessions',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'header' => true,
+            'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Dashboard',
+                'link' => '/'
+            ],
+        ];
+        echo superHandler($parameters);
+    });
+
     // Misc routes
 
     $router->map('GET', '/logout', function () {
