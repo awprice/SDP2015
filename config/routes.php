@@ -6,6 +6,7 @@
             'view' => 'index.html',
             'title' => 'Index',
             'flashes' => false,
+            'customflashes' => true,
             'restricted' => false,
             'registered' => false,
             'header' => true,
@@ -303,6 +304,10 @@
 
         // Initialise our page array
         $page = Session::init($parameters['title'], $parameters['flashes'], $parameters['restricted'], $parameters['registered']);
+
+        if ($parameters['flashes'] == false && $parameters['customflashes'] == true) {
+            $page['customflashes'] = Session::getFlashes();
+        }
 
         // if parameters are passed, then add them
         if (array_key_exists('parameters', $parameters)) {

@@ -26,6 +26,13 @@
     </div>
 
     <br>
+    {% for error in page.customflashes.error %}
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endfor %}
+    {% for success in page.customflashes.success %}
+        <div class="alert alert-success" role="alert">{{ success }}</div>
+    {% endfor %}
+
     <div class="text-center">
         <h4>What would you like to do today?</h4>
     </div>
