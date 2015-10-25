@@ -191,6 +191,21 @@
         echo superHandler($parameters);
     });
 
+    $router->map('GET', '/logout-confirm', function () {
+        $parameters = [
+            'controller' => 'session/logout-confirm.php',
+            'view' => 'session/logout-confirm.html',
+            'title' => 'Confirm Logout',
+            'flashes' => false,
+            'restricted' => true,
+            'registered' => false,
+            'header' => true,
+            'footer' => true,
+            'navbar' => false,
+        ];
+        echo superHandler($parameters);
+    });
+
     $router->map('GET|POST', '/login', function () {
         $parameters = [
             'controller' => 'session/login.php',
