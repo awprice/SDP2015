@@ -77,43 +77,61 @@
 <h3 class="booking-divider past" data-divider="past">Past <span class="fa fa-chevron-right booking-divider-chevron"></span></h3>
     <div class="booking-past" style="display: none">
         {% if page.pastbookings != null %}
-        {% for booking in page.pastbookings %}
-        <div class="panel panel-default booking-listing" data-booking-id="{{ booking.bookingId }}" data-workshop-id="{{ booking.workshopId }}">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ booking.topic }}</h3>
-                <p class="booking-labels">
-                    <span class="label label-primary">{{ booking.date }}</span>
-                    <span class="label label-default">{{ booking.campus }}</span>
-                </p>
-            </div>
-            <div class="panel-body">
-                <div class="booking-contents">
-                    <div class="contents">
-                        {% if booking.description != null %}
-                        <p class="booking-description">
-                            {{ booking.description }}
+            {% for booking in page.pastbookings %}
+                <div class="panel panel-default booking-listing" data-booking-id="{{ booking.bookingId }}" data-workshop-id="{{ booking.workshopId }}">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ booking.topic }}</h3>
+                        <p class="booking-labels">
+                            {% if booking.attendance != null %}
+                                {% if booking.attendance.attendance == "1" %}
+                                    <span class="label label-success">Attended</span>
+                                {% endif %}
+                                {% if booking.attendance.attendance == "0" %}
+                                    <span class="label label-danger">Did not Attend</span>
+                                {% endif %}
+                            {% endif %}
+                            {% if booking.attendance == null %}
+                                {% if booking.cutoff == true %}
+                                    <span class="label label-default">Cutoff Reached</span>
+                                {% endif %}
+                                {% if booking.cutoff == false %}
+                                    <span class="label label-warning">Needs Attendance</span>
+                                {% endif %}
+                            {% endif %}
+                            <span class="label label-primary">{{ booking.date }}</span>
+                            <span class="label label-default">{{ booking.campus }}</span>
                         </p>
-                        {% else %}
-                        <div class="text-center">
-                            <p class="booking-no-description">No description</p>
+                    </div>
+                    <div class="panel-body">
+                        <div class="booking-contents">
+                            <div class="contents">
+                                {% if booking.description != null %}
+                                <p class="booking-description">
+                                    {{ booking.description }}
+                                </p>
+                                {% else %}
+                                <div class="text-center">
+                                    <p class="booking-no-description">No description</p>
+                                </div>
+                                {% endif %}
+                                {% if booking.attendance == null %}
+                                    {% if booking.cutoff == false %}
+                                        <div class="past-booking-buttons">
+                                            <a href="/booking/attendance/{{ booking.bookingId }}" class="btn btn-block btn-success past-booking-attended-button">Upload Notes <br>(I attended)</a>
+                                            <a href="/booking/non-attendance/{{ booking.bookingId }}" class="btn btn-block btn-danger past-booking-no-attended-button">I did not attend <br> this workshop</a>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                                {% if booking.attendance != null %}
+                                    {% if booking.attendance.attendance == "1" %}
+                                        <a href="/booking/view-attendance/{{ booking.bookingId }}" class="btn btn-block booking-view-attendance">View Submitted Notes</a>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
                         </div>
-                        {% endif %}
-                        {% if booking.attendance == null %}
-                            <div class="past-booking-buttons">
-                                <a href="/booking/attendance/{{ booking.bookingId }}" class="btn btn-block btn-success past-booking-attended-button">Upload Notes <br>(I attended)</a>
-                                <a href="/booking/non-attendance/{{ booking.bookingId }}" class="btn btn-block btn-danger past-booking-no-attended-button">I did not attend <br> this workshop</a>
-                            </div>
-                        {% endif %}
-                        {% if booking.attendance != null %}
-                            <div class="text-center">
-                                <h4><span class="label label-success">Attendance already recorded for this booking</span></h4>
-                            </div>
-                        {% endif %}
                     </div>
                 </div>
-            </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
         {% endif %}
         {% if page.pastbookings == null %}
         <div class="alert alert-info" role="alert">

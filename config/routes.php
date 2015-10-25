@@ -155,6 +155,29 @@
         echo superHandler($parameters);
     });
 
+    $router->map('GET|POST', '/booking/view-attendance/[i:bookingId]', function ($bookingId) {
+        $parameters = [
+            'controller' => 'bookings/view-attendance.php',
+            'view' => 'bookings/view-attendance.html',
+            'title' => 'View Attendance',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'parameters' => [
+                'bookingId' => $bookingId,
+            ],
+            'header' => true,
+            'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Bookings',
+                'link' => '/bookings'
+            ],
+        ];
+        echo superHandler($parameters);
+    });
+
     $router->map('GET|POST', '/profile', function () {
         $parameters = [
             'controller' => 'profile.php',

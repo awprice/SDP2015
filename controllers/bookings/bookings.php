@@ -1,5 +1,27 @@
 <?php
 
+/**
+ * Compares start dates for sorting
+ *
+ * @param $a
+ * @param $b
+ * @return mixed
+ */
+function compareStartDate($a, $b) {
+    return $a['startDate'] - $b['startDate'];
+}
+
+/**
+ * Compares start dates for sorting in a reverse fashion
+ *
+ * @param $b
+ * @param $a
+ * @return mixed
+ */
+function compareStartDateReverse($b, $a) {
+    return $a['startDate'] - $b['startDate'];
+}
+
 $currentTime = strtotime(Session::getCurrentDateTime());
 
 $bookings = UTSHelpsAPI::SearchWorkshopBookings([
@@ -48,10 +70,19 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
                 'description' => $value->description,
                 'date' => $date,
                 'campus' => $location,
+                'startDate' => $startDate,
             ];
         } elseif ($value->BookingArchived == null && $value->canceled == null && $startDate < $currentTime) {
 
             $attendance = Attendance::getAttendance($value->BookingId);
+
+            $cutoff = $startDate + 259200;
+
+            if ($cutoff > $currentTime) {
+                $cutoff = false;
+            } else {
+                $cutoff = true;
+            }
 
             $page['pastbookings'][] = [
                 'bookingId' => $value->BookingId,
@@ -62,10 +93,15 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
                 'date' => $date,
                 'campus' => $location,
                 'attendance' => $attendance,
+                'cutoff' => $cutoff,
+                'startDate' => $startDate,
             ];
         }
 
     }
+
+    usort($page['bookings'], 'compareStartDate');
+    usort($page['pastbookings'], 'compareStartDateReverse');
 
 } else {
     $page['bookings'] = null;
