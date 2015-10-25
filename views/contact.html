@@ -24,6 +24,16 @@
         <input type="email" id="contact[email]" class="form-control input-lg" name="contact[email]" required placeholder="Student Email">
     </div>
 
+    <h5>Category</h5>
+    <label for="contact[category]" class="sr-only">Category</label>
+    <select name="contact[category]" id="contact[category]" required style="width: 100%;" class="form-control input-lg">
+        <option value="Technical Assistance" selected>Technical Assistance</option>
+        <option value="Account Issue">Account Issue</option>
+        <option value="Question">Question</option>
+        <option value="Feedback">Feedback</option>
+        <option value="Query">Query</option>
+    </select>
+
     <h5>Message</h5>
     <label for="contact[message]" class="sr-only">Message</label>
     <textarea id="contact[message]" class="form-control" name="contact[message]" rows="3" required></textarea>
