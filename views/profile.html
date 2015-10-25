@@ -68,6 +68,7 @@
 
         {% for background in page.educational-backgrounds %}
         <div class="checkbox">
+            <input type="hidden" value="NONE" name="userinformation[educationalBackground][{{ background.key }}][mark]">
             <label>
                 <div class="onoffswitch">
                     <input type="hidden" value="0" name="userinformation[educationalBackground][{{ background.key }}]">
@@ -76,7 +77,6 @@
                 </div>
                 <h4>{{ background.label }}</h4>
             </label>
-            <input type="hidden" value="NONE" name="userinformation[educationalBackground][{{ background.key }}][mark]">
             {% if background.checked == "1" %}
                 <input type="text" class="form-control input-lg numeric" name="userinformation[educationalBackground][{{ background.key }}][mark]" id="userinformation-educationalBackground-{{ background.key }}-mark" placeholder="{{ background.label }} Mark" required value="{{ background.value }}">
             {% endif %}
