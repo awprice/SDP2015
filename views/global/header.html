@@ -38,13 +38,20 @@
                   {% if page.loggedin == true %}
                       <a href="/profile" class="nav-profile-link">
                           <div class="nav-profile">
+                              <h4>My Profile</h4>
+                              <br>
                               <div class="row">
                                   <div class="col-md-2">
                                       <img class="img-circle nav-profile-image" src="/img/default-user-icon-profile.png">
                                   </div>
                                   <div class="col-md-10">
                                       <h3>{{ page.user.student_id }}</h3>
-                                      <h4>{{ page.user.name }}</h4>
+                                      {% if page.user.preferred_first_name != "" %}
+                                        <h4>{{ page.user.preferred_first_name }}</h4>
+                                      {% endif %}
+                                      {% if page.user.preferred_first_name == "" %}
+                                        <h4>{{ page.user.name }}</h4>
+                                      {% endif %}
                                   </div>
                               </div>
                           </div>
