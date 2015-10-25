@@ -31,30 +31,28 @@ class Attendance {
      * @param $workshopId
      * @param $learnt
      * @param $taught
+     * @param $filename
      * @return bool
      */
-    static public function createAttendance($bookingId, $workshopId, $learnt, $taught) {
+    static public function createAttendance($bookingId, $workshopId, $learnt, $taught, $filename) {
 
         if (self::getAttendance($bookingId) != null) {
             return false;
         }
 
         $mysql = new MySQL();
-        $results = $mysql->query('INSERT INTO attendance(booking_id, workshop_id, student_id, attendance, learnt, taught, datecompleted) VALUES (:booking_id, :workshop_id, :student_id, :attendance, :learnt, :taught, :datecompleted)', [
+        $results = $mysql->query('INSERT INTO attendance(booking_id, workshop_id, student_id, attendance, learnt, taught, datecompleted, filename) VALUES (:booking_id, :workshop_id, :student_id, :attendance, :learnt, :taught, :datecompleted, :filename)', [
             ':booking_id' => $bookingId,
             ':workshop_id' => $workshopId,
             ':student_id' => User::getId(),
             ':attendance' => 1,
             ':learnt' => $learnt,
             ':taught' => $taught,
-            ':datecompleted' => time()
+            ':datecompleted' => time(),
+            ':filename' => $filename
         ]);
 
-        if ($results['success']) {
-            return true;
-        }
-
-        return false;
+        return $results['success'];
 
     }
 
@@ -108,6 +106,26 @@ class Attendance {
         }
 
         return true;
+
+    }
+
+    /**
+     * Generate a random string for the filename
+     *
+     * @return string
+     */
+    static public function generateRandomFileName() {
+
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+
+        $randomString = '';
+
+        for ($i = 0; $i < 32; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
 
     }
 

@@ -7,5 +7,6 @@ CREATE TABLE attendance(
   attendance INT NOT NULL,
   learnt TEXT NOT NULL,
   taught TEXT NOT NULL,
-  datecompleted TEXT NOT NULL
+  datecompleted TEXT NOT NULL,
+  filename TEXT NOT NULL
 );

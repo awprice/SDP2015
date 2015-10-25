@@ -4,12 +4,18 @@
     <br>
 </div>
 
-<h4>You wrote for the question "<em>What was taught?</em>" - </h4>
+<h4>What was taught?</h4>
 <br>
 <pre>{{ page.attendance.taught }}</pre>
 
 <br>
 
-<h4>You wrote for the question "<em>What did you learn?</em>" - </h4>
+<h4>What did you learn?</h4>
 <br>
 <pre>{{ page.attendance.learnt }}</pre>
+
+<br>
+
+<h4>File Upload</h4>
+<br>
+<a href="/upload/{{ page.attendance.filename }}" class="btn booking-download-file" target="_blank">Download File</a>

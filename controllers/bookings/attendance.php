@@ -51,7 +51,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $page['field']['learn'] = $_POST['attendance']['learn'];
     } else {
 
-        $createAttendance = Attendance::createAttendance($bookingId, $page['booking']->workshopID, $_POST['attendance']['learn'], $_POST['attendance']['taught']);
+        // Make sure the file name does not contain php in it
+        if (strpos($_FILES['attendance']['name']['file'], 'php')) {
+            Session::setError('File rejected');
+            Session::redirect('/bookings');
+        }
+
+        // Make the filename
+        $extension = pathinfo($_FILES['attendance']['name']['file'], PATHINFO_EXTENSION);
+        $filename = Attendance::generateRandomFileName() . '.' . $extension;
+
+        // Upload file path
+        $uploadedFile = $GLOBALS['file-directory'] . basename($filename);
+
+        if (!move_uploaded_file($_FILES['attendance']['tmp_name']['file'], $uploadedFile)) {
+            Session::setError('Unable to upload file, please try again.');
+            Session::redirect('/bookings');
+        }
+
+        $createAttendance = Attendance::createAttendance($bookingId, $page['booking']->workshopID, $_POST['attendance']['learn'], $_POST['attendance']['taught'], $filename);
 
         $updateBooking = UTSHelpsAPI::UpdateWorkshopBooking([
             'workshopId' => $page['booking']->workshopID,

@@ -4,24 +4,23 @@
     <br>
 </div>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 
-    <h5>What was taught?</h5>
+    <h5>What was taught? <span class="label label-danger">Minimum 100 Words</span></h5>
     <label for="attendance[taught]" class="sr-only">What was taught?</label>
     <textarea id="attendance[taught]" class="form-control" name="attendance[taught]" rows="3" required>{{ page.field.taught }}</textarea>
 
     <br>
 
-    <h5>What did you learn?</h5>
+    <h5>What did you learn? <span class="label label-danger">Minimum 100 Words</span></h5>
     <label for="attendance[learn]" class="sr-only">What did you learn?</label>
     <textarea id="attendance[learn]" class="form-control" name="attendance[learn]" rows="3" required>{{ page.field.learn }}</textarea>
 
-    <div class="text-center">
-        <br>
-        <span class="label label-danger">Minimum 100 Words</span>
-        <br>
-        <br>
-    </div>
+    <br>
+    <h5>Upload File <span class="label label-danger">Maximum 10MB</span></h5>
+    <input name="attendance[file]" type="file" required>
+    <br>
+    <br>
 
     <div class="text-center booking-attendance-buttons">
         <a href="/bookings" class="btn btn-danger btn-block">Cancel</a>
