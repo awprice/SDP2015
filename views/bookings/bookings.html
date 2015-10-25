@@ -5,6 +5,9 @@
 
 <h3 class="booking-divider future" data-divider="future">Future <span class="fa fa-chevron-down booking-divider-chevron"></span></h3>
     <div class="booking-future">
+        <div class="text-center">
+            <h4 class="booking-category-label">BOOKINGS</h4>
+        </div>
         {% if page.bookings != null %}
             {% for booking in page.bookings %}
                 <div class="panel panel-default booking-listing" data-booking-id="{{ booking.bookingId }}" data-workshop-id="{{ booking.workshopId }}">
@@ -58,7 +61,7 @@
                                     <button class="btn btn-block btn-danger booking-cancel-button">Cancel</button>
                                 </div>
                                 <div class="booking-confirm-buttons">
-                                    <button class="btn btn-block booking-no-button">Cancel</button>
+                                    <a href="/bookings" class="btn btn-block btn-default booking-no-button">Cancel</a>
                                     <button class="btn btn-block btn-danger booking-yes-button">Yes</button>
                                 </div>
                             </div>
@@ -68,14 +71,29 @@
             {% endfor %}
         {% endif %}
         {% if page.bookings == null %}
-            <div class="alert alert-info" role="alert">
-                <strong>No bookings!</strong> You don't have any bookings, view the workshops to make one
+            <div class="text-center">
+                <h5 class="booking-category-none">NONE</h5>
             </div>
         {% endif %}
+        <div class="text-center">
+            <h4 class="booking-category-label">PROGRAMS</h4>
+        </div>
+        <div class="text-center">
+            <h5 class="booking-category-none">NONE</h5>
+        </div>
+        <div class="text-center">
+            <h4 class="booking-category-label">SESSIONS</h4>
+        </div>
+        <div class="text-center">
+            <h5 class="booking-category-none">NONE</h5>
+        </div>
     </div>
 
 <h3 class="booking-divider past" data-divider="past">Past <span class="fa fa-chevron-right booking-divider-chevron"></span></h3>
     <div class="booking-past" style="display: none">
+        <div class="text-center">
+            <h4 class="booking-category-label">BOOKINGS</h4>
+        </div>
         {% if page.pastbookings != null %}
             {% for booking in page.pastbookings %}
                 <div class="panel panel-default booking-listing" data-booking-id="{{ booking.bookingId }}" data-workshop-id="{{ booking.workshopId }}">
@@ -134,8 +152,20 @@
             {% endfor %}
         {% endif %}
         {% if page.pastbookings == null %}
-        <div class="alert alert-info" role="alert">
-            <strong>No past bookings!</strong> You don't have any past bookings.
-        </div>
+            <div class="text-center">
+                <h5 class="booking-category-none">NONE</h5>
+            </div>
         {% endif %}
+        <div class="text-center">
+            <h4 class="booking-category-label">PROGRAMS</h4>
+        </div>
+        <div class="text-center">
+            <h5 class="booking-category-none">NONE</h5>
+        </div>
+        <div class="text-center">
+            <h4 class="booking-category-label">SESSIONS</h4>
+        </div>
+        <div class="text-center">
+            <h5 class="booking-category-none">NONE</h5>
+        </div>
     </div>
