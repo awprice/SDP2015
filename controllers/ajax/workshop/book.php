@@ -53,6 +53,7 @@ $booking = UTSHelpsAPI::CreateWorkshopBooking([
 
 if ($booking != null && $booking->IsSuccess == 1) {
 
+    // Send the email notification to the user
     $user = User::getUser();
 
     $message = Notification::renderEmail('emails/booking.html', [

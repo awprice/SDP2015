@@ -1,7 +1,5 @@
 <?php
 
-header('Content-Type: application/json');
-
 // Make sure the id is specified
 if (!array_key_exists('id', $_POST) && $_POST['id'] == null) {
     Session::returnJsonMessage([
@@ -19,6 +17,16 @@ $waitinglist = UTSHelpsAPI::CreateWorkshopWaiting([
 ]);
 
 if ($waitinglist != null && $waitinglist->IsSuccess == 1) {
+
+    // Send the email notification
+    $user = User::getUser();
+
+    $message = Notification::renderEmail('emails/waiting-list.html', [
+        'name' => $user['name'],
+        'workshopId' => $id,
+    ]);
+    Notification::sendEmail($user['email'], $user['name'], 'Joined Waiting List', $message);
+
     Session::returnJsonMessage([
         'success' => true,
         'message' => 'Successfully joined waiting list!',

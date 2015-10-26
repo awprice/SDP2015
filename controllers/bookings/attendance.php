@@ -80,6 +80,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         if ($createAttendance && $updateBooking != null && $updateBooking->IsSuccess == 1) {
+
+            // Send the email notification
+            $user = User::getUser();
+
+            $message = Notification::renderEmail('emails/record-attendance.html', [
+                'name' => $user['name'],
+                'bookingId' => $bookingId,
+            ]);
+            Notification::sendEmail($user['email'], $user['name'], 'Recorded Attendance', $message);
+
             Session::setSuccess('Successfully recorded attendance for this booking.');
             Session::redirect('/bookings');
         }
