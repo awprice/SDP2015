@@ -4,6 +4,7 @@
     require __DIR__ . '/modules/AltoRouter/AltoRouter.php';
     require __DIR__ . '/modules/h2o-php/h2o.php';
     require __DIR__ . '/modules/UTSHelpsAPI/UTSHelpsAPI.php';
+    require __DIR__ . '/modules/mandrill/Mandrill.php';
 
     // Import our models
     require __DIR__ . '/models/autoload.php';

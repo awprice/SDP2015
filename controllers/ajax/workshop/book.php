@@ -52,6 +52,15 @@ $booking = UTSHelpsAPI::CreateWorkshopBooking([
 ]);
 
 if ($booking != null && $booking->IsSuccess == 1) {
+
+    $user = User::getUser();
+
+    $message = Notification::renderEmail('emails/booking.html', [
+        'name' => $user['name'],
+        'workshopId' => $id,
+    ]);
+    Notification::sendEmail($user['email'], $user['name'], 'Booking Created', $message);
+
     Session::returnJsonMessage([
         'success' => true,
         'message' => 'Successfully booked workshop!',

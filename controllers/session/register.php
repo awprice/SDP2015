@@ -54,6 +54,11 @@
             'CreatorId' => 123456
         ]);
 
+        $message = Notification::renderEmail('emails/registration.html', [
+           'name' => $user['name'],
+        ]);
+        Notification::sendEmail($user['email'], $user['name'], 'Registration Successful', $message);
+
         User::setFirstUse();
         User::setLastLogin();
         Session::setSuccess('You have successfully saved your registration details.');
