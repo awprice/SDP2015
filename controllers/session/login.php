@@ -12,6 +12,17 @@
 
         if (!empty($_POST['login']['studentId']) && !empty($_POST['login']['password'])) {
             // try and log the user in
+
+            // block default accounts for demo
+            if (in_array($_POST['login']['studentId'], [
+                '11111111',
+                '22222222',
+                '33333333',
+            ])) {
+                Session::setError('Your Student ID or Password was incorrect or the account does not exist, please try again.');
+                Session::redirect('/login');
+            }
+
             if (User::attemptLogin($_POST['login']['studentId'], $_POST['login']['password'])) {
                 $_SESSION['studentId'] = $_POST['login']['studentId'];
                 if ($_POST['login']['rememberMe'] == 'yes') {
