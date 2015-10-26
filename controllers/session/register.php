@@ -56,7 +56,7 @@
 
         User::setFirstUse();
         User::setLastLogin();
-        Session::setSuccess('Register complete!');
+        Session::setSuccess('You have successfully saved your registration details.');
         Session::redirect('/');
 
     }
