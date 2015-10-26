@@ -380,6 +380,21 @@
         echo superHandler($parameters);
     });
 
+    $router->map('GET', '/404', function () {
+        $parameters = [
+            'controller' => '404.php',
+            'view' => '404.html',
+            'title' => 'FAQ',
+            'flashes' => false,
+            'restricted' => false,
+            'registered' => false,
+            'header' => true,
+            'footer' => true,
+            'navbar' => false,
+        ];
+        echo superHandler($parameters);
+    });
+
 	$router->map('GET', '/compile/less', function() {
 		require __DIR__ . '/less.compile.php';
 	});
