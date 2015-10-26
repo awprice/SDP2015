@@ -62,6 +62,7 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
 
         // if booking archived field does not have a date
         if ($value->BookingArchived == null && $startDate > $currentTime && $value->canceled === null && $value->attended === null) {
+
             $page['bookings'][] = [
                 'bookingId' => $value->BookingId,
                 'workshopId' => $value->workshopID,
@@ -71,6 +72,7 @@ if ($bookings != null && $bookings->IsSuccess == 1) {
                 'date' => $date,
                 'campus' => $location,
                 'startDate' => $startDate,
+                'reminders' => Notification::getNotification($value->BookingId),
             ];
         } elseif ($value->BookingArchived == null && $value->canceled == null && $startDate < $currentTime) {
 

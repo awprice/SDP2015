@@ -56,6 +56,50 @@
                                     </h1>
                                     <h4>Unable to cancel booking.</h4>
                                 </div>
+                                <div class="booking-reminder">
+                                    <form method="POST" action="/booking/set-reminders">
+
+                                        <input type="hidden" value="{{ booking.bookingId }}" name="bookingId">
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <h4>Email 1 week before</h4>
+                                                <div class="onoffswitch">
+                                                    <input type="checkbox" name="reminder[oneWeek]" class="onoffswitch-checkbox" id="reminder[oneWeek][{{ booking.bookingId }}]" value="1" {% if booking.reminders.one_week == "1" %}checked{% endif %}>
+                                                    <label class="onoffswitch-label" for="reminder[oneWeek][{{ booking.bookingId }}]"></label>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <hr>
+                                        <div class="checkbox">
+                                            <label>
+                                                <h4>Email 1 week before</h4>
+                                                <div class="onoffswitch">
+                                                    <input type="checkbox" name="reminder[threeDays]" class="onoffswitch-checkbox" id="reminder[threeDays][{{ booking.bookingId }}]" value="1" {% if booking.reminders.three_days == "1" %}checked{% endif %}>
+                                                    <label class="onoffswitch-label" for="reminder[threeDays][{{ booking.bookingId }}]"></label>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <hr>
+                                        <div class="checkbox">
+                                            <label>
+                                                <h4>Email 1 week before</h4>
+                                                <div class="onoffswitch">
+                                                    <input type="checkbox" name="reminder[oneDay]" class="onoffswitch-checkbox" id="reminder[oneDay][{{ booking.bookingId }}]" value="1" {% if booking.reminders.one_day == "1" %}checked{% endif %}>
+                                                    <label class="onoffswitch-label" for="reminder[oneDay][{{ booking.bookingId }}]"></label>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <br>
+                                        <br>
+
+                                        <div class="booking-reminder-confirm-buttons">
+                                            <a href="/bookings" class="btn btn-block btn-default booking-no-button">Cancel</a>
+                                            <input class="btn btn-block booking-reminder-button-save" type="submit" value="Save Reminders">
+                                        </div>
+                                    </form>
+                                </div>
                                 <div class="booking-buttons">
                                     <button class="btn btn-block booking-reminder-button">Set Reminder</button>
                                     <button class="btn btn-block btn-danger booking-cancel-button">Cancel</button>

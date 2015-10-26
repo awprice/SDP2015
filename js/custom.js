@@ -47,6 +47,9 @@
     doc.on('click', '.booking-listing .booking-buttons .booking-cancel-button', function () {
         displayBookingCancelConfirm(this);
     });
+    doc.on('click', '.booking-listing .booking-buttons .booking-reminder-button', function () {
+        displayReminders(this);
+    });
     doc.on('click', '.workshop-divider', function () {
         toggleWorkshopDivider(this);
     });
@@ -330,7 +333,7 @@
      * @param button
      * @returns {boolean}
      */
-    function displayBookingCancelConfirm(button)  {
+    function displayBookingCancelConfirm(button) {
 
         var booking = $(button).closest('.booking-listing');
 
@@ -341,6 +344,20 @@
         $(booking).find('.booking-buttons').fadeOut('fast', function() {
             $(booking).find('.booking-confirm-buttons').fadeIn('fast');
         });
+
+        return false;
+
+    }
+
+    function displayReminders(button) {
+
+        var booking = $(button).closest('.booking-listing');
+
+        $(booking).find('.booking-description, .booking-no-description').fadeOut('fast', function() {
+            $(booking).find('.booking-reminder').fadeIn('fast');
+        });
+
+        $(booking).find('.booking-buttons').fadeOut('fast');
 
         return false;
 

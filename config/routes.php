@@ -178,6 +178,21 @@
         echo superHandler($parameters);
     });
 
+    $router->map('POST', '/booking/set-reminders', function ($bookingId) {
+        $parameters = [
+            'controller' => 'bookings/set-reminders.php',
+            'view' => null,
+            'title' => null,
+            'flashes' => false,
+            'restricted' => true,
+            'registered' => true,
+            'header' => false,
+            'footer' => false,
+            'navbar' => false,
+        ];
+        echo superHandler($parameters);
+    });
+
     $router->map('GET|POST', '/profile', function () {
         $parameters = [
             'controller' => 'profile.php',

@@ -65,4 +65,50 @@ class Notification {
 
     }
 
+    /**
+     * Get notification settings for a particular booking
+     *
+     * @param $bookingId
+     * @return null
+     */
+    static function getNotification($bookingId) {
+
+        $mysql = new MySQL();
+        $results = $mysql->query('SELECT * FROM notification WHERE booking_id = :booking_id', [':booking_id' => $bookingId]);
+
+        if ($results['success'] == true && !empty($results['results']) && $results['results'] != null) {
+            return $results['results'];
+        }
+
+        return null;
+
+    }
+
+    static function setNotification($bookingId, $oneWeek, $threeDays, $oneDay) {
+
+        $mysql = new MySQL();
+
+        if (self::getNotification($bookingId) === null) {
+
+            $results = $mysql->query('INSERT INTO notification(booking_id, one_week, three_days, one_day) VALUES (:booking_id, :one_week, :three_days, :one_day)', [
+                ':booking_id' => $bookingId,
+                ':one_week' => $oneWeek,
+                ':three_days' => $threeDays,
+                ':one_day' => $oneDay
+            ]);
+
+        } else {
+
+            $results = $mysql->query('UPDATE notification SET one_week = :one_week, three_days = :three_days, one_day = :one_day WHERE booking_id = :booking_id', [
+                ':booking_id' => $bookingId,
+                ':one_week' => $oneWeek,
+                ':three_days' => $threeDays,
+                ':one_day' => $oneDay
+            ]);
+
+        }
+
+        return $results['success'];
+
+    }
 }
