@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @var $page
+ */
+
 $workshopSetId = $page['parameters']['workshopSetId'];
 
 // Get the results for the workshop details

@@ -89,6 +89,49 @@
         echo superHandler($parameters);
     });
 
+    $router->map('GET', '/workshops/search', function () {
+        $parameters = [
+            'controller' => 'workshops/search.php',
+            'view' => 'workshops/search.html',
+            'title' => 'Search Workshops',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'header' => true,
+            'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Workshops',
+                'link' => '/workshops'
+            ],
+        ];
+        echo superHandler($parameters);
+    });
+
+    $router->map('GET', '/workshops/search/[i:id]', function ($id) {
+        $parameters = [
+            'controller' => 'workshops/search.php',
+            'view' => 'workshops/search.html',
+            'title' => 'Workshop',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'parameters' => [
+                'id' => $id,
+            ],
+            'header' => true,
+            'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Workshops',
+                'link' => '/workshops'
+            ],
+        ];
+        echo superHandler($parameters);
+    });
+
     $router->map('GET', '/bookings', function () {
         $parameters = [
             'controller' => 'bookings/bookings.php',

@@ -62,6 +62,9 @@
     doc.on('click', '.program-divider', function () {
         toggleProgramDivider(this);
     });
+    doc.on('change', '.search-campus', function () {
+        redirectSearchCampus(this);
+    });
 
     /**
      * Set the min height of the container so that the footer is at the bottom
@@ -459,6 +462,17 @@
      */
     function changeDefaultValue(input) {
         $(input).val($(input).attr('data-value'));
+    }
+
+    /**
+     * On search campus select change, redirect
+     *
+     * @param select
+     * @returns {boolean}
+     */
+    function redirectSearchCampus(select) {
+        window.location.href = "/workshops/search/" + $(select).val();
+        return false;
     }
 
 })(jQuery);
