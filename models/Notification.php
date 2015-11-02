@@ -13,6 +13,10 @@ class Notification {
      */
     static function sendEmail($address, $name, $subject, $contents) {
 
+        if (User::getUser()['email_enabled'] != "1") {
+            return true;
+        }
+
         try {
 
             // Create mandrill object

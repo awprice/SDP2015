@@ -35,6 +35,8 @@
             'insearchDiploma_mark' => 'insearch_diploma_mark',
             'foundationCourse' => 'foundation_course',
             'foundationCourse_mark' => 'foundation_course_mark',
+            'sms' => 'sms_enabled',
+            'email' => 'email_enabled',
         ];
 
         /**

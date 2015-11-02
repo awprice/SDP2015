@@ -39,7 +39,9 @@ CREATE TABLE users(
   other TEXT,
   firstuse INT NOT NULL,
   lastlogin INT NOT NULL,
-  strikes INT NOT NULL
+  strikes INT NOT NULL,
+  sms_enabled INT NOT NULL,
+  email_enabled INT NOT NULL
 );
 
 -- Password: password
@@ -80,7 +82,9 @@ INSERT INTO users(
   other,
   firstuse,
   lastlogin,
-  strikes
+  strikes,
+  sms_enabled,
+  email_enabled
 ) VALUES (
   11111111,
   'Test User 1',
@@ -118,7 +122,9 @@ INSERT INTO users(
   NULL,
   1,
   0,
-  0
+  0,
+  0,
+  1
 );
 
 -- Password: password
@@ -159,7 +165,9 @@ INSERT INTO users(
   other,
   firstuse,
   lastlogin,
-  strikes
+  strikes,
+  sms_enabled,
+  email_enabled
 ) VALUES (
   22222222,
   'Test User 2',
@@ -197,7 +205,9 @@ INSERT INTO users(
   NULL,
   1,
   0,
-  0
+  0,
+  0,
+  1
 );
 
 -- Password: password
@@ -238,7 +248,9 @@ INSERT INTO users(
   other,
   firstuse,
   lastlogin,
-  strikes
+  strikes,
+  sms_enabled,
+  email_enabled
 ) VALUES (
   33333333,
   'Test User 3',
@@ -276,7 +288,9 @@ INSERT INTO users(
   NULL,
   1,
   0,
-  0
+  0,
+  0,
+  1
 );
 
 -- Password: password
@@ -317,7 +331,9 @@ INSERT INTO users(
   other,
   firstuse,
   lastlogin,
-  strikes
+  strikes,
+  sms_enabled,
+  email_enabled
 ) VALUES (
   12345678,
   'Test User 4',
@@ -355,5 +371,7 @@ INSERT INTO users(
   NULL,
   1,
   0,
-  0
+  0,
+  0,
+  1
 );

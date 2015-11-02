@@ -65,6 +65,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    foreach ($_POST['notifications'] as $key => $value) {
+        $result = User::setAttribute($key, $value);
+        if ($result == false) {
+            Session::setError('Unable to update your information, please try again.');
+            Session::redirect('/profile');
+        }
+    }
+
     Session::setSuccess('Successfully updated your information!');
     Session::redirect('/profile');
 
