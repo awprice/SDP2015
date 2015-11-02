@@ -63,7 +63,7 @@
 
                                         <div class="checkbox">
                                             <label>
-                                                <h4>Email 1 week before</h4>
+                                                <h4>1 week before</h4>
                                                 <div class="onoffswitch">
                                                     <input type="checkbox" name="reminder[oneWeek]" class="onoffswitch-checkbox" id="reminder[oneWeek][{{ booking.bookingId }}]" value="1" {% if booking.reminders.one_week == "1" %}checked{% endif %}>
                                                     <label class="onoffswitch-label" for="reminder[oneWeek][{{ booking.bookingId }}]"></label>
@@ -73,7 +73,7 @@
                                         <hr>
                                         <div class="checkbox">
                                             <label>
-                                                <h4>Email 1 week before</h4>
+                                                <h4>24 hours before</h4>
                                                 <div class="onoffswitch">
                                                     <input type="checkbox" name="reminder[threeDays]" class="onoffswitch-checkbox" id="reminder[threeDays][{{ booking.bookingId }}]" value="1" {% if booking.reminders.three_days == "1" %}checked{% endif %}>
                                                     <label class="onoffswitch-label" for="reminder[threeDays][{{ booking.bookingId }}]"></label>
@@ -83,7 +83,7 @@
                                         <hr>
                                         <div class="checkbox">
                                             <label>
-                                                <h4>Email 1 week before</h4>
+                                                <h4>10 minutes before</h4>
                                                 <div class="onoffswitch">
                                                     <input type="checkbox" name="reminder[oneDay]" class="onoffswitch-checkbox" id="reminder[oneDay][{{ booking.bookingId }}]" value="1" {% if booking.reminders.one_day == "1" %}checked{% endif %}>
                                                     <label class="onoffswitch-label" for="reminder[oneDay][{{ booking.bookingId }}]"></label>
