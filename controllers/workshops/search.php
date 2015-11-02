@@ -8,12 +8,22 @@ $page['campuses'] = UTSHelpsAPI::ListCampuses(true);
 
 if (isset($page['parameters']) && isset($page['parameters']['id'])) {
 
-    $workshop = UTSHelpsAPI::SearchWorkshops([
-        'pageSize' => 9999,
-        'startingDtBegin' => Session::getCurrentDateTime(),
-        'startingDtEnd' => Session::getFutureDateTime(),
-        'campusId' => $page['parameters']['id'],
-    ]);
+    if (isset($page['parameters']['workshopSet'])) {
+        $workshop = UTSHelpsAPI::SearchWorkshops([
+            'pageSize' => 9999,
+            'startingDtBegin' => Session::getCurrentDateTime(),
+            'startingDtEnd' => Session::getFutureDateTime(),
+            'campusId' => $page['parameters']['id'],
+            'workshopSetId' => $page['parameters']['workshopSet']
+        ]);
+    } else {
+        $workshop = UTSHelpsAPI::SearchWorkshops([
+            'pageSize' => 9999,
+            'startingDtBegin' => Session::getCurrentDateTime(),
+            'startingDtEnd' => Session::getFutureDateTime(),
+            'campusId' => $page['parameters']['id'],
+        ]);
+    }
 
     if ($workshop != null && $workshop->IsSuccess == 1) {
 
@@ -61,6 +71,24 @@ if (isset($page['parameters']) && isset($page['parameters']['id'])) {
         $page['workshop'] = null;
     }
 
+}
+
+// get the workshop set info
+$page['workshopset'] = null;
+if (isset($page['parameters']) && isset($page['parameters']['workshopSet'])) {
+    // Get the results for the workshop set
+    $workshopsets = UTSHelpsAPI::ListWorkshopSets(true);
+    $workshopset = null;
+
+    if ($workshopsets != null && $workshopsets->IsSuccess == 1) {
+        foreach ($workshopsets->Results as $value) {
+            if ($value->id == $page['parameters']['workshopSet']) {
+                $workshopset = $value;
+            }
+        }
+    }
+
+    $page['workshopset'] = $workshopset;
 }
 
 ?>

@@ -65,6 +65,9 @@
     doc.on('change', '.search-campus', function () {
         redirectSearchCampus(this);
     });
+    doc.on('change', '.search-campus-workshopset', function () {
+        redirectSearchCampusWorkshopSet(this);
+    });
 
     /**
      * Set the min height of the container so that the footer is at the bottom
@@ -472,6 +475,17 @@
      */
     function redirectSearchCampus(select) {
         window.location.href = "/workshops/search/" + $(select).val();
+        return false;
+    }
+
+    /**
+     * On search campus select change, redirect to the relevant workshop sets page
+     *
+     * @param select
+     * @returns {boolean}
+     */
+    function redirectSearchCampusWorkshopSet(select) {
+        window.location.href = "/workshop/" + $(select).attr('data-workshop-set') + "/search/" + $(select).val();
         return false;
     }
 

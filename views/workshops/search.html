@@ -1,8 +1,10 @@
 <h3>Search by Campus</h3>
+<h4><span class="label label-default">{{ page.workshopset.name }}</span></h4>
 <br>
 
 <div class="page-title-center">
-    <select class="form-control input-lg search-campus">
+    <select class="form-control input-lg {% if page.workshopset != null %}search-campus-workshopset{% endif %}{% if page.workshopset == null %}search-campus{% endif %}" {% if page.workshopset != null %}data-workshop-set="{{ page.parameters.workshopSet }}"{% endif %}>
+        <option value="" disabled selected>Select a campus</option>
         {% for campus in page.campuses.Results %}
                 <option value="{{ campus.id }}" {% if page.parameters.id == campus.id %}selected{% endif %}>{{ campus.campus }}</option>
         {% endfor %}

@@ -113,7 +113,7 @@
         $parameters = [
             'controller' => 'workshops/search.php',
             'view' => 'workshops/search.html',
-            'title' => 'Workshop',
+            'title' => 'Search Workshops',
             'flashes' => true,
             'restricted' => true,
             'registered' => true,
@@ -127,6 +127,53 @@
                 'direction' => 'back',
                 'label' => 'Back to Workshops',
                 'link' => '/workshops'
+            ],
+        ];
+        echo superHandler($parameters);
+    });
+
+    $router->map('GET', '/workshop/[i:workshopSet]/search', function ($workshopSet) {
+        $parameters = [
+            'controller' => 'workshops/search.php',
+            'view' => 'workshops/search.html',
+            'title' => 'Search Workshops',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'parameters' => [
+                'workshopSet' => $workshopSet,
+            ],
+            'header' => true,
+            'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Workshop',
+                'link' => '/workshop/' . $workshopSet
+            ],
+        ];
+        echo superHandler($parameters);
+    });
+
+    $router->map('GET', '/workshop/[i:workshopSet]/search/[i:id]', function ($workshopSet, $id) {
+        $parameters = [
+            'controller' => 'workshops/search.php',
+            'view' => 'workshops/search.html',
+            'title' => 'Search Workshops',
+            'flashes' => true,
+            'restricted' => true,
+            'registered' => true,
+            'parameters' => [
+                'workshopSet' => $workshopSet,
+                'id' => $id,
+            ],
+            'header' => true,
+            'footer' => true,
+            'navbar' => true,
+            'navbar-params' => [
+                'direction' => 'back',
+                'label' => 'Back to Workshop',
+                'link' => '/workshop/' . $workshopSet
             ],
         ];
         echo superHandler($parameters);
